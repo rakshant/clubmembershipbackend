@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,7 @@ import com.cmm.spring.mongo.collections.UserRegistration;
 import com.cmm.spring.service.LoginService;
 import com.cmm.spring.service.RegistrationService;
 
+@CrossOrigin
 @RestController
 public class UserController {
 	
@@ -37,12 +39,14 @@ public class UserController {
 
 	@RequestMapping(value="/register", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Registration registerUser(@RequestBody Registration registration) {
+		System.out.println("success");
 		registrationService.save(new UserRegistration(registration.getFirstName(),registration.getLastName(),registration.getEmailId(), registration.getDateOfBirth(),registration.getMobileNumber(),registration.getOccupation(),new Date(),registration.getPassword()));
+		System.out.println("success");
 		return registration;
 	}
 
 	
-	@RequestMapping(value="/login", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/login", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	public @ResponseBody Login loginUser(@RequestBody Login login ) {
 		loginService.save(new UserLogin(login.getEmailId(),login.getPassword()));
 		return login;

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+<title>Club-house</title>
+<style>
+.navbar .narbar-default {
+	margin-bottom: 0px !important;
+}
+</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div ng-include="'views\\home\\nav.html'"></div>
+		</div>
+
+		<div class="row" style="margin-top: 30px;height:510px">
+			<div class="col-md-3">
+				<div ng-controller="TabsDemoCtrl">
+					<uib-tabset vertical="true" type="pills"> <uib-tab
+						heading="View Personal Details"> </uib-tab> <uib-tab
+						heading="Update Personal Details"></uib-tab> 
+						<uib-tab  heading="New Registration Requests"> <span class="badge">2</span></uib-tab>
+					<uib-tab heading="New Membership Requests"></uib-tab> </uib-tabset>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div class="panel panel-default">
+					<div class="panel-heading">Personal details</div>
+					<div class="panel-body">Loremcdsc</div>
+				</div>
+			</div>
+		</div>
+		<div class="row ">
+			<div ng-include="'views\\home\\footer.html'"></div>
+		</div>
+	</div>
+
+
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<script type="text/javascript" src="js/lib/angular.min.js"></script>
+	<script type="text/javascript"
+		src="js/lib/ui-bootstrap-tpls-0.14.3.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"
+		type="text/javascript"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/controllers/controllers.js"></script>
+</body>
+
+</html>

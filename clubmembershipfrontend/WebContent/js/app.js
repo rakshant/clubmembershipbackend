@@ -6,10 +6,6 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
             url: "/home",
             templateUrl: "home.html"
         })
-        .state('mome', {
-            url: "/mome",
-            templateUrl: "mome.html"
-        })
         .state('mome.abc', {
             url: "/abc",
             template: "<h1>state1</h1>"
