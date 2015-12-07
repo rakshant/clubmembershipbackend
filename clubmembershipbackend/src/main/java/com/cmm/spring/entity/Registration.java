@@ -15,6 +15,7 @@ public class Registration {
 	private String occupation;
 	
 	private Date registeredDate;
+	private String password;
 	
 	
 	
@@ -67,7 +68,13 @@ public class Registration {
 	}
 	
 	
-	
+
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	@Override
 	public String toString() {
 		return "Registration [firstName=" + firstName + ", lastname="

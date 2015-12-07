@@ -2,6 +2,8 @@ package com.cmm.spring.mongo.collections;
 
 
 import java.util.Date;
+import java.util.Random;
+import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -9,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.mongodb.BasicDBObject;
+
 
 @Document(collection="user_registrations")
 public class UserRegistration {
@@ -37,6 +40,8 @@ public class UserRegistration {
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	private Date registeredDate;
 	
+	private String password;
+	
 	
 	public UserRegistration() {}
 	
@@ -44,7 +49,7 @@ public class UserRegistration {
 	
 	public UserRegistration(String firstName, String lastName,
 			String emailId, Date dateOfBirth, Long mobileNumber,
-			String occupation,Date registeredDate) {
+			String occupation,Date registeredDate,String password) {
 		
 	
 		this.firstName = firstName;
@@ -54,6 +59,7 @@ public class UserRegistration {
 		this.mobileNumber = mobileNumber;
 		this.occupation = occupation;
 		this.registeredDate=new Date();
+		this.password=getPassword();
 	}
 
 	public String getFirstName() {
@@ -113,6 +119,19 @@ public class UserRegistration {
 
 	public void setRegisteredDate(Date registeredDate) {
 		this.registeredDate = registeredDate;
+	}
+		
+
+	public String getPassword() {
+		
+		password= UUID.randomUUID().toString();
+		return password;
+	}
+
+	public void setPassword(String password) {
+		
+			
+		this.password = password;
 	}
 
 	@Override
