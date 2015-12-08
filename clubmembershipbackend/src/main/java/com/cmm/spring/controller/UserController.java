@@ -56,11 +56,11 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/register", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Registration registerUser(@RequestBody Registration registration) {
-		System.out.println("success");
+	public @ResponseBody String registerUser(@RequestBody Registration registration) {
+		
 		registrationService.save(new UserRegistration(registration.getFirstName(),registration.getLastName(),registration.getEmailId(), registration.getDateOfBirth(),registration.getMobileNumber(),registration.getOccupation(),new Date(),registration.getPassword(),registration.getStatus(),registration.getUserType()));
-		System.out.println("success");
-		return registration;
+		
+		return "success";
 	}
 	
 	@RequestMapping(value="/viewdetails", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
