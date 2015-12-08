@@ -1,15 +1,18 @@
 <div class="col-md-12 " style=" ">
-    <div>
-        <div ng-controller="TabsDemoCtrl" class="col-md-6">
-            <uib-tabset>
-                <uib-tab heading="Login">
-                    <div ng-include="'views\\home\\login.html'"></div>
-                </uib-tab>
-                <uib-tab heading="Sign up">
-                    <div ng-include="'views\\home\\register.html'"
-></div>
-                </uib-tab>
-            </uib-tabset>
-        </div>
+    <div class="row">
+        <div ng-include="'views\\home\\carousel.html'"></div>
+    </div>
+    <div ng-controller="TabsDemoCtrl" class="col-md-6">
+        <uib-tabset>
+            <uib-tab heading="Login">
+                <div ng-include="'views\\home\\login.html'"></div>
+            </uib-tab>
+            <uib-tab heading="Sign up">
+                <div ng-include="'views\\home\\register.html'"></div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+    <div class="col-md-6">
+        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto sunt, officia, laboriosam animi dignissimos delectus exercitationem odit sint reiciendis autem, soluta impedit explicabo eius! Eligendi, obcaecati! Molestias repellat, quasi nihil.</div>
     </div>
 </div>

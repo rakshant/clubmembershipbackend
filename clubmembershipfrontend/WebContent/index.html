@@ -7,7 +7,6 @@
     .navbar .narbar-default {
         margin-bottom: 0px !important;
     }
-
     </style>
 </head>
 
@@ -17,22 +16,14 @@
             <div ng-include="'views\\home\\nav.html'"></div>
         </div>
         <div class="row">
-            <div ng-include="'views\\home\\carousel.html'"></div>
-        </div>
-        <div class="row"  style="margin-top:30px">
-        <div class="col-md-5 " >
-            <div ui-view></div>
-            </div>
-            <div class="col-md-7 " >
-            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto sunt, officia, laboriosam animi dignissimos delectus exercitationem odit sint reiciendis autem, soluta impedit explicabo eius! Eligendi, obcaecati! Molestias repellat, quasi nihil.</div>
+            <div class="col-md-12">
+                <div ui-view></div>
             </div>
         </div>
-       <div class="row ">
-             <div ng-include="'views\\home\\footer.html'"></div>
+        <div class="row ">
+            <div ng-include="'views\\home\\footer.html'"></div>
         </div>
     </div>
-
-
     <link rel="stylesheet" href="css/bootstrap.css" />
     <script type="text/javascript" src="js/lib/angular.min.js"></script>
     <script type="text/javascript" src="js/lib/ui-bootstrap-tpls-0.14.3.min.js"></script>

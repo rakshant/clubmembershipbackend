@@ -4,15 +4,17 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('home', {
             url: "/home",
-            templateUrl: "home.html"
+            templateUrl: "views/home/home.html"
         })
-        .state('mome.abc', {
-            url: "/abc",
-            template: "<h1>state1</h1>"
-        }).state('mome.cde', {
-            url: "/cde",
-            template: "<h1>state2</h1>"
-        });
+        .state('profile', {
+            url: "/profile",
+            templateUrl: "views/profile/profile.html"
+        })
+    .state('profile.nexreasdfa', {
+        url: "/profilesdfsdf",
+        templateUrl: "views/profile/sdfprofile.html"
+    });
+
 
     $urlRouterProvider.otherwise("/home");
 });
