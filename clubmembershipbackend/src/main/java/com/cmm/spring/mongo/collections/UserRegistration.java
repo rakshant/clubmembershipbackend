@@ -2,15 +2,11 @@ package com.cmm.spring.mongo.collections;
 
 
 import java.util.Date;
-import java.util.Random;
-import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
-
-import com.mongodb.BasicDBObject;
 
 
 @Document(collection="user_registrations")

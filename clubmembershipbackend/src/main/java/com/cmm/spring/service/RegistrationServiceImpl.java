@@ -2,15 +2,11 @@ package com.cmm.spring.service;
 
 
 
-import java.util.Iterator;
 import java.util.List;
-
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cmm.spring.mongo.collections.UserLogin;
 import com.cmm.spring.mongo.collections.UserRegistration;
 import com.cmm.spring.rest.repository.RegistrationRepository;
 
@@ -21,14 +17,13 @@ public class RegistrationServiceImpl implements RegistrationService {
 	private RegistrationRepository registrationRepository;
 	
 	public void save(UserRegistration userRegistration) {
-		registrationRepository.save(userRegistration);
+		registrationRepository.insert(userRegistration);
 	}
 
 
 	
 	public List<UserRegistration> read() {
 		
-		System.out.println("using login service");
 		return registrationRepository.findAll();
 	}
 	

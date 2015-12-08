@@ -3,8 +3,6 @@ package com.cmm.spring.entity;
 
 import java.util.Date;
 
-import com.mongodb.BasicDBObject;
-
 public class Registration {
 	
 	private String firstName;

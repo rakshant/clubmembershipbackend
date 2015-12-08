@@ -1,20 +1,13 @@
 package com.clubmembershipbackend;
 
-import java.util.Date;
-
-
-
-
+import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.cmm.spring.mongo.collections.UserRegistration;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
-
-import junit.framework.TestCase;
 
 public class RegisterTest extends TestCase {
 	
@@ -38,7 +31,7 @@ public class RegisterTest extends TestCase {
 
 		
 		String output = response.getEntity(String.class);
-		assertEquals("success",output);
+		assertEquals("{\"firstName\":\"Ruchi\",\"lastName\":\"D\",\"emailId\":\"ruchi@gmail.com\",\"dateOfBirth\":\"1993-11-12\",\"mobileNumber\":9766919881,\"occupation\":\"engineer\",\"registeredDate\":\"1993-11-12\",\"password\":\"Ruchi\",\"status\":0,\"userType\":\"Ruchi\"}",output);
 	}
 
 }

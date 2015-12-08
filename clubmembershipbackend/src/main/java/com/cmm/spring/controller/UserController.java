@@ -13,18 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
-
-
-
-
-
-import com.cmm.spring.entity.Billing;
 import com.cmm.spring.entity.Email;
 import com.cmm.spring.entity.Login;
 import com.cmm.spring.entity.Registration;
-import com.cmm.spring.mongo.collections.UserBilling;
 import com.cmm.spring.mongo.collections.UserEmail;
 import com.cmm.spring.mongo.collections.UserLogin;
 import com.cmm.spring.mongo.collections.UserRegistration;
@@ -56,11 +47,11 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/register", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String registerUser(@RequestBody Registration registration) {
+	public @ResponseBody Registration registerUser(@RequestBody Registration registration) {
 		
 		registrationService.save(new UserRegistration(registration.getFirstName(),registration.getLastName(),registration.getEmailId(), registration.getDateOfBirth(),registration.getMobileNumber(),registration.getOccupation(),new Date(),registration.getPassword(),registration.getStatus(),registration.getUserType()));
 		
-		return "success";
+		return registration;
 	}
 	
 	@RequestMapping(value="/viewdetails", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)

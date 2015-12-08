@@ -2,28 +2,13 @@ package com.cmm.spring.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
 import com.cmm.spring.mongo.collections.UserEmail;
-import com.cmm.spring.mongo.collections.UserLogin;
-import com.cmm.spring.mongo.collections.UserRegistration;
 import com.cmm.spring.rest.repository.EmailRepository;
-import com.cmm.spring.rest.repository.LoginRepository;
 import com.cmm.spring.rest.repository.RegistrationRepository;
-
-
-
-
-
-
-
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 
 
 
@@ -66,7 +51,6 @@ public class EmailServiceImpl implements EmailService {
 		mailSender.send(simpleMailMessageObj);
 		}
 		catch(Exception e){
-			//System.out.println(e);
 			e.printStackTrace();
 		}
 	}
