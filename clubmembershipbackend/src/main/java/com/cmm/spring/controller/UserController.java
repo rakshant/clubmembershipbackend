@@ -19,7 +19,6 @@ import com.cmm.spring.entity.Registration;
 import com.cmm.spring.mongo.collections.UserEmail;
 import com.cmm.spring.mongo.collections.UserLogin;
 import com.cmm.spring.mongo.collections.UserRegistration;
-import com.cmm.spring.service.BillingService;
 import com.cmm.spring.service.EmailService;
 import com.cmm.spring.service.LoginService;
 import com.cmm.spring.service.RegistrationService;
@@ -33,9 +32,7 @@ public class UserController {
 	
 	@Autowired
 	private LoginService loginService;
-	
-	@Autowired
-	private BillingService billingService;
+
 	
 	
 	@Autowired

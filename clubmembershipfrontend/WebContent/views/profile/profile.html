@@ -1,12 +1,20 @@
-<div class="row" style="margin-top: 30px;height:510px">
-    <div class="col-md-12">
-        <div ng-controller="TabsDemoCtrl">
-            <uib-tabset vertical="true" type="pills">
-                <uib-tab heading="View Personal Details"> sdsfsdf</uib-tab>
-                <uib-tab heading="Update Personal Details"></uib-tab>
-                <uib-tab heading="New Registration Requests"> <span class="badge">2</span></uib-tab>
-                <uib-tab heading="New Membership Requests"></uib-tab>
-            </uib-tabset>
-        </div>
-    </div>
+<div class="row" style="margin-top: 30px; height: 510px" ng-controller="TabsDemoCtrl">
+	<div class="col-md-3">
+		<div >
+			<ul class="list-group">
+				<li class="list-group-item">View Personal Details</li>
+				<li class="list-group-item"><a >Update Personal Details</a></li>
+				<li class="list-group-item"><span class="badge">14</span>New
+					Registration Requests</li>
+				<li class="list-group-item"><span class="badge">14</span>New
+					Membership Requests</li>
+			</ul>
+
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div class="panel panel-default">
+			<div ui-view></div>
+		</div>
+	</div>
 </div>

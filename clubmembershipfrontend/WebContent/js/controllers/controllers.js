@@ -33,3 +33,24 @@ myApp.controller('RegisterationCtrl', function($scope, $http) {
 	}
 
 });
+
+
+myApp.controller('LoginCtrl', function($scope, $http,$state) {
+	console.log("login loaded");
+	$scope.loginCheck = function() {
+		console.log("login check called!")
+		$http({
+			method : 'post',
+			url : 'http://localhost:8080/login',
+			data : {
+				'emailId' : $scope.emailId,
+				'password' : $scope.password,				
+			}
+
+		}).success(function(data){
+			$state.go('profile');
+			console.log("success");
+		});
+	}
+
+});
