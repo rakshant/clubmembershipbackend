@@ -17,9 +17,7 @@ public class Registration {
 	
 	private int status=0;
 	private String userType;
-	
-	
-	
+		
 	public String getFirstName() {
 		return firstName;
 	}

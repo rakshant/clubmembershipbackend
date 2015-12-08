@@ -59,9 +59,9 @@ public class UserController {
 
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Login loginUser(@RequestBody Login login ) {
-		loginService.save(new UserLogin(login.getEmailId(),login.getPassword()));
-		return login;
+	public @ResponseBody String loginUser(@RequestBody Login login ) {
+		String response=loginService.save(new UserLogin(login.getEmailId(),login.getPassword()));
+		return response;
 	}
 	
 	@RequestMapping(value="/mail", method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)

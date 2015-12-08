@@ -25,7 +25,7 @@ public class LoginServiceImpl implements LoginService {
 	
 	 List<UserRegistration> userList;
 
-	public void save(UserLogin userLogin) {
+	public String save(UserLogin userLogin) {
 		
 		
 		userList=registrationRepository.findAll();
@@ -34,8 +34,10 @@ public class LoginServiceImpl implements LoginService {
 		for(UserRegistration user:userList){
 			if(userLogin.getEmailId().equals(user.getEmailId())&&userLogin.getPassword().equals(user.getPassword())){
 				loginRepository.insert(userLogin);
+				return user.getUserType();
 			}
 		}
+		return "failure";
 		 
 	}
 

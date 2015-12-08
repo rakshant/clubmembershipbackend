@@ -7,7 +7,7 @@ import com.cmm.spring.mongo.collections.UserLogin;
 public interface LoginService {
 	
 	
-	void save(UserLogin userLogin);
+	String save(UserLogin userLogin);
 
 	//void delete(String emailId);
 

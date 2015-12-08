@@ -10,7 +10,13 @@ myApp.controller('CarouselDemoCtrl', function($scope) {
 });
 
 myApp.controller('TabsDemoCtrl', function($scope) {
-
+	$scope.checkSecretary=function(key){
+		return 'Secretary'===localStorage.getItem(key);
+	}
+	$scope.checkUser=function(key){
+		return 'User'===localStorage.getItem(key) || 'PermanentUser'===localStorage.getItem(key);
+	}
+	console.log(localStorage.getItem("userType"))
 });
 
 myApp.controller('RegisterationCtrl', function($scope, $http) {
@@ -48,8 +54,26 @@ myApp.controller('LoginCtrl', function($scope, $http,$state) {
 			}
 
 		}).success(function(data){
-			$state.go('profile');
+			$scope.profileType=data;
+			localStorage.setItem('userType',$scope.profileType);
+			$state.go('profile.'+$scope.profileType);
 			console.log("success");
+		});
+	}
+
+});
+
+
+
+myApp.controller('viewCtrl', function($scope, $http,$state) {	
+	$scope.loginCheck = function() {
+		
+		$http({
+			method : 'get',
+			url : 'http://localhost:8080/viewdetails'
+		}).success(function(data){
+			$scope.personalDetails=data;			
+			console.log($scope.personalDetails);
 		});
 	}
 
