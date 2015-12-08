@@ -31,9 +31,7 @@ public class UserController {
 	private RegistrationService registrationService;
 	
 	@Autowired
-	private LoginService loginService;
-
-	
+	private LoginService loginService;	
 	
 	@Autowired
 	private EmailService emailService;
