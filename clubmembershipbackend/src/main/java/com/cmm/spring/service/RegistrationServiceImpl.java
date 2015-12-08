@@ -24,8 +24,12 @@ public class RegistrationServiceImpl implements RegistrationService {
 		registrationRepository.save(userRegistration);
 	}
 
-	public UserRegistration read(String emailId) {
-		return registrationRepository.findOne(emailId);
+
+	
+	public List<UserRegistration> read() {
+		
+		System.out.println("using login service");
+		return registrationRepository.findAll();
 	}
 	
 /*	public void delete(String userName) {

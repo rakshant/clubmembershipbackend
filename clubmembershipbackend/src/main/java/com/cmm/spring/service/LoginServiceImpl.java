@@ -2,10 +2,13 @@ package com.cmm.spring.service;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cmm.spring.mongo.collections.UserLogin;
+import com.cmm.spring.mongo.collections.UserRegistration;
 import com.cmm.spring.rest.repository.LoginRepository;
 import com.cmm.spring.rest.repository.RegistrationRepository;
 
@@ -15,10 +18,25 @@ public class LoginServiceImpl implements LoginService {
 	
 	@Autowired
 	private LoginRepository loginRepository;
+	
+	@Autowired
+	private RegistrationRepository registrationRepository;
+	
+	
+	 List<UserRegistration> userList;
 
 	public void save(UserLogin userLogin) {
-
-		 loginRepository.save(userLogin);
+		
+		
+		userList=registrationRepository.findAll();
+			
+		
+		for(UserRegistration user:userList){
+			if(userLogin.getEmailId().equals(user.getEmailId())){
+				loginRepository.save(userLogin);
+			}
+		}
+		 
 	}
 
 	/*public void delete(String emailId) {

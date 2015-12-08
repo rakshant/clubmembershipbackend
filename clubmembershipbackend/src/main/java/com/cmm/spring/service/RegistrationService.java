@@ -11,7 +11,7 @@ public interface RegistrationService {
 
 	void save(UserRegistration userRegistration);
 	
-	UserRegistration read(String emailId);
+	List<UserRegistration> read();
 	
 	//UserLogin login(UserLogin userLogin );
 	
