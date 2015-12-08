@@ -42,6 +42,10 @@ public class UserRegistration {
 	
 	private String password;
 	
+	private int status=0;
+	private String userType;
+	
+	
 	
 	public UserRegistration() {}
 	
@@ -49,7 +53,7 @@ public class UserRegistration {
 	
 	public UserRegistration(String firstName, String lastName,
 			String emailId, Date dateOfBirth, Long mobileNumber,
-			String occupation,Date registeredDate,String password) {
+			String occupation,Date registeredDate,String password,int status,String userType) {
 		
 	
 		this.firstName = firstName;
@@ -59,7 +63,9 @@ public class UserRegistration {
 		this.mobileNumber = mobileNumber;
 		this.occupation = occupation;
 		this.registeredDate=new Date();
-		this.password=getPassword();
+		this.password= ""+((int)(Math.random()*9000)+1000);
+		this.status=status;
+		this.userType=userType;
 	}
 
 	public String getFirstName() {
@@ -124,8 +130,9 @@ public class UserRegistration {
 
 	public String getPassword() {
 		
-		password= UUID.randomUUID().toString();
-		return password;
+		
+      return password;
+        
 	}
 
 	public void setPassword(String password) {

@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
+
+
+
+import com.cmm.spring.entity.Billing;
 import com.cmm.spring.entity.Login;
 import com.cmm.spring.entity.Registration;
-import com.cmm.spring.mongo.collections.UserEmail;
+import com.cmm.spring.mongo.collections.UserBilling;
 import com.cmm.spring.mongo.collections.UserLogin;
 import com.cmm.spring.mongo.collections.UserRegistration;
-
+import com.cmm.spring.service.BillingService;
 import com.cmm.spring.service.LoginService;
 import com.cmm.spring.service.RegistrationService;
 
@@ -33,6 +37,10 @@ public class UserController {
 	@Autowired
 	private LoginService loginService;
 	
+	@Autowired
+	private BillingService billingService;
+	
+	
 	/*@Autowired
 	private EmailService emailService;*/
 	
@@ -44,7 +52,7 @@ public class UserController {
 	@RequestMapping(value="/register", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Registration registerUser(@RequestBody Registration registration) {
 		System.out.println("success");
-		registrationService.save(new UserRegistration(registration.getFirstName(),registration.getLastName(),registration.getEmailId(), registration.getDateOfBirth(),registration.getMobileNumber(),registration.getOccupation(),new Date(),registration.getPassword()));
+		registrationService.save(new UserRegistration(registration.getFirstName(),registration.getLastName(),registration.getEmailId(), registration.getDateOfBirth(),registration.getMobileNumber(),registration.getOccupation(),new Date(),registration.getPassword(),registration.getStatus(),registration.getUserType()));
 		System.out.println("success");
 		return registration;
 	}
@@ -62,10 +70,10 @@ public class UserController {
 		return login;
 	}
 	
-	/*@RequestMapping(value="/sendemail", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Email sendingEmail(@RequestBody Email email) {
-		emailService.sendEmail(new UserEmail(email.getToAddress(),email.getFromAddress(),email.getSubject(),email.getBody()));
-		return email;
+/*	@RequestMapping(value="/bill", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody Billing getBill(@RequestBody Billing bill) {
+		billingService.bill(new UserBilling(bill.getEmailId(),bill.getUserType(),bill.getFacility(),bill.getAmount()));
+		return bill;
 	}*/
 	
 /*	

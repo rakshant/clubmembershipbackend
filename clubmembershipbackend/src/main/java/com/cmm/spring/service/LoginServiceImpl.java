@@ -32,7 +32,7 @@ public class LoginServiceImpl implements LoginService {
 			
 		
 		for(UserRegistration user:userList){
-			if(userLogin.getEmailId().equals(user.getEmailId())){
+			if(userLogin.getEmailId().equals(user.getEmailId())&&userLogin.getPassword().equals(user.getPassword())){
 				loginRepository.save(userLogin);
 			}
 		}

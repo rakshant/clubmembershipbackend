@@ -17,6 +17,9 @@ public class Registration {
 	private Date registeredDate;
 	private String password;
 	
+	private int status=0;
+	private String userType;
+	
 	
 	
 	public String getFirstName() {
@@ -74,6 +77,21 @@ public class Registration {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	
+	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public String getUserType() {
+		return userType;
+	}
+	public void setUserType(String userType) {
+		this.userType = userType;
 	}
 	@Override
 	public String toString() {
