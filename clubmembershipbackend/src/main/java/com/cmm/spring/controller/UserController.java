@@ -22,6 +22,8 @@ import com.cmm.spring.mongo.collections.UserRegistration;
 import com.cmm.spring.service.EmailService;
 import com.cmm.spring.service.LoginService;
 import com.cmm.spring.service.RegistrationService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @CrossOrigin
 @RestController
@@ -36,14 +38,25 @@ public class UserController {
 	@Autowired
 	private EmailService emailService;
 
-
+/*@RequestMapping(value="/register", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String registerUser(@RequestBody Registration registration) throws JsonProcessingException {
+		ObjectMapper mapper=new ObjectMapper();		
+		UserRegistration userRegistration=registrationService.registerUser(new UserRegistration(registration.getFirstName(),registration.getLastName(),registration.getEmailId(), registration.getDateOfBirth(),registration.getMobileNumber(),registration.getOccupation(),new Date(),registration.getPassword(),registration.getStatus(),registration.getUserType()));
+		String registerJson=mapper.writeValueAsString(userRegistration);
+		return registerJson;
+	}
+ * 
+ * 
+ * */
 
 	@RequestMapping(value="/register", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Registration registerUser(@RequestBody Registration registration) {
+	public @ResponseBody String registerUser(@RequestBody Registration registration) throws JsonProcessingException {
 		
-		registrationService.save(new UserRegistration(registration.getFirstName(),registration.getLastName(),registration.getEmailId(), registration.getDateOfBirth(),registration.getMobileNumber(),registration.getOccupation(),new Date(),registration.getPassword(),registration.getStatus(),registration.getUserType()));
 		
-		return registration;
+		ObjectMapper mapper=new ObjectMapper();		
+		UserRegistration userRegistration=registrationService.save(new UserRegistration(registration.getFirstName(),registration.getLastName(),registration.getEmailId(), registration.getDateOfBirth(),registration.getMobileNumber(),registration.getOccupation(),new Date(),registration.getPassword(),registration.getStatus(),registration.getUserType()));
+		String registerJson=mapper.writeValueAsString(userRegistration);
+		return registerJson;
 	}
 
 	@RequestMapping(value="/viewrequests", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
@@ -59,10 +72,13 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String loginUser(@RequestBody Login login) {
+	public @ResponseBody String loginUser(@RequestBody Login login) throws JsonProcessingException {
+		ObjectMapper mapper=new ObjectMapper();
 		String response = loginService.loginUser(new UserLogin(login.getEmailId(),
 				login.getPassword()));
-		return "{\"response\":\"" + response + " \"}";
+		String loginJson=mapper.writeValueAsString(response);
+		return loginJson;
+
 	}
 	
 
