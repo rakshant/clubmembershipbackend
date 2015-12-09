@@ -11,12 +11,13 @@ app.controller('LoginCtrl', function($scope, $http, $state, $rootScope,url) {
 				'password' : $scope.password,
 			}
 		}).success(function(data) {
-			console.log("----->"+data);
-			$scope.profileType = data.response;
+			console.log("----->"+data.userType);
+			$scope.profileType = data.userType;
 			console.log("----->"+data.response);
 
 			localStorage.setItem('userType', $scope.profileType);
-			$state.go('profile');			
+			localStorage.setItem('userId', data.id);
+			$state.go('profile.viewDetails');			
 		});
 	}
 

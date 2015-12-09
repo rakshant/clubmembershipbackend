@@ -7,13 +7,13 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 	}).state('profile', {
 		url : "/profile",
 		templateUrl : "views/profile/profile.html"
-	}).state('viewDetails', {
+	}).state('profile.viewDetails', {
 		url : "/viewDetails",
 		templateUrl : "views/profile/profileViews/viewDetails.html"
-	}).state('updateDetails', {
+	}).state('profile.updateDetails', {
 		url : "/updateDetails",
 		templateUrl : "views/profile/profileViews/updateDetails.html"
-	}).state('registrationRequest', {
+	}).state('profile.registrationRequest', {
 		url : "/registrationRequest",
 		templateUrl : "views/profile/profileViews/registrationRequest.html"
 	});

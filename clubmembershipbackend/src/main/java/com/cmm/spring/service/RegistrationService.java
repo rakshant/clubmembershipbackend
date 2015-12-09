@@ -23,4 +23,6 @@ public interface RegistrationService {
 	
 
 	 List<UserRegistration>  view(String emailId);
+	void rejectRequest(String email);
+	void acceptRequest(String email);
 }

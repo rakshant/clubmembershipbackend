@@ -6,9 +6,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="user_registration")
 public class UserEmail {
-	
-	
-
 	@Id
 	private String id;
 	
@@ -20,17 +17,12 @@ public class UserEmail {
 		this.id = id;
 	}
 	
-	
 	String toAddress;
 	String fromAddress="clubmembershipuser@gmail.com";
 	String subject;
 	String body;
 	
-	
 	public UserEmail(){}
-	
-
-
 
 	public String getToAddress() {
 		return toAddress;

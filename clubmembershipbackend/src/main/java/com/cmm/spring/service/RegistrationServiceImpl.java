@@ -83,5 +83,13 @@ public List<UserRegistration> view(String emailId) {
 		
 	}
 
+public void rejectRequest(String email) {
+	System.out.println("message received to reject request"+email);
+}
+
+public void acceptRequest(String email) {
+	System.out.println("message received to accept request"+email);
+}
+
 
 }

@@ -1,6 +1,7 @@
 package com.cmm.spring.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,32 +47,58 @@ public class UserController {
 		return result;
 	}
 
-	@RequestMapping(value="/viewrequests", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/viewrequests", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<UserRegistration> readRequest() {
 		List<UserRegistration> userList=registrationService.read();
 		return userList;
 	}
 	
 	@RequestMapping(value="/viewdetails/{emailId}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody  List<UserRegistration>  readUser(@PathVariable("emailId") String emailId) {
-		 List<UserRegistration>  userList=registrationService.view(emailId);
+	public @ResponseBody  List<UserRegistration>  readUser(@PathVariable("emailId") String emailId,@RequestParam String id) {
+		/*if(util.isAdmin(id)){
+			return null;
+		}*/
+		List<UserRegistration>  userList=registrationService.view(emailId);
 		return userList;
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String loginUser(@RequestBody Login login) throws JsonProcessingException {
+	//@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public @ResponseBody HashMap<String, String> loginUser(@RequestBody Login login) throws JsonProcessingException {
 		String result = loginService.loginUser(new UserLogin(login.getEmailId(),
-				login.getPassword()));			
-		return result;
+				login.getPassword()));
+		HashMap<String,String> response=new HashMap<String,String>();
+		int colon=result.indexOf(":");
+		response.put("id",result.substring(colon+1));
+		response.put("userType",result.substring(0,colon));
+		System.out.println(result);
+		return response;
 	}
 	
 
-	@RequestMapping(value="/mail", method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+/*	@RequestMapping(value="/mail", method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String  sendEmail(@RequestBody Email email ) {
 		String response=emailService.sendEmail(new UserRegistration(),new UserEmail());
 		return response;
 	}
+*/
+	@RequestMapping(value="/processrequest", method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody HashMap<String, String>  sendEmail(@RequestParam String email,@RequestParam String status) {
+		HashMap<String,String> response=new HashMap<String,String>();
+		if(status.equals("accept")){
+			emailService.sendEmail(new UserRegistration(),new UserEmail());
+			registrationService.acceptRequest(email);
+			response.put("status", "succcess");
+			response.put("message", "Request Accepted Successfully");
+		}else{
+			registrationService.rejectRequest(email);
+			response.put("status", "rejected");
+			response.put("message", "Request Rejected Successfully");
+		}
+		return response;
+	}
 
+	
 	/*
 	 * @RequestMapping(value="/bill", method=RequestMethod.POST,
 	 * produces=MediaType.APPLICATION_JSON_VALUE,

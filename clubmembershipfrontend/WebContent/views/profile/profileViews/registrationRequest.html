@@ -1,39 +1,36 @@
-<div ng-repeat="personalDetail in personalDetails" ng-controller="HandleRegistrationCtrl">
-	<div class="jumbotron">
-
-		<table class="table table-hover">
-
-			<tbody>
-				<tr>
-					<td>First Name</td>
-					<td>{{ personalDetail.firstName }}</td>
-				</tr>
-				<tr>
-					<td>Last name</td>
-					<td>{{ personalDetail.lastName }}</td>
-				</tr>
-				<tr>
-					<td>Email ID</td>
-					<td>{{ personalDetail.emailId }}</td>
-				</tr>
-				<tr>
-					<td>DOB</td>
-					<td>{{ personalDetail.dateOfBirth }}</td>
-				</tr>
-				<tr>
-					<td>Mobile No</td>
-					<td>{{ personalDetail.mobileNumber}}</td>
-				</tr>
-				<tr>
-					<td>Occupation</td>
-					<td>{{ personalDetail.occupation}}</td>
-				</tr>
-			</tbody>
-		</table>
-		<p>
-			<a class="btn btn-primary btn-md" href="#" role="button">Accept</a> <a
-				class="btn btn-danger btn-md" href="#" role="button">Reject</a>
-		</p>
-
+<div ng-controller="HandleRegistrationCtrl">
+	<div class="panel panel-info">
+	<div class="panel-heading">Registration Requests:</div>
+	<div class="panel-body">
+<div class="input-group">
+	<input type="text" class="form-control" ng-model="text" placeholder="Search by anything" accesskey="s">
+  <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-search"></span></span>
+</div><br>
+			<table class="table table-hover">
+	
+				<tbody>
+					<tr>
+						<th>S.No.</th>
+						<th>Name</th>
+						<th>Contact Details</th>
+						<th>DOB</th>
+						<th>Occupation</th>
+						<th>Action</th>
+					</tr>
+					<tr ng-repeat="personalDetail in personalDetails|filter:text">
+						<td>{{ $index+1}}</td>
+						<td>{{ personalDetail.firstName }}{{ personalDetail.lastName }}</td>
+						<td>{{ personalDetail.emailId }}@gmail.com<br>{{ personalDetail.mobileNumber}}566435465465</td>
+						<td>{{ personalDetail.dateOfBirth | date:DD:MM:YYYY}}</td>
+						<td>{{ personalDetail.mobileNumber}}</td>
+						<td>
+						<p>
+						<a class="btn btn-primary btn-md"  ng-click="accept(personalDetail.emailId)" role="button"><span class="glyphicon glyphicon-ok"></span></a>
+						<a class="btn btn-danger btn-md" ng-click="reject(personalDetail.emailId)" role="button"><span class="glyphicon glyphicon-remove"></span></a>
+						</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 	</div>
 </div>
