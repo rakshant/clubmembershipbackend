@@ -1,7 +1,8 @@
 package com.clubmembershipbackend;
 
-import static org.junit.Assert.*;
-import org.junit.Before;
+import static org.junit.Assert.assertNotEquals;
+
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.sun.jersey.api.client.Client;
@@ -10,9 +11,9 @@ import com.sun.jersey.api.client.WebResource;
 
 public class RegisterTest {
 
-	WebResource webResource;
+	static WebResource webResource;
 	
-	@Before
+	@BeforeClass
 	public void setup()
 	{
 		Client client=Client.create();

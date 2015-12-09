@@ -14,6 +14,8 @@ import com.cmm.spring.mongo.collections.UserLogin;
 import com.cmm.spring.mongo.collections.UserRegistration;
 import com.cmm.spring.rest.repository.LoginRepository;
 import com.cmm.spring.rest.repository.RegistrationRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -31,23 +33,30 @@ public class LoginServiceImpl implements LoginService {
 	
 	 List<UserRegistration> userList;
 
-	public String loginUser(UserLogin userLogin) {
-		
+	public String loginUser(UserLogin userLogin) throws JsonProcessingException {
+		String response;
 		Query query = new Query();	
-		
+		ObjectMapper mapper=new ObjectMapper();
+		/*String response = loginService.loginUser(new UserLogin(login.getEmailId(),
+				login.getPassword()));
+		String loginJson=mapper.writeValueAsString(response);
+		return loginJson;
+		*/
 		if(userLogin.getEmailId()!=null){
 		
 		query.addCriteria(Criteria.where("emailId").regex(userLogin.getEmailId()));
 		
 		}
-		else return "failed";
+		
+		else 
+			response="{\"response\":\"failed\"}";
 		
 		if(userLogin.getPassword()!=null){
 		
 		query.addCriteria(Criteria.where("password").regex(userLogin.getPassword()));
 		
 		}
-		else return "failed";
+		else response="{\"response\":\"failed\"}";
 		
 		userList=mongoOperation.find(query, UserRegistration.class);
 		
@@ -55,14 +64,15 @@ public class LoginServiceImpl implements LoginService {
 		
 		loginRepository.insert(userLogin);
 		
-		return "success";
+		response= "success";
 		
 		}
 		
-		return "failed";
+		response= "{\"response\":\"failed\"}";
 		
 		
-		
+		String loginJson=mapper.writeValueAsString(response);
+		return loginJson;
 		 
 	}
 

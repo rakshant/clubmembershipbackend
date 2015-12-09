@@ -5,10 +5,11 @@ package com.cmm.spring.service;
 import java.util.List;
 
 import com.cmm.spring.mongo.collections.UserRegistration;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 public interface RegistrationService {
 
-	UserRegistration save(UserRegistration userRegistration);
+	String save(UserRegistration userRegistration) throws JsonProcessingException;
 	
 	List<UserRegistration> read();
 	

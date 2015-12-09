@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.cmm.spring.mongo.collections.UserRegistration;
 import com.cmm.spring.rest.repository.RegistrationRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class RegistrationServiceImpl implements RegistrationService {
@@ -26,9 +28,10 @@ public class RegistrationServiceImpl implements RegistrationService {
 	List<UserRegistration> userDetails;
 	List<UserRegistration> permanentUserDetails;
 
-	public UserRegistration save(UserRegistration userRegistration) {
+	public String save(UserRegistration userRegistration) throws JsonProcessingException {
 		
 		int flag=0;
+		ObjectMapper mapper=new ObjectMapper();	
 		
 		Query query = new Query();		
 		
@@ -41,10 +44,13 @@ public class RegistrationServiceImpl implements RegistrationService {
 		}
 		
 		if(flag==0){
-			
-			return registrationRepository.insert(userRegistration);
-			
+		
+			 UserRegistration userReg=registrationRepository.insert(userRegistration);
+			//return registrationRepository.insert(userRegistration);
+			String registerJson=mapper.writeValueAsString(userReg);
+			return registerJson;
 		}
+		
 
 		return null;
 	}

@@ -63,8 +63,7 @@ public class EmailServiceImpl implements EmailService {
 					simpleMailMessageObj.setSubject(email.getSubject());
 					simpleMailMessageObj.setText(email.getBody());
 					
-					System.out.println("mail: "+email.getToAddress());
-					System.out.println(simpleMailMessageObj);
+					
 					
 					
 					try{
@@ -72,15 +71,9 @@ public class EmailServiceImpl implements EmailService {
 					}
 					catch(Exception e){
 						return "failure";
-					}
-					
-					
-				
+					}				
 			}
-			return "success"; 
-	
-	
-		
+			return "success"; 	
 	}
 
 
