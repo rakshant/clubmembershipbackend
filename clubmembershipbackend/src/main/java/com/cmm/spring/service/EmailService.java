@@ -5,6 +5,6 @@ import com.cmm.spring.mongo.collections.UserRegistration;
 
 public interface EmailService {
 	
-	public void sendEmail(UserRegistration user,UserEmail email);
+	public String sendEmail(UserRegistration user,UserEmail email);
 
 }

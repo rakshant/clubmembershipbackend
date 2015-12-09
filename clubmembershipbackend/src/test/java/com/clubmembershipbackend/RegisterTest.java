@@ -1,7 +1,6 @@
 package com.clubmembershipbackend;
 
-import junit.framework.TestCase;
-
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,29 +8,26 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
-public class RegisterTest extends TestCase {
+public class RegisterTest {
+
+	WebResource webResource;
 	
 	@Before
-	void setup(){
-		
+	public void setup()
+	{
+		Client client=Client.create();
+		webResource=client.resource("http://localhost:8080/register");
 	}
-	
-	//new UserRegistration(registration.getFirstName(),registration.getLastName(),registration.getEmailId(), registration.getDateOfBirth(),registration.getMobileNumber(),registration.getOccupation(),new Date(),registration.getPassword(),registration.getStatus(),registration.getUserType()));
 	
 	@Test
-	public void testRegister() {
+	public void testRegisterSuccess() 
+	{		
+		String registerData = "{\"firstName\":\"john\",\"lastName\":\"D\",\"emailId\":\"ruchi@gmail.com\",\"dateOfBirth\":\"1993-11-12\",\"mobileNumber\":9766919881,\"occupation\":\"engineer\",\"registeredDate\":\"1993-11-12\",\"password\":\"Ruchi\",\"status\":0,\"userType\":\"Ruchi\"}";
 		
-		Client client=Client.create();
-		WebResource webResource=client.resource("http://localhost:8080/register");
-		
-		String registerData = "{\"firstName\":\"Ruchi\",\"lastName\":\"D\",\"emailId\":\"ruchi@gmail.com\",\"dateOfBirth\":\"1993-11-12\",\"mobileNumber\":9766919881,\"occupation\":\"engineer\",\"registeredDate\":\"1993-11-12\",\"password\":\"Ruchi\",\"status\":0,\"userType\":\"Ruchi\"}";
-
-		ClientResponse response = webResource.type("application/json")
-		   .post(ClientResponse.class,registerData);
-
+		ClientResponse response = webResource.type("application/json").post(ClientResponse.class,registerData);
 		
 		String output = response.getEntity(String.class);
-		assertEquals("{\"firstName\":\"Ruchi\",\"lastName\":\"D\",\"emailId\":\"ruchi@gmail.com\",\"dateOfBirth\":\"1993-11-12\",\"mobileNumber\":9766919881,\"occupation\":\"engineer\",\"registeredDate\":\"1993-11-12\",\"password\":\"Ruchi\",\"status\":0,\"userType\":\"Ruchi\"}",output);
-	}
-
+		
+		assertNotEquals("{\"id\":null,\"firstName\":\"\",\"lastName\":\"D\",\"emailId\":\"ruchi@gmail.com\",\"dateOfBirth\":\"1993-11-12\",\"mobileNumber\":9766919881,\"occupation\":\"engineer\",\"registeredDate\":\"1993-11-12\",\"password\":\"Ruchi\",\"status\":0,\"userType\":\"Ruchi\"}",output);
+	}	
 }

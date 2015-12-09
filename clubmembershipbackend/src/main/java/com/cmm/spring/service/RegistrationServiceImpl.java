@@ -1,6 +1,5 @@
 package com.cmm.spring.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	List<UserRegistration> userDetails;
 	List<UserRegistration> permanentUserDetails;
 
-	public void save(UserRegistration userRegistration) {
+	public UserRegistration save(UserRegistration userRegistration) {
 		
 		int flag=0;
 		
@@ -43,10 +42,11 @@ public class RegistrationServiceImpl implements RegistrationService {
 		
 		if(flag==0){
 			
-			registrationRepository.insert(userRegistration);
+			return registrationRepository.insert(userRegistration);
 			
 		}
 
+		return null;
 	}
 
 	public List<UserRegistration> read() {

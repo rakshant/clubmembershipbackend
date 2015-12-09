@@ -36,11 +36,7 @@ public class UserController {
 	@Autowired
 	private EmailService emailService;
 
-	@RequestMapping("/hello")
-	public String sayHello(
-			@RequestParam(value = "name", defaultValue = "Ivan") String name) {
-		return "Hello " + name;
-	}
+
 
 	@RequestMapping(value="/register", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Registration registerUser(@RequestBody Registration registration) {
@@ -71,9 +67,9 @@ public class UserController {
 	
 
 	@RequestMapping(value="/mail", method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Email sendEmail(@RequestBody Email email ) {
-		emailService.sendEmail(new UserRegistration(),new UserEmail());
-		return email;
+	public @ResponseBody String  sendEmail(@RequestBody Email email ) {
+		String response=emailService.sendEmail(new UserRegistration(),new UserEmail());
+		return response;
 	}
 
 	/*

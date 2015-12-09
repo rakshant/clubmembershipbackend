@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import com.cmm.spring.mongo.collections.UserEmail;
 import com.cmm.spring.mongo.collections.UserRegistration;
-import com.cmm.spring.rest.repository.EmailRepository;
 import com.cmm.spring.rest.repository.RegistrationRepository;
 
 
@@ -21,9 +20,7 @@ import com.cmm.spring.rest.repository.RegistrationRepository;
 @Service
 public class EmailServiceImpl implements EmailService {
 	
-	
-	@Autowired
-	private EmailRepository emailRepository;
+
 	
 	@Autowired
 	private RegistrationRepository registrationRepository;
@@ -40,7 +37,7 @@ public class EmailServiceImpl implements EmailService {
 	List<UserRegistration> userList;
 	 
 	
-	public void sendEmail(UserRegistration user,UserEmail email)
+	public String sendEmail(UserRegistration user,UserEmail email)
 	{		
 		
 		Query query = new Query();		
@@ -74,10 +71,13 @@ public class EmailServiceImpl implements EmailService {
 					mailSender.send(simpleMailMessageObj);
 					}
 					catch(Exception e){
-						e.printStackTrace();
+						return "failure";
 					}
+					
+					
 				
 			}
+			return "success"; 
 	
 	
 		

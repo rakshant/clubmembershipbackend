@@ -8,7 +8,7 @@ import com.cmm.spring.mongo.collections.UserRegistration;
 
 public interface RegistrationService {
 
-	void save(UserRegistration userRegistration);
+	UserRegistration save(UserRegistration userRegistration);
 	
 	List<UserRegistration> read();
 	
