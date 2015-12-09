@@ -48,10 +48,8 @@ public class EmailServiceImpl implements EmailService {
 		query.addCriteria(Criteria.where("status").is(0));
 		
 		userList=mongoOperation.find(query, UserRegistration.class);
-		
-		 
-		 userList=registrationRepository.findAll();
 			
+			System.out.println(userList.size());
 			
 			for(UserRegistration u:userList){
 							
@@ -59,27 +57,30 @@ public class EmailServiceImpl implements EmailService {
 					email.setToAddress(u.getEmailId());
 					email.setSubject("ClubMembership: Entrance fee amount payment");
 					email.setBody("Please pay the Entrance fee amount of Rs."+u.getEntranceFee()+" by accessing the link below. \n You will be contacted soon.\n"+
-							"Thank you.\n Payment link: http://localhost:8080/pay");		
+							"Thank you.\n Payment link: http://localhost:8080/pay");
+					
+					
+					SimpleMailMessage simpleMailMessageObj = new SimpleMailMessage();
+					simpleMailMessageObj.setFrom(email.getFromAddress());
+					simpleMailMessageObj.setTo(email.getToAddress());
+					simpleMailMessageObj.setSubject(email.getSubject());
+					simpleMailMessageObj.setText(email.getBody());
+					
+					System.out.println("mail: "+email.getToAddress());
+					System.out.println(simpleMailMessageObj);
+					
+					
+					try{
+					mailSender.send(simpleMailMessageObj);
+					}
+					catch(Exception e){
+						e.printStackTrace();
+					}
 				
 			}
 	
 	
-		SimpleMailMessage simpleMailMessageObj = new SimpleMailMessage();
-		simpleMailMessageObj.setFrom(email.getFromAddress());
-		simpleMailMessageObj.setTo(email.getToAddress());
-		simpleMailMessageObj.setSubject(email.getSubject());
-		simpleMailMessageObj.setText(email.getBody());
 		
-		System.out.println("mail: "+email.getToAddress());
-		System.out.println(simpleMailMessageObj);
-		
-		
-		try{
-		mailSender.send(simpleMailMessageObj);
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
 	}
 
 

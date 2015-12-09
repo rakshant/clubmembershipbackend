@@ -3,10 +3,11 @@ package com.cmm.spring.entity;
 public class Email {
 	
 	
-	String toAddress;
-	String fromAddress;
-	String subject;
-	String body;
+	private String toAddress;
+	private String fromAddress;
+	private String subject;
+	private String body;
+	
 	public String getToAddress() {
 		return toAddress;
 	}
