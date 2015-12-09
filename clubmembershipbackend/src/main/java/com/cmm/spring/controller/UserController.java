@@ -57,10 +57,10 @@ public class UserController {
 		return userList;
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String loginUser(@RequestBody Login login) throws JsonProcessingException {
 		String result = loginService.loginUser(new UserLogin(login.getEmailId(),
-				login.getPassword()));		
+				login.getPassword()));			
 		return result;
 	}
 	

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- java script files-->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="payment_module.js"></script>
+<script type="text/javascript"
+	src="js/lib/ui-bootstrap-tpls-0.14.3.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"
+	type="text/javascript"></script>
+
+
+<!-- css files -->
+
+</head>
+
+
+<body>
+	<!-- Header starts from here -->
+	<nav class="navbar navbar-default">
+
+		</div>
+		<h3 id="header">Club Bank Payment</h3>
+		</div>
+
+	</nav>
+
+
+
+	<!-- Main div -->
+	<div class="container">
+	
+            <div class="col-md-2">
+            </div>
+             <div class="col-md-8">
+             
+            </div>
+        
+         <div class="col-md-2">
+            </div>
+        
+        
+
+		<!-- Name of form -->
+		<h2>Payment</h2>
+		<!-- Form starts from here -->
+
+
+		<div class="jumbotron">
+
+
+
+
+
+			<form class="form-horizontal" role="form" ng-app="myApp"
+				ng-controller="validateCtrl" name="myForm" novalidate>
+
+				<!-- Name on card  starts from here-->
+				<div class="form-group">
+					<label>Name on card</label><br> <input type="text"
+						class="col-sm-4" id="name" name="user" placeholder="Enter Name"
+						ng-minlength="3" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="user"
+						required><br> <span style="color: red"
+						ng-show="myForm.user.$dirty && myForm.user.$invalid"> <span
+						ng-show="myForm.user.$error.required">Name is required.</span> <span
+						ng-show="myForm.user.$error.minlength">Kindly enter full
+							name!</span> <span ng-show="myForm.user.$error.pattern">Enter
+							alphabets only!</span>
+					</span>
+				</div>
+				<!-- Name on card  end here-->
+
+				<!-- Card number starts from here-->
+				<div class="form-group">
+					<label for="pwd">Card Number</label><br> <input type="number"
+						class="col-sm-4" name="cardnumber" id="pwd" ng-minlength="16"
+						ng-maxlength="16" placeholder="Enter Card Number"
+						ng-pattern="/[0-9]/" ng-model="cardnumber" required> <span
+						style="color: red"
+						ng-show="myForm.cardnumber.$dirty && myForm.cardnumber.$invalid">
+						<span ng-show="myForm.cardnumber.$error.required">Card
+							number required.</span> <span
+						ng-show="myForm.cardnumber.$error.minlength"> Enter 16
+							digit Card number!</span> <span
+						ng-show="myForm.cardnumber.$error.maxlength"> Entered Card
+							number is large than expected !</span> <span
+						ng-show="myForm.cardnumber.$error.pattern">Only number
+							allowed</span>
+
+					</span>
+				</div>
+				<!-- Name on card  end here-->
+				<br>
+				<!-- CardVerificationValue starts from here-->
+				<div class="form-group">
+					<label for="pwd">Card Verification Value</label><br> <input
+						type="number" class="col-sm-4" name="CardVerificationValue"
+						id="pwd" ng-minlength="3" ng-maxlength="3"
+						placeholder="Enter CardVerificationValue Details"
+						ng-pattern="/[0-9]/" ng-model="CardVerificationValue" required>
+					<span style="color: red"
+						ng-show="myForm.CardVerificationValue.$dirty && myForm.CardVerificationValue.$invalid">
+						<span ng-show="myForm.CardVerificationValue.$error.required">CardVerificationValue
+							required.</span> <span
+						ng-show="myForm.CardVerificationValue.$error.minlength">
+							Enter 3 digit CardVerificationValue number !</span> <span
+						ng-show="myForm.CardVerificationValue.$error.maxlength">
+							Entered CardVerificationValue number is large than expected !</span> <span
+						ng-show="myForm.CardVerificationValue.$error.pattern">Only
+							number allowed</span>
+
+					</span>
+				</div>
+				<!-- CardVerificationValue end here-->
+				<br>
+				<!-- Expiry date starts from here-->
+				<div class="form-group">
+					<label for="pwd">Expiry Date</label><br>
+					<!-- Month starts from here-->
+					<input type="number" class="col-sm-1" name="month" id="pwd"
+						ng-minlength="2" ng-maxlength="2" ng-pattern="/[0-9]/"
+						placeholder="month" ng-model="month" required>
+					<div class="form-group">
+
+						<span style="color: red"
+							ng-show="myForm.month.$dirty && myForm.month.$invalid"> <span
+							ng-show="myForm.month.$error.required"> Month Required</span> <span
+							ng-show="myForm.month.$error.minlength"> Enter month as
+								0*!</span> <span ng-show="myForm.month.$error.maxlength">
+								Entered Month is large than expected !</span> <span
+							ng-show="myForm.cardnumber.$error.pattern">Only number
+								allowed</span>
+						</span>
+						<!-- Month  end  here-->
+
+						<!-- Year starts from here-->
+						<input type="number" class="col-sm-1" name="year" id="pwd"
+							ng-minlength="4" ng-maxlength="4" placeholder="YY"
+							ng-pattern="/[0-9]/" ng-model="year" required> <span
+							style="color: red"
+							ng-show="myForm.year.$dirty && myForm.year.$invalid"> <span
+							ng-show="myForm.year.$error.required">Year required.</span> <span
+							ng-show="myForm.year.$error.minlength"> Enter Year as
+								****!</span> <span ng-show="myForm.year.$error.maxlength">
+								Entered Year is large than expected !</span> <span
+							ng-show="myForm.cardnumber.$error.pattern">Only number
+								allowed</span>
+						</span>
+					</div>
+					<!-- Year  ends from here-->
+					<br>
+					<!-- Amount starts from here-->
+					<div class="form-group">
+						<label for="pwd">Amount</label><br> &nbsp&nbsp <input
+							type="number" class="col-sm-4" name="amount" id="pwd"
+							placeholder="Enter amount" ng-model="amount" required> <span
+							style="color: red"
+							ng-show="myForm.amount.$dirty && myForm.amount.$invalid">
+							<span ng-show="myForm.amount.$error.required">Amount
+								required.</span> <!-- Amount ends from here-->
+
+						</span>
+					</div>
+					<br>
+
+					<!-- Button  ends  here-->
+					<button type="submit" class="btn btn-primary btn-primary"
+						ng-disabled="myForm.user.$dirty && myForm.user.$invalid || myForm.cardnumber.$dirty && myForm.cardnumber.$invalid || myForm.CardVerificationValue.$dirty && myForm.CardVerificationValue.$invalid ||myForm.month.$dirty && myForm.month.$invalid || myForm.year.$dirty && myForm.year.$invalid||myForm.amount.$dirty && myForm.amount.$invalid ">Submit</button>
+			</form>
+			<!-- Form end  here-->
+		</div>
+
+	</div>
+
+	<!-- Footer starts from here-->
+
+</body>
+<script type="text/javascript">
+	var app = angular.module('myApp', []);
+	app.controller('validateCtrl', function($scope) {
+		$scope.user = 'Akshay Pathade';
+		$scope.cardnumber = 5123456789012346;
+		$scope.CardVerificationValue = 100;
+		$scope.month = 10;
+		$scope.year = 2015;
+		$scope.amount = 1600;
+	});
+</script>
+
+</html>

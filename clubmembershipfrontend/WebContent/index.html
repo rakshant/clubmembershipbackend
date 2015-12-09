@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <div ng-include="'views\\home\\nav.html'"></div>
+            <div ng-include="'views\\home\\navigation.html'"></div>
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -30,11 +30,18 @@
     <script type="text/javascript" src="js/lib/ui-bootstrap-tpls-0.14.3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js" type="text/javascript"></script> 
     <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/controllers/CarouselController.js"></script>
-    <script type="text/javascript" src="js/controllers/RegisterController.js"></script>         
-    <script type="text/javascript" src="js/controllers/LoginController.js"></script>    
-    <script type="text/javascript" src="js/controllers/PanelListlController.js"></script>    
-    <script type="text/javascript" src="js/controllers/ViewDetailsController.js"></script>
+    <script type="text/javascript" src="js/modules/home.js"></script>
+    <script type="text/javascript" src="js/modules/profile.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/controllers/home/CarouselController.js"></script>
+    <script type="text/javascript" src="js/controllers/home/RegisterController.js"></script>         
+    <script type="text/javascript" src="js/controllers/home/LoginController.js"></script>    
+    <script type="text/javascript" src="js/controllers/profile/PanelListlController.js"></script>    
+    <script type="text/javascript" src="js/controllers/profile/ViewDetailsController.js"></script>
+        <script type="text/javascript" src="js/controllers/profile/HandleRegistrationController.js"></script>
+    
+    
+    
     
 </body>
 

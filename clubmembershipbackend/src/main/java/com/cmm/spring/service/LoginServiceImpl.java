@@ -53,6 +53,7 @@ public class LoginServiceImpl implements LoginService {
 		if (loggedInUserList.size() != 0) {
 			loginRepository.insert(userLogin);
 			for (UserRegistration user : loggedInUserList) {
+				System.out.println(user.getUserType());
 				return user.getUserType();
 			}
 		}

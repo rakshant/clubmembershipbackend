@@ -1,4 +1,5 @@
-myApp.controller('CarouselDemoCtrl', function($scope) {
+var app=angular.module("home");
+app.controller('CarouselDemoCtrl', function($scope) {
 	$scope.myInterval = 2000;
 	$scope.slides = [ {
 		image : 'images\\ch1.jpg'

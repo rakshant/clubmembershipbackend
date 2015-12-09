@@ -1,0 +1,39 @@
+<div ng-repeat="personalDetail in personalDetails" ng-controller="HandleRegistrationCtrl">
+	<div class="jumbotron">
+
+		<table class="table table-hover">
+
+			<tbody>
+				<tr>
+					<td>First Name</td>
+					<td>{{ personalDetail.firstName }}</td>
+				</tr>
+				<tr>
+					<td>Last name</td>
+					<td>{{ personalDetail.lastName }}</td>
+				</tr>
+				<tr>
+					<td>Email ID</td>
+					<td>{{ personalDetail.emailId }}</td>
+				</tr>
+				<tr>
+					<td>DOB</td>
+					<td>{{ personalDetail.dateOfBirth }}</td>
+				</tr>
+				<tr>
+					<td>Mobile No</td>
+					<td>{{ personalDetail.mobileNumber}}</td>
+				</tr>
+				<tr>
+					<td>Occupation</td>
+					<td>{{ personalDetail.occupation}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<p>
+			<a class="btn btn-primary btn-md" href="#" role="button">Accept</a> <a
+				class="btn btn-danger btn-md" href="#" role="button">Reject</a>
+		</p>
+
+	</div>
+</div>

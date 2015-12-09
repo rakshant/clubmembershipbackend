@@ -1,4 +1,6 @@
-myApp.controller('PanelListCtrl', function($scope) {
+var app=angular.module("profile");
+
+app.controller('PanelListCtrl', function($scope) {
 	$scope.checkSecretary = function(key) {
 		return localStorage.getItem(key).trim() === "Secretary";
 	}

@@ -1,10 +1,10 @@
-myApp.controller('RegisterationCtrl', function($scope, $http) {
-	console.log("ctrl loaded");
-	$scope.submit = function() {
+var app=angular.module("home");
 
+app.controller('RegisterationCtrl', function($scope, $http,url) {
+	$scope.submit = function() {
 		$http({
 			method : 'post',
-			url : 'http://localhost:8080/register',
+			url : url+'register',			
 			data : {
 				'firstName' : $scope.firstName,
 				'lastName' : $scope.lastName,
@@ -13,8 +13,6 @@ myApp.controller('RegisterationCtrl', function($scope, $http) {
 				'mobileNumber' : $scope.mobileNo,
 				'occupation' : $scope.occupation,
 			}
-
 		});
 	}
-
 });

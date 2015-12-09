@@ -1,9 +1,8 @@
-myApp.controller('viewCtrl', function($scope, $http, $state) {
+var app=angular.module("profile");
 
-	$http.get('http://localhost:8080/viewdetails').success(function(result) {
-		console.log('-->' + result);
+app.controller('viewCtrl', function($scope, $http, $state,url) {
+
+	$http.get(url+'viewdetails').success(function(result) {	
 		$scope.personalDetails = result;
-		console.log('-->' + result[0].firstName);
 	});
-
 });
