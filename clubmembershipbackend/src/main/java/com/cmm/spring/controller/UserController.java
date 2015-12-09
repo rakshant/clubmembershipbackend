@@ -42,39 +42,37 @@ public class UserController {
 		return "Hello " + name;
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Registration registerUser(
-			@RequestBody Registration registration) {
-
-		registrationService.save(new UserRegistration(registration
-				.getFirstName(), registration.getLastName(), registration
-				.getEmailId(), registration.getDateOfBirth(), registration
-				.getMobileNumber(), registration.getOccupation(), new Date(),
-				registration.getPassword(), registration.getStatus(),
-				registration.getUserType()));
-
+	@RequestMapping(value="/register", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody Registration registerUser(@RequestBody Registration registration) {
+		
+		registrationService.save(new UserRegistration(registration.getFirstName(),registration.getLastName(),registration.getEmailId(), registration.getDateOfBirth(),registration.getMobileNumber(),registration.getOccupation(),new Date(),registration.getPassword(),registration.getStatus(),registration.getUserType()));
+		
 		return registration;
 	}
 
-	 @RequestMapping(value = "/viewdetails", method = RequestMethod.GET,
-	 produces = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody List<UserRegistration> readUser() {
-	 System.out.println("In service");
-	 List<UserRegistration> userList = registrationService.read();
-	 return userList;
-	 }
+	@RequestMapping(value="/viewrequests", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<UserRegistration> readRequest() {
+		List<UserRegistration> userList=registrationService.read();
+		return userList;
+	}
+	
+	@RequestMapping(value="/viewdetails", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody  List<UserRegistration>  readUser(@RequestBody Registration registration) {
+		 List<UserRegistration>  userList=registrationService.view(new UserRegistration(registration.getFirstName(),registration.getLastName(),registration.getEmailId(), registration.getDateOfBirth(),registration.getMobileNumber(),registration.getOccupation(),new Date(),registration.getPassword(),registration.getStatus(),registration.getUserType()));
+		return userList;
+	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String loginUser(@RequestBody Login login) {
-		String response = loginService.save(new UserLogin(login.getEmailId(),
+		String response = loginService.loginUser(new UserLogin(login.getEmailId(),
 				login.getPassword()));
 		return "{\"response\":\"" + response + " \"}";
 	}
+	
 
-	@RequestMapping(value = "/mail", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Email sendEmail(@RequestBody Email email) {
-		emailService.sendEmail(new UserEmail(email.getToAddress(), email
-				.getFromAddress(), email.getSubject(), email.getBody()));
+	@RequestMapping(value="/mail", method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody Email sendEmail(@RequestBody Email email ) {
+		emailService.sendEmail(new UserRegistration(),new UserEmail());
 		return email;
 	}
 

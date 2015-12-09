@@ -17,7 +17,11 @@ public class Registration {
 	
 	private int status=0;
 	private String userType;
-		
+
+	
+	private int entranceFee=1000;
+	
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -95,6 +99,12 @@ public class Registration {
 				+ lastName + ", emailId=" + emailId + ", dateOfBirth="
 				+ dateOfBirth + ", mobileNumber=" + mobileNumber
 				+ ", occupation=" + occupation + "]";
+	}
+	public int getEntranceFee() {
+		return entranceFee;
+	}
+	public void setEntranceFee(int entranceFee) {
+		this.entranceFee = entranceFee;
 	}
 	
 	

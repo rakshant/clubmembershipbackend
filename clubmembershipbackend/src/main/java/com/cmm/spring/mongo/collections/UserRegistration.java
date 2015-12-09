@@ -44,15 +44,25 @@ public class UserRegistration {
 
 	private String password;
 
-	private int status = 0;
+
+	private int status=0;
+
 	private String userType;
 
-	public UserRegistration() {
-	}
+	
+	private int entranceFee=1000;
+	
+	
+	
+	public UserRegistration() {}
+	
+	
+	
+	public UserRegistration(String firstName, String lastName,
+			String emailId, Date dateOfBirth, Long mobileNumber,
+			String occupation,Date registeredDate,String password,int status,String userType) {
+		
 
-	public UserRegistration(String firstName, String lastName, String emailId,
-			Date dateOfBirth, Long mobileNumber, String occupation,
-			Date registeredDate, String password, int status, String userType) {
 
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -60,10 +70,13 @@ public class UserRegistration {
 		this.dateOfBirth = dateOfBirth;
 		this.mobileNumber = mobileNumber;
 		this.occupation = occupation;
-		this.registeredDate = new Date();
-		this.password = "" + ((int) (Math.random() * 9000) + 1000);
-		this.status = status;
-		this.userType = userType;
+
+		this.registeredDate=new Date();
+		this.password= ""+((int)(Math.random()*9000)+1000);
+		this.status=status;
+		this.userType=userType;
+
+
 	}
 
 	public String getFirstName() {
@@ -132,6 +145,18 @@ public class UserRegistration {
 
 		this.password = password;
 	}
+	
+	
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+
 
 	@Override
 	public String toString() {
@@ -140,4 +165,17 @@ public class UserRegistration {
 				+ ", dateOfBirth=" + dateOfBirth + ", mobileNumber="
 				+ mobileNumber + ", occupation=" + occupation + "]";
 	}
+
+
+	public int getEntranceFee() {
+		return entranceFee;
+	}
+
+	public void setEntranceFee(int entranceFee) {
+		this.entranceFee = entranceFee;
+	}
+
+	
+	
+
 }

@@ -17,4 +17,8 @@ public interface RegistrationService {
 	//void delete(String userName);
 	
 	void update(String userName);
+
+	
+
+	 List<UserRegistration>  view(UserRegistration userRegistration);
 }

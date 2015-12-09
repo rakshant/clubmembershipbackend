@@ -4,8 +4,8 @@ package com.cmm.spring.entity;
 
 public class Login {
 	
-	String emailId;
-	String password;
+	private String emailId;
+	private String password;
 	
 	
 	public String getEmailId() {
@@ -19,6 +19,11 @@ public class Login {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	@Override
+	public String toString() {
+		return "Login [emailId=" + emailId + ", password=" + password + "]";
 	}
 	
 	

@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Document(collection="user_email")
+@Document(collection="user_registration")
 public class UserEmail {
 	
 	
@@ -25,10 +25,6 @@ public class UserEmail {
 	String fromAddress="clubmembershipuser@gmail.com";
 	String subject;
 	String body;
-	
-	
-	
-	
 	
 	
 	public UserEmail(){}

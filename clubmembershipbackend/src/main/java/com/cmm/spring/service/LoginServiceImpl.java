@@ -5,6 +5,9 @@ package com.cmm.spring.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import com.cmm.spring.mongo.collections.UserLogin;
@@ -22,24 +25,47 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private RegistrationRepository registrationRepository;
 	
+	@Autowired
+	private MongoOperations mongoOperation;
+	
 	
 	 List<UserRegistration> userList;
 
-	public String save(UserLogin userLogin) {
+	public String loginUser(UserLogin userLogin) {
 		
+		Query query = new Query();	
 		
-		userList=registrationRepository.findAll();
-			
+		if(userLogin.getEmailId()!=null){
 		
-		for(UserRegistration user:userList){
-			if(userLogin.getEmailId().equals(user.getEmailId())&&userLogin.getPassword().equals(user.getPassword())){
-				loginRepository.insert(userLogin);
-				return user.getUserType();
-			}
+		query.addCriteria(Criteria.where("emailId").regex(userLogin.getEmailId()));
+		
 		}
-		return "failure";
+		else return "failed";
+		
+		if(userLogin.getPassword()!=null){
+		
+		query.addCriteria(Criteria.where("password").regex(userLogin.getPassword()));
+		
+		}
+		else return "failed";
+		
+		userList=mongoOperation.find(query, UserRegistration.class);
+		
+		if(userList.size()!=0){
+		
+		loginRepository.insert(userLogin);
+		
+		return "success";
+		
+		}
+		
+		return "failed";
+		
+		
+		
 		 
 	}
+
 
 	/*public void delete(String emailId) {
 		
