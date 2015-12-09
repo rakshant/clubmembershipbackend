@@ -7,21 +7,10 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 	}).state('profile', {
 		url : "/profile",
 		templateUrl : "views/profile/profile.html"
-	}).state('profile.viewDetails', {
+	}).state('viewDetails', {
 		url : "/viewDetails",
 		templateUrl : "views/profile/profileViews/viewDetails.html"
 	});
 
 	$urlRouterProvider.otherwise("/home");
 });
-
-//
-// $stateProvider
-// .state('contacts', {
-// url: '/contacts',
-// ...
-// })
-// .state('contacts.list', {
-// url: '/list',
-// ...
-// });
