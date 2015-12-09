@@ -35,19 +35,6 @@ public class LoginTest {
 	}
 	
 	
-	@Test
-	public void testLoginNull() 
-	{		
-		String loginData = null;
-
-		ClientResponse response = webResource.type("application/json")
-		   .post(ClientResponse.class,loginData);
-		
-		String output = response.getEntity(String.class);
-		
-		assertEquals("{\"response\":\"failed\"}",output);
-	}
-	
 
 	@Test
 	public void testLoginSuccess() 
