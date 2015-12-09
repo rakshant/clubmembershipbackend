@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 public interface RegistrationService {
 
+
 	String save(UserRegistration userRegistration) throws JsonProcessingException;
 	
 	List<UserRegistration> read();
@@ -21,5 +22,5 @@ public interface RegistrationService {
 
 	
 
-	 List<UserRegistration>  view(UserRegistration userRegistration);
+	 List<UserRegistration>  view(String emailId);
 }

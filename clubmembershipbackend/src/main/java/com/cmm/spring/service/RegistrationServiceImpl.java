@@ -27,6 +27,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	List<UserRegistration> secretaryDetails;
 	List<UserRegistration> userDetails;
 	List<UserRegistration> permanentUserDetails;
+	List<UserRegistration> viewDetailsList;
 
 	public String save(UserRegistration userRegistration) throws JsonProcessingException {
 		
@@ -46,7 +47,6 @@ public class RegistrationServiceImpl implements RegistrationService {
 		if(flag==0){
 		
 			 UserRegistration userReg=registrationRepository.insert(userRegistration);
-			//return registrationRepository.insert(userRegistration);
 			String registerJson=mapper.writeValueAsString(userReg);
 			return registerJson;
 		}
@@ -66,61 +66,22 @@ public class RegistrationServiceImpl implements RegistrationService {
 		return registrationRequestUsersList;
 	}
 
-	/*
-	 * public void delete(String userName) { List<UserRegistration>
-	 * temp_users=registrationRepository.findAll(); Iterator<UserRegistration>
-	 * users_iteratOor=temp_users.iterator(); while(users_iterator.hasNext()) {
-	 * UserRegistration user=users_iterator.next();
-	 * if(user.getUserName().equals(userName)) {
-	 * registrationRepository.delete(user.getId()); } }
-	 * 
-	 * }
-	 */
+	
 	public void update(String userName) {
 
 	}
 	
 	
-	public List<UserRegistration> view(UserRegistration userRegistration) {
+public List<UserRegistration> view(String emailId) {
+	
 		
-		Query querySecretary = new Query();		
-		Query queryUser = new Query();
-		Query queryPermanentUser = new Query();	
-			
-		/*querySecretary.addCriteria(Criteria.where("emailId").regex(userRegistration.getEmailId()));
-		querySecretary.addCriteria(Criteria.where("status").is(1));*/
-		querySecretary.addCriteria(Criteria.where("userType").regex("secretary"));
+		viewDetailsList= registrationRepository.findByEmailId(emailId+".com");
+		
+		System.out.println(viewDetailsList);
 
-		secretaryDetails= mongoOperation.find(querySecretary, UserRegistration.class);
-		
-		if(mongoOperation.find(querySecretary, UserRegistration.class).size()!=0){
-			return secretaryDetails;
-		}
-		
-	/*	queryUser.addCriteria(Criteria.where("emailId").regex(userRegistration.getEmailId()));
-		queryUser.addCriteria(Criteria.where("status").is(1));*/
-		queryUser.addCriteria(Criteria.where("userType").regex("user"));
-		
-		userDetails=mongoOperation.find(queryUser, UserRegistration.class);
-		
-		if(mongoOperation.find(queryUser, UserRegistration.class).size()!=0){
-			return userDetails;
-		}
-		
-	/*	queryPermanentUser.addCriteria(Criteria.where("emailId").regex(userRegistration.getEmailId()));
-		queryPermanentUser.addCriteria(Criteria.where("status").is(1))*/;
-		queryPermanentUser.addCriteria(Criteria.where("userType").regex("permanentUser"));
-		
-		permanentUserDetails= mongoOperation.find(queryPermanentUser, UserRegistration.class);
-		
-		if(mongoOperation.find(queryPermanentUser, UserRegistration.class).size()!=0){
-			return permanentUserDetails;
-		}
-		
-		
-		return null;
+		return viewDetailsList;
 		
 	}
-	
+
 
 }
