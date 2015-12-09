@@ -13,18 +13,12 @@ import org.springframework.stereotype.Service;
 
 import com.cmm.spring.mongo.collections.UserEmail;
 import com.cmm.spring.mongo.collections.UserRegistration;
-import com.cmm.spring.rest.repository.RegistrationRepository;
 
 
 
 @Service
 public class EmailServiceImpl implements EmailService {
-	
 
-	
-	@Autowired
-	private RegistrationRepository registrationRepository;
-	
 	@Autowired
 	private MailSender mailSender; 
 	
@@ -45,8 +39,6 @@ public class EmailServiceImpl implements EmailService {
 		query.addCriteria(Criteria.where("status").is(0));
 		
 		userList=mongoOperation.find(query, UserRegistration.class);
-			
-			System.out.println(userList.size());
 			
 			for(UserRegistration u:userList){
 							

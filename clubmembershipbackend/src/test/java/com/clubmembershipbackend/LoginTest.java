@@ -15,7 +15,7 @@ public class LoginTest {
 	static WebResource webResource;
 	
 	@BeforeClass
-	public void setup()
+	public static void setup()
 	{
 		Client client=Client.create();
 		webResource=client.resource("http://localhost:8080/login");
@@ -30,7 +30,7 @@ public class LoginTest {
 		
 		String output = response.getEntity(String.class);
 		System.out.println(output);
-		assertEquals("{\"response\":\"failed\"}",output);
+		assertEquals("failed",output);
 	}	
 
 	@Test

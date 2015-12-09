@@ -1,6 +1,6 @@
 package com.clubmembershipbackend;
 
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -14,7 +14,7 @@ public class RegisterTest {
 	static WebResource webResource;
 	
 	@BeforeClass
-	public void setup()
+	public static void setup()
 	{
 		Client client=Client.create();
 		webResource=client.resource("http://localhost:8080/register");
@@ -30,5 +30,16 @@ public class RegisterTest {
 		String output = response.getEntity(String.class);
 		
 		assertNotEquals("{\"id\":null,\"firstName\":\"\",\"lastName\":\"D\",\"emailId\":\"ruchi@gmail.com\",\"dateOfBirth\":\"1993-11-12\",\"mobileNumber\":9766919881,\"occupation\":\"engineer\",\"registeredDate\":\"1993-11-12\",\"password\":\"Ruchi\",\"status\":0,\"userType\":\"Ruchi\"}",output);
+	}	
+	@Test
+	public void testRegisterNullValue() 
+	{		
+		String registerData = "{\"firstName\":\"\",\"lastName\":\"D\",\"emailId\":\"\",\"dateOfBirth\":\"1993-11-12\",\"mobileNumber\":9766919881,\"occupation\":\"engineer\",\"registeredDate\":\"1993-11-12\",\"password\":\"Ruchi\",\"status\":0,\"userType\":\"Ruchi\"}";
+		
+		ClientResponse response = webResource.type("application/json").post(ClientResponse.class,registerData);
+		
+		String output = response.getEntity(String.class);
+		
+		assertEquals("",output);
 	}	
 }
