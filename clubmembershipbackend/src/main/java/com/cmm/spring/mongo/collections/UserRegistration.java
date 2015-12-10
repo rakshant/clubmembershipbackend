@@ -78,6 +78,16 @@ public class UserRegistration {
 
 
 	}
+	
+	//this constructor is for update service
+		public UserRegistration(String emailId,Long mobileNumber,String occupation,String password) 
+		{
+			this.emailId = emailId;
+			this.mobileNumber = mobileNumber;
+			this.occupation = occupation;
+			this.password=password;
+		}
+
 
 	public String getFirstName() {
 		return firstName;

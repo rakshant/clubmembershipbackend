@@ -67,9 +67,40 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 
 	
-	public void update(String userName) {
-
+	public String update(String id,UserRegistration userRegistration) throws JsonProcessingException
+	{
+		
+		viewDetailsList= registrationRepository.findById(id);
+		
+		ObjectMapper objectMapper=new ObjectMapper();
+	
+		UserRegistration usreg=new UserRegistration();
+		
+		
+		if(viewDetailsList.size()!=0)
+		{	
+			usreg=viewDetailsList.get(0);
+			//Setting all the old details of that document 
+			userRegistration.setFirstName(usreg.getFirstName());
+			userRegistration.setLastName(usreg.getLastName());
+			userRegistration.setDateOfBirth(usreg.getDateOfBirth());
+			userRegistration.setLastName(usreg.getLastName());
+			userRegistration.setRegisteredDate(usreg.getRegisteredDate());
+			userRegistration.setId(usreg.getId());
+			
+			registrationRepository.delete(usreg);
+			usreg=registrationRepository.save(userRegistration);
+			
+			String registerJson=objectMapper.writeValueAsString(usreg);		
+			
+			return registerJson;
+		}
+		else
+		{			
+			return null;
+		}
 	}
+
 	
 	
 public List<UserRegistration> view(String id) {

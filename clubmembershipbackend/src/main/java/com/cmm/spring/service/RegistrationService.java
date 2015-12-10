@@ -18,7 +18,8 @@ public interface RegistrationService {
 	
 	//void delete(String userName);
 	
-	void update(String userName);
+	String update(String id,UserRegistration userRegistration) throws JsonProcessingException;
+
 
 	 List<UserRegistration>  view(String id);
 	 
