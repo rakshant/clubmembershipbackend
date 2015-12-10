@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cmm.spring.entity.Login;
 import com.cmm.spring.entity.Registration;
-import com.cmm.spring.mongo.collections.UserEmail;
 import com.cmm.spring.mongo.collections.UserLogin;
 import com.cmm.spring.mongo.collections.UserRegistration;
 import com.cmm.spring.service.EmailService;
@@ -122,7 +121,7 @@ public class UserController {
 	//Update will update mobileNo,occupation,password through emailId
 		@RequestMapping(value="/update/{id}", method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE,consumes=MediaType.APPLICATION_JSON_VALUE) 
 		public @ResponseBody String updateUser(@PathVariable("id") String id,@RequestBody Registration registration) throws JsonProcessingException {
-				String result =registrationService.update(id,new UserRegistration(registration.getEmailId(),registration.getMobileNumber(),registration.getOccupation(),registration.getPassword()));
+				String result =registrationService.update(id,new UserRegistration(registration.getMobileNumber(),registration.getOccupation(),registration.getPassword()));
 				return result;
 		}
 
