@@ -133,10 +133,16 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	public void rejectRequest(String email) {
 		System.out.println("message received to reject request-" + email);
+		
+		UserRegistration user = registrationRepository.findByEmailId(email).get(0);
 
 	}
 
 	public String acceptRequest(String email) {
+		
+		UserRegistration user = registrationRepository.findByEmailId(email).get(0);
+		String id=user.getId();
+		
 		System.out.println("message received to accept request" + email);
 		UserEmail userEmail = new UserEmail();
 		userEmail.setFromAddress("clubmembershipuser@gmail.com");
@@ -146,7 +152,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 				.setBody("Please pay the Entrance fee amount of Rs. "
 						+ 1200
 						+ " by accessing the link below. \n You will be contacted soon.\n"
-						+ "Thank you.\n Payment link: http://localhost:8080/pay");
+						+ "Thank you.\n Payment link: http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id:"+id);
 
 		SimpleMailMessage simpleMailMessageObj = new SimpleMailMessage();
 		simpleMailMessageObj.setFrom(userEmail.getFromAddress());
@@ -155,15 +161,15 @@ public class RegistrationServiceImpl implements RegistrationService {
 		simpleMailMessageObj.setText(userEmail.getBody());
 
 		try {
-			mailSender.send(simpleMailMessageObj);
-
-			UserRegistration user = registrationRepository.findOne(email);
-
+			mailSender.send(simpleMailMessageObj);	
+			
+			System.out.println(user.getEmailId());
 			user.setStatus(1);
-
+			System.out.println(user.getId());
 			registrationRepository.save(user);
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			return "failure";
 
 		}

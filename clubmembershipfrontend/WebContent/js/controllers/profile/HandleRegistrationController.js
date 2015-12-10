@@ -15,15 +15,17 @@ app.controller('HandleRegistrationCtrl', function($scope, $state,$http,url) {
 			$http({
 				method : 'GET',
 				url : url+'processrequest?email='+id+'&status=accept'		
+			}).success(function(data) {
+				refresh();			
 			});
-			refresh();			
 		}
 		$scope.reject=function(id){
 			$http({
 				method : 'POST',
 				url : url+'processrequest?email='+id+'&status=reject'		
+			}).success(function(data) {
+				refresh();			
 			});
-			refresh();			
 		}
 });
 

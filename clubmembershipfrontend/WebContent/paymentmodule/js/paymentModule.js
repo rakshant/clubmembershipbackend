@@ -7,4 +7,13 @@ app.controller('validateCtrl', function($scope) {
 	$scope.month = 10;
 	$scope.year = 2015;
 	$scope.amount = 1600;
+	
+	$http({
+		method : 'post',
+		url : url+'paymentdone/'+location.search.substring(4)
+});
+	
+	
+	
+	
 });
