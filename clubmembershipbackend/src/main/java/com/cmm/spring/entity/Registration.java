@@ -2,6 +2,8 @@ package com.cmm.spring.entity;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Registration {
 
 	private String firstName;
@@ -18,6 +20,11 @@ public class Registration {
 	private String userType;
 
 	private int entranceFee = 1000;
+	
+	private int paymentDone=0;
+	
+	@Autowired
+	Facilities facilities;
 
 	public String getFirstName() {
 		return firstName;
@@ -100,14 +107,7 @@ public class Registration {
 		this.userType = userType;
 	}
 
-	@Override
-	public String toString() {
-		return "Registration [firstName=" + firstName + ", lastName="
-				+ lastName + ", emailId=" + emailId + ", dateOfBirth="
-				+ dateOfBirth + ", mobileNumber=" + mobileNumber
-				+ ", occupation=" + occupation + ", status=" + status
-				+ ", userType=" + userType + "]";
-	}
+	
 
 	public int getEntranceFee() {
 		return entranceFee;
@@ -116,5 +116,36 @@ public class Registration {
 	public void setEntranceFee(int entranceFee) {
 		this.entranceFee = entranceFee;
 	}
+
+	
+
+	public Facilities getFacilities() {
+		return facilities;
+	}
+
+	public void setFacilities(Facilities facilities) {
+		this.facilities = facilities;
+	}
+
+	@Override
+	public String toString() {
+		return "Registration [firstName=" + firstName + ", lastName="
+				+ lastName + ", emailId=" + emailId + ", dateOfBirth="
+				+ dateOfBirth + ", mobileNumber=" + mobileNumber
+				+ ", occupation=" + occupation + ", status=" + status
+				+ ", userType=" + userType + ", facility=" + facilities + "]";
+	}
+
+	public int getPaymentDone() {
+		return paymentDone;
+	}
+
+	public void setPaymentDone(int paymentDone) {
+		this.paymentDone = paymentDone;
+	}
+	
+	
+	
+	
 
 }

@@ -61,6 +61,22 @@ public class LoginServiceImpl implements LoginService {
 
 	}
 
+	public UserLogin logout(String id) {
+		
+		UserLogin user=null;	
+		user=loginRepository.findOne(id);
+		
+		if(user!=null){
+			
+			loginRepository.delete(id);
+			
+			return user;
+			
+		}
+		
+		return null;
+	}
+
 	/*
 	 * public void delete(String emailId) {
 	 * 

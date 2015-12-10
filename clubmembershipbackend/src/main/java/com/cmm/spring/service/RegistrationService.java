@@ -25,4 +25,10 @@ public interface RegistrationService {
 	 
 	void rejectRequest(String email);
 	void acceptRequest(String email);
+
+	
+
+	UserRegistration paymentDone(String id);
+
+	
 }

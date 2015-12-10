@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
+import com.cmm.spring.mongo.collections.UserEmail;
 import com.cmm.spring.mongo.collections.UserRegistration;
 import com.cmm.spring.rest.repository.RegistrationRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -21,6 +24,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 	
 	@Autowired
 	private MongoOperations mongoOperation;
+	
+	@Autowired
+	private MailSender mailSender;
 	
 	List<UserRegistration> registrationCheckList;
 	List<UserRegistration> registrationRequestUsersList;
@@ -86,7 +92,10 @@ public class RegistrationServiceImpl implements RegistrationService {
 	public String update(String id,UserRegistration userRegistration) throws JsonProcessingException
 	{
 		
-		viewDetailsList= registrationRepository.findById(id);
+		
+		UserRegistration user=registrationRepository.findOne(id);
+		
+		user.setPassword("");
 		
 		ObjectMapper objectMapper=new ObjectMapper();
 	
@@ -135,6 +144,43 @@ public void rejectRequest(String email) {
 public void acceptRequest(String email) {
 	System.out.println("message received to accept request"+email);
 }
+
+public UserRegistration paymentDone(String id) {
+	
+	
+	UserRegistration user= registrationRepository.findOne(id);
+	
+	
+	if(user.getStatus()==1){
+	user.setPaymentDone(1);
+	
+	UserEmail email=new UserEmail();
+	
+	email.setFromAddress("clubmembershipuser@gmail.com");
+	email.setToAddress(user.getEmailId());
+	email.setSubject("Club Membership: Login credentials.");
+	email.setBody("Dear"+user.getFirstName()+"\n You have been successfully registered with our club."
+			+ "\nYour login credentials are: \n Username: "+user.getEmailId()+"Password: "+user.getPassword()+"\n"
+					+ "Thank you. Looking forward to you visit.");
+	
+	registrationRepository.save(user);
+	
+	
+	SimpleMailMessage simpleMailMessageObj = new SimpleMailMessage();
+	simpleMailMessageObj.setFrom(email.getFromAddress());
+	simpleMailMessageObj.setTo(email.getToAddress());
+	simpleMailMessageObj.setSubject(email.getSubject());
+	simpleMailMessageObj.setText(email.getBody());
+	
+	mailSender.send(simpleMailMessageObj);
+	
+	return user;
+	}
+	return null;
+
+}
+
+
 
 
 }

@@ -11,6 +11,8 @@ public interface LoginService  {
 
 	String loginUser(UserLogin userLogin) throws JsonProcessingException;
 
+	UserLogin logout(String emailId);
+
 
 	//void delete(String emailId);
 

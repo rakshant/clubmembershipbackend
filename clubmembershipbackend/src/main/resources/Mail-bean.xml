@@ -10,11 +10,110 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  
+ 
 	
 	<context:component-scan base-package="com.cmm.spring" />
+	
+	
  
- 
- 
+ 	<bean id="tableTennisFees" class="com.cmm.spring.entity.IndoorFacilities">
+	    <property name="tableTennisFees" value="1000" />
+	</bean>
+	
+	<bean id="badmintonFees" class="com.cmm.spring.entity.IndoorFacilities">
+	    <property name="badmintonFees" value="500" />
+	</bean>
+	
+	<bean id="billiardsFees" class="com.cmm.spring.entity.IndoorFacilities">
+	    <property name="billiardsFees" value="1500" />
+	</bean>
+	
+	<bean id="healthClubFees" class="com.cmm.spring.entity.IndoorFacilities">
+	    <property name="healthClubFees" value="300" />
+	</bean>
+	
+		<bean id="squashFees" class="com.cmm.spring.entity.IndoorFacilities">
+	    <property name="squashFees" value="2500" />
+	</bean>
+	
+	
+	<bean id="lawnTennis" class="com.cmm.spring.entity.OutdoorFacilities">
+	    <property name="lawnTennis" value="1500" />
+	</bean>
+	
+	<bean id="swimming" class="com.cmm.spring.entity.OutdoorFacilities">
+	    <property name="swimming" value="100" />
+	</bean>
+	
+	<bean id="cricket" class="com.cmm.spring.entity.OutdoorFacilities">
+	    <property name="cricket" value="3000" />
+	</bean>
+	
+		<bean id="playground" class="com.cmm.spring.entity.OutdoorFacilities">
+	    <property name="playground" value="300" />
+	</bean>
+	
+	
+		<bean id="cardRoom" class="com.cmm.spring.entity.LeisureFacilities">
+	    <property name="cardRoom" value="500" />
+	</bean>
+	
+		<bean id="library" class="com.cmm.spring.entity.LeisureFacilities">
+	    <property name="library" value="300" />
+	</bean>
+	
+	<bean id="restaurant" class="com.cmm.spring.entity.LeisureFacilities">
+	    <property name="restaurant" value="1000" />
+	</bean>
+	
+		<bean id="banquetHall" class="com.cmm.spring.entity.LeisureFacilities">
+	    <property name="banquetHall" value="50000" />
+	</bean>
+	
+	<bean id="conferenceHall" class="com.cmm.spring.entity.LeisureFacilities">
+	    <property name="conferenceHall" value="40000" />
+	</bean>
+	
+	
+	<bean id="facilities" class="com.cmm.spring.entity.Facilities">
+	   <property name="indoorFacilitiesList">
+	        <list>
+	            <ref bean="tableTennisFees"></ref>
+	             <ref bean="badmintonFees"></ref>
+	             <ref bean="billiardsFees"></ref>
+	             <ref bean="healthClubFees"></ref>
+	             <ref bean="squashFees"></ref>
+	        </list>
+	    </property>
+	    
+	     <property name="outdoorFacilitiesList">
+	        <list>
+	            <ref bean="lawnTennis"></ref>
+	             <ref bean="swimming"></ref>
+	             <ref bean="cricket"></ref>
+	             <ref bean="playground"></ref>
+	        </list>
+	    </property>
+	    
+	      <property name="leisureFacilitiesList">
+	        <list>
+	            <ref bean="cardRoom"></ref>
+	             <ref bean="library"></ref>
+	             <ref bean="restaurant"></ref>
+	             <ref bean="banquetHall"></ref>
+	             <ref bean="conferenceHall"></ref>
+	        </list>
+	    </property>
+	</bean>
+	
+	
+	<bean id="register" class="com.cmm.spring.entity.Registration">
+	    <property name="facilities">
+	    <ref bean="facilities"></ref>
+	    </property>
+	   </bean>
+	
+	
  <bean id="smtpAuthenticator"
 		class="com.cmm.spring.service.SmtpAuthenticator">
 		<constructor-arg value="clubmembershipuser@gmail.com" />
@@ -44,20 +143,4 @@
 		<property name="session" ref="mailSession" />
 	</bean>
 	
-	<!-- <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="587" />
-		<property name="username" value="clubmembershipuser@gmail.com" />
-		<property name="password" value="clubmembershipuser@gmail.com" />
- 
-		The name of the property, following JavaBean naming conventions
-		<property name="javaMailProperties">
-			<props>
-				<prop key="mail.transport.protocol">SMTP</prop>
-				<prop key="mail.smtp.auth">true</prop>
-				<prop key="mail.smtp.starttls.enable">true</prop>
-				<prop key="mail.debug">true</prop>
-			</props>
-		</property>
-	</bean> -->
 </beans>

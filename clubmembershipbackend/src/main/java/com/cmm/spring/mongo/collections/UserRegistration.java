@@ -2,10 +2,13 @@ package com.cmm.spring.mongo.collections;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.cmm.spring.entity.Facilities;
 
 @Document(collection = "user_registrations")
 public class UserRegistration {
@@ -52,7 +55,10 @@ public class UserRegistration {
 	
 	private int entranceFee=1000;
 	
+	private int paymentDone=0;
 	
+	@Autowired
+	Facilities facilities;
 	
 	public UserRegistration() {}
 	
@@ -168,14 +174,17 @@ public class UserRegistration {
 
 
 
+
+
 	@Override
 	public String toString() {
 		return "UserRegistration [id=" + id + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", emailId=" + emailId
 				+ ", dateOfBirth=" + dateOfBirth + ", mobileNumber="
-				+ mobileNumber + ", occupation=" + occupation + "]";
+				+ mobileNumber + ", occupation=" + occupation + ", status="
+				+ status + ", userType=" + userType + ", facilities="
+				+ facilities + "]";
 	}
-
 
 	public int getEntranceFee() {
 		return entranceFee;
@@ -183,6 +192,22 @@ public class UserRegistration {
 
 	public void setEntranceFee(int entranceFee) {
 		this.entranceFee = entranceFee;
+	}
+
+	public Facilities getFacilities() {
+		return facilities;
+	}
+
+	public void setFacilities(Facilities facilities) {
+		this.facilities = facilities;
+	}
+
+	public int getPaymentDone() {
+		return paymentDone;
+	}
+
+	public void setPaymentDone(int paymentDone) {
+		this.paymentDone = paymentDone;
 	}
 
 	

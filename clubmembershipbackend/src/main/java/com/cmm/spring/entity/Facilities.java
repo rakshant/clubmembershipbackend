@@ -3,12 +3,17 @@ package com.cmm.spring.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Facilities {
 	
+	@Autowired
 	List<IndoorFacilities> indoorFacilitiesList=new ArrayList<IndoorFacilities>();
 	
+	@Autowired
 	List<OutdoorFacilities> outdoorFacilitiesList=new ArrayList<OutdoorFacilities>();
 	
+	@Autowired
 	List<LeisureFacilities> leisureFacilitiesList=new ArrayList<LeisureFacilities>();
 	
 	

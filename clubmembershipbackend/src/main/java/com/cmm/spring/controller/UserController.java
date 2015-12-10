@@ -61,6 +61,29 @@ public class UserController {
 		return userList;
 	}
 	
+	@RequestMapping(value="/logout/{id}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody UserLogin logout(@PathVariable("id") String id) {
+		UserLogin user=loginService.logout(id);
+		return user;
+	}
+	
+	
+	
+	/*@RequestMapping(value="/facilities/{myradio}", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<UserRegistration> readFacilities(@PathVariable("myradio") String myradio) {
+		List<UserRegistration> userList=registrationService.viewFacilities(myradio);
+		return userList;
+	}
+	*/
+	
+	@RequestMapping(value="/paymentdone/{id}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody UserRegistration paymentDone(@PathVariable("id") String id) {
+		return registrationService.paymentDone(id);
+		
+	}
+	
+	
+	
 	//@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody HashMap<String, String> loginUser(@RequestBody Login login) throws JsonProcessingException {
@@ -105,6 +128,8 @@ public class UserController {
 		}
 
 
+		
+		
 	
 	/*
 	 * @RequestMapping(value="/bill", method=RequestMethod.POST,
@@ -116,16 +141,8 @@ public class UserController {
 	 * return bill; }
 	 */
 
-	/*
-	 * @RequestMapping(value="/logout", method=RequestMethod.POST,
-	 * produces=MediaType.APPLICATION_JSON_VALUE,
-	 * consumes=MediaType.APPLICATION_JSON_VALUE) public @ResponseBody void
-	 * logoutUser(@RequestBody Login login ) { //loginService.save(new
-	 * UserLogin(login.getEmailId(),login.getPassword()));
-	 * loginService.delete(login.getEmailId());
-	 * 
-	 * }
-	 */
+
+	 
 
 	/*
 	 * @RequestMapping(value="/delete", method=RequestMethod.POST,
