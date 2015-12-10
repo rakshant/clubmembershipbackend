@@ -104,17 +104,19 @@ public class UserController {
 		return response;
 	}
 */
+
 	@RequestMapping(value="/processrequest", method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody HashMap<String, String>  sendEmail(@RequestParam String email,@RequestParam String status) {
 		HashMap<String,String> response=new HashMap<String,String>();
+		String result="";
 		if(status.equals("accept")){
-			emailService.sendEmail(new UserRegistration(),new UserEmail());
-			registrationService.acceptRequest(email);
-			response.put("status", "succcess");
+			
+		result=registrationService.acceptRequest(email);
+			response.put("status", result);
 			response.put("message", "Request Accepted Successfully");
 		}else{
 			registrationService.rejectRequest(email);
-			response.put("status", "rejected");
+			response.put("status", result );
 			response.put("message", "Request Rejected Successfully");
 		}
 		return response;

@@ -1,18 +1,36 @@
-<div class="col-md-12 " style=" ">
-    <div class="row">
-        <div ng-include="'views\\home\\carousel.html'"></div>
-    </div>
-    <div ng-controller="PanelListCtrl" class="col-md-6">
-        <uib-tabset>
-            <uib-tab heading="Login">
-                <div ng-include="'views\\home\\login.html'"></div>
-            </uib-tab>
-            <uib-tab heading="Sign up">
-                <div ng-include="'views\\home\\register.html'"></div>
-            </uib-tab>
-        </uib-tabset>
-    </div>
-    <div class="col-md-6">
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto sunt, officia, laboriosam animi dignissimos delectus exercitationem odit sint reiciendis autem, soluta impedit explicabo eius! Eligendi, obcaecati! Molestias repellat, quasi nihil.</div>
-    </div>
+<div class="col-md-12 " style="">
+	<div class="row" style="">
+		<div ng-include="'views\\home\\carousel.html'"></div>
+	</div>
+
+	<div class="row" style="margin-top:20px">
+		<div ng-controller="PanelListCtrl" class="col-md-4" style="border:20px">
+			<uib-tabset> <uib-tab heading="Login">
+			<div ng-include="'views\\home\\login.html'"></div>
+			</uib-tab> <uib-tab heading="Sign up">
+			<div ng-include="'views\\home\\register.html'"></div>
+			</uib-tab> </uib-tabset>
+		</div>
+		<div class="col-md-8"></div>
+	</div>
+	
+	<div class="row" style="padding-left: 100px; width:95%">
+		
+            <div class="col-sm-4">
+                <img class="img-circle img-responsive img-center" src="images\\ch4.jpg" alt="">
+                <h2>Marketing Box #1</h2>
+                <p>These marketing boxes are a great place to put some information. These can contain summaries of what the company does, promotional information, or anything else that is relevant to the company. These will usually be below-the-fold.</p>
+            </div>
+            <div class="col-sm-4">
+                <img class="img-circle img-responsive img-center" src="images\\ch5.jpg" alt="">
+                <h2>Marketing Box #2</h2>
+                <p>The images are set to be circular and responsive. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+            </div>
+            <div class="col-sm-4">
+                <img class="img-circle img-responsive img-center" src="images\\ch6.jpg" alt="">
+                <h2>Marketing Box #3</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+            </div>
+        
+	</div>
 </div>
