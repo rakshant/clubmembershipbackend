@@ -20,9 +20,8 @@ public interface RegistrationService {
 	
 	void update(String userName);
 
-	
-
-	 List<UserRegistration>  view(String emailId);
+	 List<UserRegistration>  view(String id);
+	 
 	void rejectRequest(String email);
 	void acceptRequest(String email);
 }

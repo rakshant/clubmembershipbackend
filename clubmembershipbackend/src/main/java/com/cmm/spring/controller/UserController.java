@@ -53,12 +53,12 @@ public class UserController {
 		return userList;
 	}
 	
-	@RequestMapping(value="/viewdetails/{emailId}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody  List<UserRegistration>  readUser(@PathVariable("emailId") String emailId,@RequestParam String id) {
+	@RequestMapping(value="/viewdetails/{id}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE )
+	public @ResponseBody  List<UserRegistration>  readUser(@PathVariable("id") String id/*,@RequestParam String id*/) {
 		/*if(util.isAdmin(id)){
 			return null;
 		}*/
-		List<UserRegistration>  userList=registrationService.view(emailId);
+		List<UserRegistration>  userList=registrationService.view(id);		
 		return userList;
 	}
 	

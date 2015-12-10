@@ -72,12 +72,10 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 	
 	
-public List<UserRegistration> view(String emailId) {
+public List<UserRegistration> view(String id) {
 	
 		
-		viewDetailsList= registrationRepository.findByEmailId(emailId+".com");
-		
-		System.out.println(viewDetailsList);
+		viewDetailsList= registrationRepository.findById(id);
 
 		return viewDetailsList;
 		
