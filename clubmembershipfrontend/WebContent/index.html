@@ -2,17 +2,15 @@
 <html ng-app="app">
 
 <head>
-    <title>Club-house</title>
-    <style>
-    
-    </style>
+    <title>Club-house</title>   
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div ng-include="'views\\home\\navigation.html'"></div>
-        </div>
+
+
+	<div ng-include="'views\\home\\navigation.html'"></div>
+
+	<div class="container">       
         <div class="row">
             <div class="col-md-12">
                 <div ui-view></div>
@@ -24,9 +22,9 @@
     </div>
     
     <link rel="stylesheet" href="css/lib/bootstrap.css" />
-
-
-    
+ <link rel="stylesheet" href="css/lib/cmm-frontpage.css" /> 
+    <link href="css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="css/business-frontpage.css" rel="stylesheet">
     <script type="text/javascript" src="js/lib/angular.min.js"></script>
     <script type="text/javascript" src="js/lib/ui-bootstrap-tpls-0.14.3.min.js"></script>
     <script src="js/lib/angular-ui-router.js" type="text/javascript"></script> 

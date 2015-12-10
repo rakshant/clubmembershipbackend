@@ -84,7 +84,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	private boolean isSecretary(String id) {
 
 		UserRegistration user = registrationRepository.findOne(id);
-		if (user.getUserType().equals("secretary")) {
+		if (user.getUserType().equals("Secretary")) {
 			return true;
 		}
 

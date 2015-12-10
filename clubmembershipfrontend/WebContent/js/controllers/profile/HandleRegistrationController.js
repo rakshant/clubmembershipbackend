@@ -4,7 +4,7 @@ app.controller('HandleRegistrationCtrl', function($scope, $state,$http,url) {
 		function refresh(){
 			$http({
 				method : 'GET',
-				url : url+'viewrequests'		
+				url : url+'viewrequests/'+localStorage.getItem('userId')		
 			}).success(function(data) {
 				$scope.personalDetails = data;		
 				console.log(data[0].firstName);

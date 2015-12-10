@@ -53,10 +53,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/viewdetails/{id}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE )
-	public @ResponseBody  List<UserRegistration>  readUser(@PathVariable("id") String id/*,@RequestParam String id*/) {
-		/*if(util.isAdmin(id)){
-			return null;
-		}*/
+	public @ResponseBody  List<UserRegistration>  readUser(@PathVariable("id") String id) {
 		List<UserRegistration>  userList=registrationService.view(id);		
 		return userList;
 	}

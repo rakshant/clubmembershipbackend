@@ -20,7 +20,7 @@
 					<tr ng-repeat="personalDetail in personalDetails|filter:text">
 						<td>{{ $index+1}}</td>
 						<td>{{ personalDetail.firstName }}{{ personalDetail.lastName }}</td>
-						<td>{{ personalDetail.emailId }}@gmail.com<br>{{ personalDetail.mobileNumber}}566435465465</td>
+						<td>{{ personalDetail.emailId }}<br>{{ personalDetail.mobileNumber}}</td>
 						<td>{{ personalDetail.dateOfBirth | date:DD:MM:YYYY}}</td>
 						<td>{{ personalDetail.mobileNumber}}</td>
 						<td>
