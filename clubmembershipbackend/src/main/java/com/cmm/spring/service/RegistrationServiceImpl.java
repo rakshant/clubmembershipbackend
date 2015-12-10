@@ -55,7 +55,10 @@ public class RegistrationServiceImpl implements RegistrationService {
 		return null;
 	}
 
-	public List<UserRegistration> read() {
+	public List<UserRegistration> read(String id) {
+		
+		
+		if(isSecretary(id)){
 		 
 		Query query = new Query();		
 		
@@ -64,9 +67,22 @@ public class RegistrationServiceImpl implements RegistrationService {
 		registrationRequestUsersList=mongoOperation.find(query, UserRegistration.class);
 
 		return registrationRequestUsersList;
+		
+		}
+		return null;
 	}
 
 	
+	private boolean isSecretary(String id) {
+		
+		UserRegistration user=registrationRepository.findOne(id);
+		if(user.getUserType().equals("secretary")){
+			return true;
+		}
+		
+		return false;
+	}
+
 	public String update(String id,UserRegistration userRegistration) throws JsonProcessingException
 	{
 		
@@ -104,7 +120,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	
 	
 public List<UserRegistration> view(String id) {
-	
+		
 		
 		viewDetailsList= registrationRepository.findById(id);
 

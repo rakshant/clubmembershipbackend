@@ -46,9 +46,9 @@ public class UserController {
 		return result;
 	}
 
-	@RequestMapping(value="/viewrequests", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<UserRegistration> readRequest() {
-		List<UserRegistration> userList=registrationService.read();
+	@RequestMapping(value="/viewrequests/{id}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<UserRegistration> readRequest(@PathVariable("id") String id) {
+		List<UserRegistration> userList=registrationService.read(id);
 		return userList;
 	}
 	

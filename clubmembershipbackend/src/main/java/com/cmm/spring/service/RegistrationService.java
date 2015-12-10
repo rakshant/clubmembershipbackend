@@ -12,7 +12,7 @@ public interface RegistrationService {
 
 	String save(UserRegistration userRegistration) throws JsonProcessingException;
 	
-	List<UserRegistration> read();
+	List<UserRegistration> read(String id);
 	
 	//UserLogin login(UserLogin userLogin );
 	
