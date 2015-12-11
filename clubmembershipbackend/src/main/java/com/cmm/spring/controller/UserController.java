@@ -86,10 +86,14 @@ public class UserController {
 		String result = loginService.loginUser(new UserLogin(login.getEmailId(),
 				login.getPassword()));
 		HashMap<String,String> response=new HashMap<String,String>();
+		if(result.equals("failed")){
+			response.put("id","failure");
+		}else{
 		int colon=result.indexOf(":");
 		response.put("id",result.substring(colon+1));
 		response.put("userType",result.substring(0,colon));
 		System.out.println(result);
+		}
 		return response;
 	}
 	

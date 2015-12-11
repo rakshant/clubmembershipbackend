@@ -1,53 +1,79 @@
+
+<html>
 <div id="signupbox" style="margin-top: 30px">
 	<div class="panel panel-info">
 		<div class="panel-body">
 			<form class="form-horizontal" role="form"
-				ng-controller="RegisterationCtrl">
+				ng-controller="RegisterationCtrl"  name="myRegistration" novalidate>
 				<div style="display: none" class="alert alert-danger">
 					<p>Error:</p>
 					<span></span>
 				</div>
 				<div class="form-group">
-					<label class="col-md-3 control-label">Email</label>
+					<label class="col-md-3 control-label" >Email</label>
 					<div class="col-md-9">
-						<input type="text" class="form-control" ng-model="email"
-							name="email" placeholder="Email Address">
+						<input type="text" class="form-control" ng-model="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
+							name="email" placeholder="Email Address" ng-model="email"required>
+							 <span style="color: red"ng-show="myRegistration.email.$dirty && myRegistration.email.$invalid">
+                 <span ng-show="myRegistration.email.$error.required">Email Id required.</span> 
+				<span ng-show="myRegistration.email.$error.pattern">Enter correct Email Id.</span>
+					</span>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-md-3 control-label">First Name</label>
+					<label class="col-md-3 control-label" >First Name</label>
 					<div class="col-md-9">
-						<input type="text" class="form-control" ng-model="firstName"
-							name="firstName" placeholder="First Name">
+						<input type="text" class="form-control" ng-model="firstName"  ng-pattern="/^[a-zA-Z\s]*$/"
+							name="firstName" placeholder="First Name" ng-model="firstName"required>
+							<span style="color: red"ng-show="myRegistration.firstName.$dirty && myRegistration.firstName.$invalid">
+                 <span ng-show="myRegistration.firstName.$error.required">First Name required.</span> 
+				<span ng-show="myRegistration.firstName.$error.pattern"> Alphabets only</span>
+					</span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-md-3 control-label">Last Name</label>
 					<div class="col-md-9">
-						<input type="text" class="form-control" ng-model="lastName"
-							name="lastName" placeholder="Last Name">
+						<input type="text" class="form-control" ng-model="lastName"  ng-pattern="/^[a-zA-Z\s]*$/"
+							name="lastName" placeholder="Last Name" ng-model="lastName"required>
+							<span style="color: red"ng-show="myRegistration.lastName.$dirty && myRegistration.lastName.$invalid">
+                 <span ng-show="myRegistration.lastName.$error.required">First Name required.</span> 
+				<span ng-show="myRegistration.lastName.$error.pattern"> Only alphabets are allowed </span>
+					</span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-md-3 control-label">Mobile No.</label>
 					<div class="col-md-9">
-						<input type="number" class="form-control" ng-model="mobileNo"
-							name="mobileNo" placeholder="Mobile Number">
+						<input type="number" class="form-control" ng-model="mobileNo" ng-pattern="/[0-9]/" ng-maxlength="10"
+							name="mobileNo" placeholder="Mobile Number" ng-model="mobileNo"required>
+							<span style="color: red"ng-show="myRegistration.mobileNo.$dirty && myRegistration.mobileNo.$invalid">
+                 <span ng-show="myRegistration.mobileNo.$error.required">First Name required.</span> 
+				<span ng-show="myRegistration.mobileNo.$error.pattern">Only alphabets are allowed </span>
+					</span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-md-3 control-label">Occupation</label>
 					<div class="col-md-9">
-						<input type="text" class="form-control" ng-model="occupation"
-							name="occupation" placeholder="occupation">
+						<input type="text" class="form-control" ng-model="occupation" ng-pattern="/^[a-zA-Z\s]*$/"
+							name="occupation" placeholder="occupation" ng-model="occupation"required>
+							<span style="color: red"ng-show="myRegistration.occupation.$dirty && myRegistration.occupation.$invalid">
+                 <span ng-show="myRegistration.occupation.$error.required">Occupation required.</span> 
+				<span ng-show="myRegistration.occupation.$error.pattern">Only alphabets are allowed </span>
+					</span>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="col-md-3 control-label">DOB</label>
 					<div class="col-md-9">
-						<input type="date" class="form-control" ng-model="date"
-							name="date" />
+						<input type="date" class="form-control" ng-model="date"  ng-pattern="/^((\d{4})-(\d{2})-(\d{2})|(\d{2})\/(\d{2})\/(\d{4}))$/"
+							name="date" ng-model="date"required/>
+							<span style="color: red"ng-show="myRegistration.date.$dirty && myRegistration.date.$invalid">
+                 <span ng-show="myRegistration.date.$error.required"> Date required.</span> 
+				<span ng-show="myRegistration.date.$error.pattern">follow dd/mm/yyyy </span>
+					</span>
 					</div>
 				</div>
 
@@ -55,7 +81,17 @@
 				<div class="form-group">
 					<!-- Button -->
 					<div class="col-md-offset-3 col-md-9">
-						<button type="button" ng-click="submit()" class="btn btn-info">Register</button>
+						<button type="button" ng-click="submit()" class="btn btn-info"
+						
+						ng-disabled="myForm.email.$dirty && myForm.email.$invalid || myForm.firstName.$dirty &&myForm.firstName.$invalid||
+						myForm.lastName.$dirty &&myForm.lastName.$invalid||myForm.mobileNo.$dirty &&myForm.mobileNo.$invalid||
+						myForm.occupation.$dirty &&myForm.occupation.$invalid||myForm.date.$dirty &&myForm.date.$invalid"
+						
+						
+						
+						lastName
+						>sign
+							up</button>
 					</div>
 				</div>
 		</div>
@@ -63,3 +99,4 @@
 	</div>
 </div>
 </div>
+<html>

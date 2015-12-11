@@ -1,19 +1,36 @@
 <div class="panel panel-info" style="margin-top:30px">
     <div style="padding-top:30px" class="panel-body">
         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-        <form id="loginform" class="form-horizontal" role="form" ng-controller="LoginCtrl">
+        <form id="loginform" class="form-horizontal" role="form" ng-controller="LoginCtrl" name="myForm" novalidate>
             <div style="margin-bottom: 25px" class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input id="login-username" type="text" ng-model="emailId" class="form-control" name="emailId" value="" placeholder="username">
+                <input id="login-username" type="text" ng-model="emailId" class="form-control" name="emailId" value="" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" placeholder="username or email" ng-model="emailId"required>
+                <span style="color: red"ng-show="myForm.emailId.$dirty && myForm.emailId.$invalid">
+                 <span ng-show="myForm.emailId.$error.required">Email Id required.</span> 
+				<span ng-show="myForm.emailId.$error.pattern">Enter correct Email Id.</span>
+					</span>
             </div>
             <div style="margin-bottom: 25px" class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input id="login-password" type="password" ng-model="password" class="form-control" name="password" placeholder="password">
+                <input id="login-password" type="password" ng-model="password" class="form-control" name="password" placeholder="password" ng-model="password"required >
+                <span style="color: red"ng-show="myForm.password.$dirty && myForm.password.$invalid">
+                 <span ng-show="myForm.password.$error.required">Password required.</span> 
+				<span ng-show="myForm.password.$error.pattern">Enter correct Password.</span>
+					</span>
             </div>
-            
+            <div class="input-group">
+                <div class="checkbox">
+                    <label>
+                        <input id="loginRemember" type="checkbox" name="loginRemember" value="1"> Remember me
+                    </label>
+                </div>
+            </div>
             <div class="form-group">
                 <div class="col-md-12 control">
-                    <button class="btn btn-primary" ng-click="loginCheck()">Login</button>
+                    <button class="btn btn-primary" ng-click="loginCheck()"
+                    ng-disabled="myForm.emailId.$dirty && myForm.emailId.$invalid || myForm.password.$dirty &&myForm.password.$invalid "
+                    
+                  >Login</button>
                 </div>
             </div>
         </form>

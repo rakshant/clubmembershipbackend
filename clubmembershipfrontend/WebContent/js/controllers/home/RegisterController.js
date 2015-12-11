@@ -14,5 +14,7 @@ app.controller('RegisterationCtrl', function($scope, $http,url) {
 				'occupation' : $scope.occupation,
 			}
 		});
+		
+		alert("Your registration request has been received, we'll get in touch with you")
 	}
 });

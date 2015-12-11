@@ -98,7 +98,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 		user = registrationRepository.findOne(id);
 
-
+		
 		ObjectMapper objectMapper = new ObjectMapper();
 
 
@@ -132,10 +132,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 
 	public void rejectRequest(String email) {
-		System.out.println("message received to reject request-" + email);
-		
-		UserRegistration user = registrationRepository.findByEmailId(email).get(0);
-
+		System.out.println("message received to reject request-" + email);		
+		UserRegistration user = registrationRepository.findByEmailId(email).get(0);		
+		registrationRepository.delete(user);
 	}
 
 	public String acceptRequest(String email) {

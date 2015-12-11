@@ -10,7 +10,7 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 	}).state('profile.viewDetails', {
 		url : "/viewDetails",
 		templateUrl : "views/profile/profileViews/viewDetails.html"
-	}).state('profile.updateDetails', {
+	}).state('profile.update', {
 		url : "/update",
 		templateUrl : "views/profile/profileViews/update.html"
 	}).state('profile.registrationRequest', {

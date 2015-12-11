@@ -10,14 +10,14 @@ app.controller('LoginCtrl', function($scope, $http, $state, $rootScope,url) {
 				'emailId' : $scope.emailId,
 				'password' : $scope.password,
 			}
-		}).success(function(data) {
-			console.log("----->"+data.userType);
-			$scope.profileType = data.userType;
-			console.log("----->"+data.response);
-
-			localStorage.setItem('userType', $scope.profileType);
-			localStorage.setItem('userId', data.id);
-			$state.go('profile.viewDetails');			
+		}).success(function(data) {		
+			if(data.id==="failure"){
+				alert("done man!")
+			}else{
+				localStorage.setItem('userType', data.userType);
+				localStorage.setItem('userId', data.id);
+				$state.go('profile.viewDetails');
+			}				
 		});
 	}
 
