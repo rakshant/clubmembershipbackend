@@ -1,6 +1,8 @@
 var app=angular.module("home");
 
 app.controller('LoginCtrl', function($scope, $http, $state, $rootScope,url) {
+	
+	$scope.password;
 
 	$scope.loginCheck = function() {
 		$http({
@@ -12,10 +14,10 @@ app.controller('LoginCtrl', function($scope, $http, $state, $rootScope,url) {
 			}
 		}).success(function(data) {		
 			if(data.id==="failure"){
-				alert("done man!")
+				alert("Wrong credentials")
 			}else{
 				localStorage.setItem('userType', data.userType);
-				localStorage.setItem('userId', data.id);
+				localStorage.setItem('userId', data.id);				
 				$state.go('profile.viewDetails');
 			}				
 		});
