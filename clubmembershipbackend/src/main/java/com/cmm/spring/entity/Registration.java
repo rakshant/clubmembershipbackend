@@ -17,7 +17,7 @@ public class Registration {
 	private String password;
 
 	private int status = 0;
-	private String userType;
+	private String userType="User";
 
 	private int entranceFee = 1000;
 	

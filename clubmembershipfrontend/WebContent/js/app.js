@@ -11,8 +11,8 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 		url : "/viewDetails",
 		templateUrl : "views/profile/profileViews/viewDetails.html"
 	}).state('profile.updateDetails', {
-		url : "/updateDetails",
-		templateUrl : "views/profile/profileViews/updateDetails.html"
+		url : "/update",
+		templateUrl : "views/profile/profileViews/update.html"
 	}).state('profile.registrationRequest', {
 		url : "/registrationRequest",
 		templateUrl : "views/profile/profileViews/registrationRequest.html"

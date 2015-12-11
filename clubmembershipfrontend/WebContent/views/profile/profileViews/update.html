@@ -1,0 +1,58 @@
+<div class="panel  panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title">Update Personal Details</h3>
+	</div>
+	<div class="panel-body" ng-controller="viewCtrl">
+		<table class="table table-hover">
+
+			<tbody>
+				<tr>
+					<td>  <label class="col-sm-5" >First Name : </label></td>
+					<td><input type="text" class="form-control" id="firstName" ng-model="firstName" disabled ng-value="viewDetails[0].firstName"></td>
+				</tr>
+				<tr>
+					<td> <label class="col-sm-5">Last Name :</label></td>
+					<td><input type="text" class="form-control" id="lastName" ng-model="lastName"  ng-value="viewDetails[0].lastName" disabled></td>
+				</tr>
+				<tr>
+					<td><label class="col-sm-5" >Email Id :</label></td>
+					<td><input type="email" class="form-control" id="emailId" ng-model="emailId"  ng-value="viewDetails[0].emailId" disabled></td>
+				</tr>
+				<tr>
+					<td> <label class="col-sm-7">Date Of Birth :</label></td>
+					<td><input type="number" class="form-control" id="dateOfBirth" ng-model="dateOfBirth" ng-value="viewDetails[0].dateOfBirth"disabled></td>
+				</tr>
+				<tr>
+					<td><label class="col-sm-5" >Mobile No. :</label></td>
+					<td><input type="number" class="form-control" id="mobNumber" ng-model="mobileNumber" ng-value="viewDetails[0].mobileNumber" placeholder="Mobile Number"></td>
+				</tr>
+				<tr>
+					<td> <label class="col-sm-6" >Occupation :</label></td>
+					<td><input type="text" class="form-control" id="occupation" ng-model="occupation" ng-value="viewDetails[0].occupation" placeholder="Occupation"></td>
+				</tr>
+				
+				<tr>
+					<td> <label class="col-sm-7" >Registered Date :</label></td>
+					<td><input type="number" class="form-control" id="registerDate" ng-model="registeredDate" ng-value="viewDetails[0].registeredDate" placeholder="Register Date" disabled></td>
+				</tr>
+				<tr>
+					<td> <label class="col-sm-5" for="inputEmail1">Password :</label></td>
+					<td><input type="text" class="form-control" id="password" ng-model="password"  ng-value="viewDetails[0].password" placeholder="Email"></td>
+				</tr>
+				<tr>
+					<td>  <label class="col-md-5 control-label" for="filebutton">Upload photo</label></td>
+					<td><input id="filebutton" name="filebutton" class="input-file" type="file"></td>
+				</tr>
+			</tbody>
+		</table>
+		
+
+<!-- Button (Double) -->
+<div class="form-group" style="margin-top:10px;">
+  <div class="col-md-8">
+    <button id="button1id" ng-click="update()" name="button1id" class="btn btn-success">Save</button>
+    <button id="button2id"  name="button2id" class="btn btn-danger">Cancel</button>
+  </div>
+</div>
+	</div>
+</div>
