@@ -5,19 +5,23 @@
 			<ul class="list-group" ng-show=" checkSecretary('userType')">
 				<li class="list-group-item"><a ui-sref="profile.viewDetails">View
 						Personal Details</a></li>
-				<li class="list-group-item"><a ui-sref="profile.update">Update Personal Details</a></li>
-				
+				<li class="list-group-item"><a ui-sref="profile.update">Update
+						Personal Details</a></li>
+
 				<li class="list-group-item"><span class="badge">{{count}}</span><a
 					ui-sref="profile.registrationRequest">New Registration Requests</a></li>
-				<li class="list-group-item"><span class="badge">0</span>New
+					
+				<li class="list-group-item"><span class="badge">0</span>New				
 					Membership Requests</li>
 			</ul>
 			<ul class="list-group" ng-show="checkUser('userType')">
-				<li class="list-group-item"><a ui-sref="profile.viewDetails">View Personal Details</a></li>
-				<li class="list-group-item"><a ui-sref="profile.update">Update Personal Details</a></li>
+				<li class="list-group-item"><a ui-sref="profile.viewDetails">View
+						Personal Details</a></li>
+				<li class="list-group-item"><a ui-sref="profile.update">Update
+						Personal Details</a></li>
+
+				<li class="list-group-item"><a ui-sref="profile.reservedFacilityTemperaryMember"> Reserve Facilities</a></li>
 				
-				<li class="list-group-item"><span class="badge">14</span>New
-					Reserve Facilities</li>
 				<li class="list-group-item"><span class="badge">14</span>New
 					Renew Membership</li>
 			</ul>
@@ -27,5 +31,3 @@
 		<div ui-view></div>
 	</div>
 </div>
-
-

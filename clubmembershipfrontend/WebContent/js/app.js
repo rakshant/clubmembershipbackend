@@ -16,6 +16,9 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 	}).state('profile.registrationRequest', {
 		url : "/registrationRequest",
 		templateUrl : "views/profile/profileViews/registrationRequest.html"
+	}).state('profile.reservedFacilityTemperaryMember', {
+		url : "/reservedFacilityTemperaryMember",
+		templateUrl : "views/profile/profileViews/reservedFacilityTemperaryMember.html"
 	});
 
 	$urlRouterProvider.otherwise("/home");

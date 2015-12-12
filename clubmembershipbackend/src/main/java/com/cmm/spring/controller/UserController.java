@@ -1,5 +1,6 @@
 package com.cmm.spring.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cmm.spring.entity.Facilities;
 import com.cmm.spring.entity.Login;
 import com.cmm.spring.entity.Registration;
 import com.cmm.spring.mongo.collections.UserLogin;
@@ -130,7 +132,19 @@ public class UserController {
 		}
 
 
-		
+		@RequestMapping(value = "/paymentFacilities/{id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+		public String reserveIndoorFacilities(@PathVariable("id") String id,@RequestBody Facilities facilities)	throws JsonProcessingException {
+
+			List<Facilities> facility = new ArrayList<Facilities>();
+			facility.add(new Facilities(facilities.getCategory(), facilities
+					.getType(), facilities.getPrice()));
+
+			System.out.println("------>"+facility);
+			// IndoorFacilities indoorFacilitiesList =
+			// registrationService.addIndoorFacilities(id,tableTennisFees,badmintonFees,indoorFacilities);
+			registrationService.saveFacility(new UserRegistration(facility), id);
+			return null;
+		}
 		
 	
 	/*

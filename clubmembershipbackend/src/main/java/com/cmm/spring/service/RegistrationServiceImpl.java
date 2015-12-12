@@ -10,6 +10,7 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
+//import com.cmm.spring.entity.IndoorFacilities;
 import com.cmm.spring.mongo.collections.UserEmail;
 import com.cmm.spring.mongo.collections.UserRegistration;
 import com.cmm.spring.rest.repository.RegistrationRepository;
@@ -98,21 +99,19 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 		user = registrationRepository.findOne(id);
 
-		
 		ObjectMapper objectMapper = new ObjectMapper();
-
 
 		if (user != null) {
 			// Setting all the old details of that document
-			if(userRegistration.getOccupation()!=null)
+			if (userRegistration.getOccupation() != null)
 				user.setOccupation(userRegistration.getOccupation());
-			
-			if(userRegistration.getMobileNumber()!=0)
+
+			if (userRegistration.getMobileNumber() != 0)
 				user.setMobileNumber(userRegistration.getMobileNumber());
-			
-			if(userRegistration.getPassword()!=null)
+
+			if (userRegistration.getPassword() != null)
 				user.setPassword(userRegistration.getPassword());
-			
+
 			user = registrationRepository.save(user);
 
 			String registerJson = objectMapper.writeValueAsString(user);
@@ -132,16 +131,18 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 
 	public void rejectRequest(String email) {
-		System.out.println("message received to reject request-" + email);		
-		UserRegistration user = registrationRepository.findByEmailId(email).get(0);		
+		System.out.println("message received to reject request-" + email);
+		UserRegistration user = registrationRepository.findByEmailId(email)
+				.get(0);
 		registrationRepository.delete(user);
 	}
 
 	public String acceptRequest(String email) {
-		
-		UserRegistration user = registrationRepository.findByEmailId(email).get(0);
-		String id=user.getId();
-		
+
+		UserRegistration user = registrationRepository.findByEmailId(email)
+				.get(0);
+		String id = user.getId();
+
 		System.out.println("message received to accept request" + email);
 		UserEmail userEmail = new UserEmail();
 		userEmail.setFromAddress("clubmembershipuser@gmail.com");
@@ -151,7 +152,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 				.setBody("Please pay the Entrance fee amount of Rs. "
 						+ 1200
 						+ " by accessing the link below. \n You will be contacted soon.\n"
-						+ "Thank you.\n Payment link: http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id:"+id);
+						+ "Thank you.\n Payment link: http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id:"
+						+ id);
 
 		SimpleMailMessage simpleMailMessageObj = new SimpleMailMessage();
 		simpleMailMessageObj.setFrom(userEmail.getFromAddress());
@@ -160,8 +162,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 		simpleMailMessageObj.setText(userEmail.getBody());
 
 		try {
-			mailSender.send(simpleMailMessageObj);	
-			
+			mailSender.send(simpleMailMessageObj);
+
 			System.out.println(user.getEmailId());
 			user.setStatus(1);
 			System.out.println(user.getId());
@@ -207,6 +209,49 @@ public class RegistrationServiceImpl implements RegistrationService {
 			return user;
 		}
 		return null;
+
+	}
+
+	/*public IndoorFacilities addIndoorFacilities(String id, int tableTennisFees,
+			int badmintonFees, IndoorFacilities indoorFacilities) {
+
+		UserRegistration user = registrationRepository.findOne(id);
+
+		System.out.println("user: " + user);
+
+		int amount = user.getTotalAmount();
+
+		amount = tableTennisFees + badmintonFees;
+
+		System.out.println("amount" + amount);
+
+		user.setTotalAmount(amount);
+
+		registrationRepository.save(user);
+
+		return null;
+	}*/
+
+	public String saveFacility(UserRegistration userRegistration, String id) throws JsonProcessingException 
+	{
+		UserRegistration user = new UserRegistration();
+
+		user = registrationRepository.findOne(id);
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		if (user != null) {
+
+			user.setFacilities(userRegistration.getFacilities());
+			System.out.println(user);
+			System.out.println(user.getFacilities());
+			UserRegistration user1 = registrationRepository.save(user);
+			System.out.println(user1.getFacilities());
+			String registerJson = objectMapper.writeValueAsString(user);
+
+			return registerJson;
+		} else {
+			return null;
+		}
 
 	}
 

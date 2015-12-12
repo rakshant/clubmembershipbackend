@@ -1,51 +1,43 @@
 package com.cmm.spring.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 public class Facilities {
-	
-	@Autowired
-	List<IndoorFacilities> indoorFacilitiesList=new ArrayList<IndoorFacilities>();
-	
-	@Autowired
-	List<OutdoorFacilities> outdoorFacilitiesList=new ArrayList<OutdoorFacilities>();
-	
-	@Autowired
-	List<LeisureFacilities> leisureFacilitiesList=new ArrayList<LeisureFacilities>();
-	
-	
-	public Facilities(){}
 
-	public List<IndoorFacilities> getIndoorFacilitiesList() {
-		return indoorFacilitiesList;
+	private String category;
+	private String type;
+	private int price;
+
+	public Facilities() {
 	}
 
-	public void setIndoorFacilitiesList(List<IndoorFacilities> indoorFacilitiesList) {
-		this.indoorFacilitiesList = indoorFacilitiesList;
+	public Facilities(String category, String type, int price) {
+		super();
+		this.category = category;
+		this.type = type;
+		this.price = price;
 	}
 
-	public List<OutdoorFacilities> getOutdoorFacilitiesList() {
-		return outdoorFacilitiesList;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setOutdoorFacilitiesList(
-			List<OutdoorFacilities> outdoorFacilitiesList) {
-		this.outdoorFacilitiesList = outdoorFacilitiesList;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
-	public List<LeisureFacilities> getLeisureFacilitiesList() {
-		return leisureFacilitiesList;
+	public String getType() {
+		return type;
 	}
 
-	public void setLeisureFacilitiesList(
-			List<LeisureFacilities> leisureFacilitiesList) {
-		this.leisureFacilitiesList = leisureFacilitiesList;
+	public void setType(String type) {
+		this.type = type;
 	}
-	
-	
-	
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
 
 }

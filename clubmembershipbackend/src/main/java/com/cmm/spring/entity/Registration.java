@@ -1,6 +1,7 @@
 package com.cmm.spring.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,9 +23,10 @@ public class Registration {
 	private int entranceFee = 1000;
 	
 	private int paymentDone=0;
+
 	
 	@Autowired
-	Facilities facilities;
+	 private List<Facilities> facilities;
 
 	public String getFirstName() {
 		return firstName;
@@ -117,13 +119,11 @@ public class Registration {
 		this.entranceFee = entranceFee;
 	}
 
-	
-
-	public Facilities getFacilities() {
+	public List<Facilities> getFacilities() {
 		return facilities;
 	}
 
-	public void setFacilities(Facilities facilities) {
+	public void setFacilities(List<Facilities> facilities) {
 		this.facilities = facilities;
 	}
 

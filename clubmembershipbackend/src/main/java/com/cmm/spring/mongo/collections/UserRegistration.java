@@ -1,6 +1,7 @@
 package com.cmm.spring.mongo.collections;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
@@ -9,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.cmm.spring.entity.Facilities;
+
 
 @Document(collection = "user_registrations")
 public class UserRegistration {
@@ -47,28 +49,25 @@ public class UserRegistration {
 
 	private String password;
 
-
-	private int status=0;
+	private int status = 0;
 
 	private String userType;
 
-	
-	private int entranceFee=1000;
-	
-	private int paymentDone=0;
-	
-	@Autowired
-	Facilities facilities;
-	
-	public UserRegistration() {}
-	
-	
-	
-	public UserRegistration(String firstName, String lastName,
-			String emailId, Date dateOfBirth, Long mobileNumber,
-			String occupation,Date registeredDate,String password,int status,String userType) {
-		
+	private int entranceFee = 1000;
 
+	private int paymentDone = 0;
+
+	private int totalAmount;
+
+	@Autowired
+	List<Facilities> facilities;
+
+	public UserRegistration() {
+	}
+
+	public UserRegistration(String firstName, String lastName, String emailId,
+			Date dateOfBirth, Long mobileNumber, String occupation,
+			Date registeredDate, String password, int status, String userType) {
 
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -77,23 +76,28 @@ public class UserRegistration {
 		this.mobileNumber = mobileNumber;
 		this.occupation = occupation;
 
-		this.registeredDate=new Date();
-		this.password= ""+((int)(Math.random()*9000)+1000);
-		this.status=status;
-		this.userType=userType;
-
+		this.registeredDate = new Date();
+		this.password = "" + ((int) (Math.random() * 9000) + 1000);
+		this.status = status;
+		this.userType = userType;
 
 	}
-	
-	//this constructor is for update service
-		public UserRegistration(long mobileNumber,String occupation,String password) 
-		{
-			
-			this.mobileNumber = mobileNumber;
-			this.occupation = occupation;
-			this.password=password;
-		}
 
+	// this constructor is for update service
+	public UserRegistration(long mobileNumber, String occupation,
+			String password) {
+
+		this.mobileNumber = mobileNumber;
+		this.occupation = occupation;
+		this.password = password;
+	}
+	
+	
+
+	public UserRegistration(List<Facilities> facilities) {
+		super();
+		this.facilities = facilities;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -161,8 +165,6 @@ public class UserRegistration {
 
 		this.password = password;
 	}
-	
-	
 
 	public int getStatus() {
 		return status;
@@ -172,18 +174,13 @@ public class UserRegistration {
 		this.status = status;
 	}
 
-
-
-
-
 	@Override
 	public String toString() {
 		return "UserRegistration [id=" + id + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", emailId=" + emailId
 				+ ", dateOfBirth=" + dateOfBirth + ", mobileNumber="
 				+ mobileNumber + ", occupation=" + occupation + ", status="
-				+ status + ", userType=" + userType + ", facilities="
-				+ facilities + "]";
+				+ status + ", userType=" + userType + "]";
 	}
 
 	public int getEntranceFee() {
@@ -194,11 +191,12 @@ public class UserRegistration {
 		this.entranceFee = entranceFee;
 	}
 
-	public Facilities getFacilities() {
+
+	public List<Facilities> getFacilities() {
 		return facilities;
 	}
 
-	public void setFacilities(Facilities facilities) {
+	public void setFacilities(List<Facilities> facilities) {
 		this.facilities = facilities;
 	}
 
@@ -210,7 +208,12 @@ public class UserRegistration {
 		this.paymentDone = paymentDone;
 	}
 
-	
-	
+	public int getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(int totalAmount) {
+		this.totalAmount = totalAmount;
+	}
 
 }
