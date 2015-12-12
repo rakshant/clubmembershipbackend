@@ -242,10 +242,10 @@ public class RegistrationServiceImpl implements RegistrationService {
 		if (user != null) {
 
 			user.setFacilities(userRegistration.getFacilities());
-			System.out.println(user);
-			System.out.println(user.getFacilities());
+			System.out.println("########"+user);
+			System.out.println("@@@@@"+user.getFacilities().get(0).getCategory());
 			UserRegistration user1 = registrationRepository.save(user);
-			System.out.println(user1.getFacilities());
+			System.out.println("%%%%%%"+user1.getFacilities().get(0).getCategory());
 			String registerJson = objectMapper.writeValueAsString(user);
 
 			return registerJson;

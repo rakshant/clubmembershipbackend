@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cmm.spring.entity.Facilities;
+import com.cmm.spring.entity.Fees;
 import com.cmm.spring.entity.Login;
 import com.cmm.spring.entity.Registration;
 import com.cmm.spring.mongo.collections.UserLogin;
@@ -64,6 +65,7 @@ public class UserController {
 		UserLogin user=loginService.logout(id);
 		return user;
 	}
+	
 	
 	
 	
@@ -132,10 +134,12 @@ public class UserController {
 		}
 
 
-		@RequestMapping(value = "/paymentFacilities/{id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "/paymentFacilities/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 		public String reserveIndoorFacilities(@PathVariable("id") String id,@RequestBody Facilities facilities)	throws JsonProcessingException {
-
-			List<Facilities> facility = new ArrayList<Facilities>();
+					System.out.println(id+" "+facilities);
+					
+		List<Facilities> facility = new ArrayList<Facilities>();
+		
 			facility.add(new Facilities(facilities.getCategory(), facilities
 					.getType(), facilities.getPrice()));
 
@@ -143,7 +147,15 @@ public class UserController {
 			// IndoorFacilities indoorFacilitiesList =
 			// registrationService.addIndoorFacilities(id,tableTennisFees,badmintonFees,indoorFacilities);
 			registrationService.saveFacility(new UserRegistration(facility), id);
-			return null;
+			return facilities.getCategory();
+		}
+		
+		@RequestMapping(value="/getFee/{id}/{type}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+		public @ResponseBody int getFee(@PathVariable("id") String id,@PathVariable("type") String type) throws JsonProcessingException {
+			
+			Fees fee=new Fees();
+			HashMap<String, Integer> hmap=fee.getFee();					
+			return hmap.get(type);
 		}
 		
 	

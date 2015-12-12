@@ -59,7 +59,6 @@ public class UserRegistration {
 
 	private int totalAmount;
 
-	@Autowired
 	List<Facilities> facilities;
 
 	public UserRegistration() {

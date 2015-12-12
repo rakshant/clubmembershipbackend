@@ -18,15 +18,13 @@ public class Registration {
 	private String password;
 
 	private int status = 0;
-	private String userType="User";
+	private String userType = "User";
 
 	private int entranceFee = 1000;
-	
-	private int paymentDone=0;
 
-	
-	@Autowired
-	 private List<Facilities> facilities;
+	private int paymentDone = 0;
+
+	private List<Facilities> facilities;
 
 	public String getFirstName() {
 		return firstName;
@@ -109,8 +107,6 @@ public class Registration {
 		this.userType = userType;
 	}
 
-	
-
 	public int getEntranceFee() {
 		return entranceFee;
 	}
@@ -129,11 +125,9 @@ public class Registration {
 
 	@Override
 	public String toString() {
-		return "Registration [firstName=" + firstName + ", lastName="
-				+ lastName + ", emailId=" + emailId + ", dateOfBirth="
-				+ dateOfBirth + ", mobileNumber=" + mobileNumber
-				+ ", occupation=" + occupation + ", status=" + status
-				+ ", userType=" + userType + ", facility=" + facilities + "]";
+		return "Registration [firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId
+				+ ", dateOfBirth=" + dateOfBirth + ", mobileNumber=" + mobileNumber + ", occupation=" + occupation
+				+ ", status=" + status + ", userType=" + userType + ", facility=" + facilities + "]";
 	}
 
 	public int getPaymentDone() {
@@ -143,9 +137,5 @@ public class Registration {
 	public void setPaymentDone(int paymentDone) {
 		this.paymentDone = paymentDone;
 	}
-	
-	
-	
-	
 
 }

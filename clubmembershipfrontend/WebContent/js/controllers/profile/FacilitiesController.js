@@ -11,19 +11,19 @@ app.controller('FacilitiesCtrl', function($scope, $state,$http,$rootScope,url) {
 			$scope.tempOption==="playground"){
 		var category='Outdoor'
 	}
-	if($scope.tempOption==="cardRoom"||$scope.tempOption==="library"||$scope.tempOption==="restaurant&Bar"||
+	if($scope.tempOption==="cardRoom"||$scope.tempOption==="library"||$scope.tempOption==="restaurantBar"||
 			$scope.tempOption==="banquetHall"||$scope.tempOption==="conferenceHall"){
 		var category='Leisure'
 	}
 	
 		$scope.check=function(id){
 			$http({
-				method : 'POST',
-				url : url+'getFee' + "/" + localStorage.getItem('userId'),
-				data:{
-					'facility' : $scope.tempOption,
-					'category' :	category
-				}
+				method : 'GET',
+				url : url+'getFee' + "/" + localStorage.getItem('userId')+"/"+$scope.tempOption,
+				/*data:{
+					'category' :	category,
+					'type' : $scope.tempOption
+				}*/
 			}).success(function(data) {
 					$scope.fee=data
 			});
