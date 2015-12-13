@@ -16,63 +16,7 @@
 
 
 
-	<bean id="tableTennisFees" class="com.cmm.spring.entity.IndoorFacilities">
-		<property name="tableTennisFees" value="1000" />
-	</bean>
-
-	<bean id="badmintonFees" class="com.cmm.spring.entity.IndoorFacilities">
-		<property name="badmintonFees" value="500" />
-	</bean>
-
-	<bean id="billiardsFees" class="com.cmm.spring.entity.IndoorFacilities">
-		<property name="billiardsFees" value="1500" />
-	</bean>
-
-	<bean id="healthClubFees" class="com.cmm.spring.entity.IndoorFacilities">
-		<property name="healthClubFees" value="300" />
-	</bean>
-
-	<bean id="squashFees" class="com.cmm.spring.entity.IndoorFacilities">
-		<property name="squashFees" value="2500" />
-	</bean>
-
-
-	<bean id="lawnTennis" class="com.cmm.spring.entity.OutdoorFacilities">
-		<property name="lawnTennis" value="1500" />
-	</bean>
-
-	<bean id="swimming" class="com.cmm.spring.entity.OutdoorFacilities">
-		<property name="swimming" value="100" />
-	</bean>
-
-	<bean id="cricket" class="com.cmm.spring.entity.OutdoorFacilities">
-		<property name="cricket" value="3000" />
-	</bean>
-
-	<bean id="playground" class="com.cmm.spring.entity.OutdoorFacilities">
-		<property name="playground" value="300" />
-	</bean>
-
-
-	<bean id="cardRoom" class="com.cmm.spring.entity.LeisureFacilities">
-		<property name="cardRoom" value="500" />
-	</bean>
-
-	<bean id="library" class="com.cmm.spring.entity.LeisureFacilities">
-		<property name="library" value="300" />
-	</bean>
-
-	<bean id="restaurant" class="com.cmm.spring.entity.LeisureFacilities">
-		<property name="restaurant" value="1000" />
-	</bean>
-
-	<bean id="banquetHall" class="com.cmm.spring.entity.LeisureFacilities">
-		<property name="banquetHall" value="50000" />
-	</bean>
-
-	<bean id="conferenceHall" class="com.cmm.spring.entity.LeisureFacilities">
-		<property name="conferenceHall" value="40000" />
-	</bean>
+	
 
 	<bean id="feeStructure" class="com.cmm.spring.entity.Fees">
 

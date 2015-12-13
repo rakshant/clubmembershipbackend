@@ -153,7 +153,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 						+ 1200
 						+ " by accessing the link below. \n You will be contacted soon.\n"
 						+ "Thank you.\n Payment link: http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id:"
-						+ id);
+						+ id+"?fee:"+1000+"?type:"+"entry");
 
 		SimpleMailMessage simpleMailMessageObj = new SimpleMailMessage();
 		simpleMailMessageObj.setFrom(userEmail.getFromAddress());

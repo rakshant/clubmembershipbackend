@@ -22,8 +22,5 @@ public class App {
 
 		SpringApplication.run(App.class, args);
 
-		System.out.println("FacilityList: "
-				+ registration.getFacilities());
-
 	}
 }

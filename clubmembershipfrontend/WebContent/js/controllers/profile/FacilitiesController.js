@@ -30,7 +30,7 @@ app.controller('FacilitiesCtrl', function($scope, $state,$http,$rootScope,url) {
 
 			$http({method : 'get',
 				url : 'http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id:'
-					+localStorage.getItem('userId')+'&fee:'+$scope.fee+'&facility:'+$scope.tempOption+'&category:'+category
+					+localStorage.getItem('userId')+'&fee:'+$scope.fee+'&type:'+$scope.tempOption+'&category:'+category
 				
 			});			
 		}
