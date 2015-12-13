@@ -76,19 +76,6 @@ public class LoginServiceImpl implements LoginService {
 		
 		return null;
 	}
-
-	/*
-	 * public void delete(String emailId) {
-	 * 
-	 * List<UserLogin> temp_users=registrationRepository.findAll();
-	 * Iterator<UserRegistration> users_iterator=temp_users.iterator();
-	 * while(users_iterator.hasNext()) { UserRegistration
-	 * user=users_iterator.next(); if(user.getUserName().equals(userName)) {
-	 * registrationRepository.delete(user.getId()); } }
-	 * 
-	 * }
-	 */
-
 }
 
 

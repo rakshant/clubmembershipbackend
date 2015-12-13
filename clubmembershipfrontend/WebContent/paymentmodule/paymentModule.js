@@ -22,9 +22,7 @@ app.controller('validateCtrl', function($scope,$http) {
 			});
 			
 		}
-		else{
-			
-			
+		else{			
 			$http({method : 'put',
 				url : 'http://localhost:8080/paymentFacilities/'+str[0].substring(4),
 				data : {

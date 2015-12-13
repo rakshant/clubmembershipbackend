@@ -1,9 +1,7 @@
 package com.cmm.spring.service;
 
-
 import java.util.Date;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -11,9 +9,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
-
 import com.cmm.spring.entity.Facilities;
-//import com.cmm.spring.entity.IndoorFacilities;
 import com.cmm.spring.mongo.collections.UserEmail;
 import com.cmm.spring.mongo.collections.UserRegistration;
 import com.cmm.spring.rest.repository.RegistrationRepository;
@@ -39,19 +35,16 @@ public class RegistrationServiceImpl implements RegistrationService {
 	List<UserRegistration> permanentUserDetails;
 	List<UserRegistration> viewDetailsList;
 
-	public String save(UserRegistration userRegistration)
-			throws JsonProcessingException {
+	public String save(UserRegistration userRegistration) throws JsonProcessingException {
 
 		int flag = 0;
 		ObjectMapper mapper = new ObjectMapper();
 
 		Query query = new Query();
 
-		query.addCriteria(Criteria.where("emailId").regex(
-				userRegistration.getEmailId()));
+		query.addCriteria(Criteria.where("emailId").regex(userRegistration.getEmailId()));
 
-		registrationCheckList = mongoOperation.find(query,
-				UserRegistration.class);
+		registrationCheckList = mongoOperation.find(query, UserRegistration.class);
 
 		if (registrationCheckList.size() != 0) {
 			flag = 1;
@@ -59,8 +52,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 		if (flag == 0) {
 
-			UserRegistration userReg = registrationRepository
-					.insert(userRegistration);
+			UserRegistration userReg = registrationRepository.insert(userRegistration);
 			String registerJson = mapper.writeValueAsString(userReg);
 			return registerJson;
 		}
@@ -76,8 +68,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 			query.addCriteria(Criteria.where("status").is(0));
 
-			registrationRequestUsersList = mongoOperation.find(query,
-					UserRegistration.class);
+			registrationRequestUsersList = mongoOperation.find(query, UserRegistration.class);
 
 			return registrationRequestUsersList;
 
@@ -95,8 +86,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 		return false;
 	}
 
-	public String update(String id, UserRegistration userRegistration)
-			throws JsonProcessingException {
+	public String update(String id, UserRegistration userRegistration) throws JsonProcessingException {
 
 		UserRegistration user = new UserRegistration();
 
@@ -126,24 +116,19 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 
 	public List<UserRegistration> view(String id) {
-
 		viewDetailsList = registrationRepository.findById(id);
-
 		return viewDetailsList;
-
 	}
 
 	public void rejectRequest(String email) {
 		System.out.println("message received to reject request-" + email);
-		UserRegistration user = registrationRepository.findByEmailId(email)
-				.get(0);
+		UserRegistration user = registrationRepository.findByEmailId(email).get(0);
 		registrationRepository.delete(user);
 	}
 
 	public String acceptRequest(String email) {
 
-		UserRegistration user = registrationRepository.findByEmailId(email)
-				.get(0);
+		UserRegistration user = registrationRepository.findByEmailId(email).get(0);
 		String id = user.getId();
 
 		System.out.println("message received to accept request" + email);
@@ -151,12 +136,10 @@ public class RegistrationServiceImpl implements RegistrationService {
 		userEmail.setFromAddress("clubmembershipuser@gmail.com");
 		userEmail.setToAddress(email);
 		userEmail.setSubject("ClubMembership: Entrance fee amount payment");
-		userEmail
-				.setBody("Please pay the Entrance fee amount of Rs. "
-						+ 1200
-						+ " by accessing the link below. \n You will be contacted soon.\n"
-						+ "Thank you.\n Payment link: http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id:"
-						+ id + "?fee:" + 1000 + "?type:" + "entry");
+		userEmail.setBody("Please pay the Entrance fee amount of Rs. " + 1200
+				+ " by accessing the link below. \n You will be contacted soon.\n"
+				+ "Thank you.\n Payment link: http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id:"
+				+ id + "?fee:" + 1000 + "?type:" + "entry");
 
 		SimpleMailMessage simpleMailMessageObj = new SimpleMailMessage();
 		simpleMailMessageObj.setFrom(userEmail.getFromAddress());
@@ -193,11 +176,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 			email.setFromAddress("clubmembershipuser@gmail.com");
 			email.setToAddress(user.getEmailId());
 			email.setSubject("Club Membership: Login credentials.");
-			email.setBody("Dear" + user.getFirstName()
-					+ "\n You have been successfully registered with our club."
-					+ "\nYour login credentials are: \n Username: "
-					+ user.getEmailId() + "Password: " + user.getPassword()
-					+ "\n" + "Thank you. Looking forward to you visit.");
+			email.setBody("Dear" + user.getFirstName() + "\n You have been successfully registered with our club."
+					+ "\nYour login credentials are: \n Username: " + user.getEmailId() + "Password: "
+					+ user.getPassword() + "\n" + "Thank you. Looking forward to you visit.");
 
 			registrationRepository.save(user);
 
@@ -215,29 +196,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	}
 
-	/*
-	 * public IndoorFacilities addIndoorFacilities(String id, int
-	 * tableTennisFees, int badmintonFees, IndoorFacilities indoorFacilities) {
-	 * 
-	 * UserRegistration user = registrationRepository.findOne(id);
-	 * 
-	 * System.out.println("user: " + user);
-	 * 
-	 * int amount = user.getTotalAmount();
-	 * 
-	 * amount = tableTennisFees + badmintonFees;
-	 * 
-	 * System.out.println("amount" + amount);
-	 * 
-	 * user.setTotalAmount(amount);
-	 * 
-	 * registrationRepository.save(user);
-	 * 
-	 * return null; }
-	 */
-
-	public String saveFacility(UserRegistration userRegistration, String id)
-			throws JsonProcessingException {
+	public String saveFacility(UserRegistration userRegistration, String id) throws JsonProcessingException {
 		UserRegistration user = new UserRegistration();
 
 		user = registrationRepository.findOne(id);
@@ -246,14 +205,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 		if (user != null) {
 
 			user.setFacilities(userRegistration.getFacilities());
-			System.out.println("########" + user);
-			System.out.println("@@@@@"
-					+ user.getFacilities().get(0).getCategory());
 			UserRegistration user1 = registrationRepository.save(user);
-			System.out.println("%%%%%%"
-					+ user1.getFacilities().get(0).getCategory());
 			String registerJson = objectMapper.writeValueAsString(user);
-
 			return registerJson;
 		} else {
 			return null;
@@ -264,53 +217,43 @@ public class RegistrationServiceImpl implements RegistrationService {
 	public List<Facilities> bill(String id) {
 
 		viewDetailsList = registrationRepository.findById(id);
-
 		List<Facilities> facilityList = viewDetailsList.get(0).getFacilities();
-
 		return facilityList;
 	}
 
 	public void renewal(String id) {
-		
+
 		System.out.println("int method renewal");
-		
-		
+
 		UserRegistration user = registrationRepository.findOne(id);
-		
-		if(isPermanent(id)){
-			
+
+		if (isPermanent(id)) {
+
 			user.setUserType("permanent");
 			registrationRepository.save(user);
-			
 		}
-		
-		
 	}
 
 	private boolean isPermanent(String id) {
-		
-		
+
 		System.out.println("int method isPermanent");
-		
+
 		UserRegistration user = registrationRepository.findOne(id);
-		
-				Date d=new Date();
-		
-		
-		System.out.println("date: "+d);
-		
-		System.out.println("registered date: "+user.getRegisteredDate());
-		
-		
+
+		Date d = new Date();
+
+		System.out.println("date: " + d);
+
+		System.out.println("registered date: " + user.getRegisteredDate());
+
 		System.out.println("this time: " + d.getTime());
-		
-		System.out.println("registered time: "+user.getRegisteredDate().getTime());
-				
-		if(d.getTime()-user.getRegisteredDate().getTime() > 3){
+
+		System.out.println("registered time: " + user.getRegisteredDate().getTime());
+
+		if (d.getTime() - user.getRegisteredDate().getTime() > 3) {
 			return true;
 		}
-			
-		
+
 		return false;
 	}
 }

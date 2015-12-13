@@ -1,6 +1,6 @@
 var app=angular.module("home");
 
-app.controller('LoginCtrl', function($scope, $http, $state, $rootScope,url) {
+app.controller('LoginCtrl', function($scope, $http, $state, $rootScope,url,$uibModal) {
 	
 	$scope.password;
 
@@ -14,8 +14,19 @@ app.controller('LoginCtrl', function($scope, $http, $state, $rootScope,url) {
 			}
 		}).success(function(data) {		
 			if(data.id==="failure"){
-				alert("Wrong credentials")
-			}else{
+				
+				
+				$uibModal.open({
+				      templateUrl: 'views/modal.html',
+				      controller: function ($scope,$uibModalInstance) {
+				    	  $scope.message="Invalid credentials"
+				    	  
+				        $scope.ok=function(){
+				        	$uibModalInstance.close();
+				        	}
+				      }});
+			}
+			else{
 				localStorage.setItem('userType', data.userType);
 				localStorage.setItem('userId', data.id);				
 				$state.go('profile.viewDetails');

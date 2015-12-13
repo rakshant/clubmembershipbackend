@@ -1,6 +1,6 @@
 var app=angular.module("home");
 
-app.controller('RegisterationCtrl', function($scope, $http,url) {
+app.controller('RegisterationCtrl', function($scope, $http,url,$uibModal) {
 	$scope.submit = function() {
 		$http({
 			method : 'post',
@@ -14,7 +14,16 @@ app.controller('RegisterationCtrl', function($scope, $http,url) {
 				'occupation' : $scope.occupation,
 			}
 		});
+
+		$uibModal.open({
+		      templateUrl: 'views/modal.html',
+		      controller: function ($scope,$uibModalInstance) {
+		    	  $scope.message="We have received your registration request, we'll get in touch with you"
+		    	  
+		        $scope.ok=function(){
+		        	$uibModalInstance.close();
+		        	}
+		      }});
 		
-		alert("Your registration request has been received, we'll get in touch with you")
 	}
 });
