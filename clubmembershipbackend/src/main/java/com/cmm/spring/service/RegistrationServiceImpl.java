@@ -10,6 +10,7 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
+import com.cmm.spring.entity.Facilities;
 //import com.cmm.spring.entity.IndoorFacilities;
 import com.cmm.spring.mongo.collections.UserEmail;
 import com.cmm.spring.mongo.collections.UserRegistration;
@@ -153,7 +154,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 						+ 1200
 						+ " by accessing the link below. \n You will be contacted soon.\n"
 						+ "Thank you.\n Payment link: http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id:"
-						+ id+"?fee:"+1000+"?type:"+"entry");
+						+ id + "?fee:" + 1000 + "?type:" + "entry");
 
 		SimpleMailMessage simpleMailMessageObj = new SimpleMailMessage();
 		simpleMailMessageObj.setFrom(userEmail.getFromAddress());
@@ -212,28 +213,29 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	}
 
-	/*public IndoorFacilities addIndoorFacilities(String id, int tableTennisFees,
-			int badmintonFees, IndoorFacilities indoorFacilities) {
+	/*
+	 * public IndoorFacilities addIndoorFacilities(String id, int
+	 * tableTennisFees, int badmintonFees, IndoorFacilities indoorFacilities) {
+	 * 
+	 * UserRegistration user = registrationRepository.findOne(id);
+	 * 
+	 * System.out.println("user: " + user);
+	 * 
+	 * int amount = user.getTotalAmount();
+	 * 
+	 * amount = tableTennisFees + badmintonFees;
+	 * 
+	 * System.out.println("amount" + amount);
+	 * 
+	 * user.setTotalAmount(amount);
+	 * 
+	 * registrationRepository.save(user);
+	 * 
+	 * return null; }
+	 */
 
-		UserRegistration user = registrationRepository.findOne(id);
-
-		System.out.println("user: " + user);
-
-		int amount = user.getTotalAmount();
-
-		amount = tableTennisFees + badmintonFees;
-
-		System.out.println("amount" + amount);
-
-		user.setTotalAmount(amount);
-
-		registrationRepository.save(user);
-
-		return null;
-	}*/
-
-	public String saveFacility(UserRegistration userRegistration, String id) throws JsonProcessingException 
-	{
+	public String saveFacility(UserRegistration userRegistration, String id)
+			throws JsonProcessingException {
 		UserRegistration user = new UserRegistration();
 
 		user = registrationRepository.findOne(id);
@@ -242,10 +244,12 @@ public class RegistrationServiceImpl implements RegistrationService {
 		if (user != null) {
 
 			user.setFacilities(userRegistration.getFacilities());
-			System.out.println("########"+user);
-			System.out.println("@@@@@"+user.getFacilities().get(0).getCategory());
+			System.out.println("########" + user);
+			System.out.println("@@@@@"
+					+ user.getFacilities().get(0).getCategory());
 			UserRegistration user1 = registrationRepository.save(user);
-			System.out.println("%%%%%%"+user1.getFacilities().get(0).getCategory());
+			System.out.println("%%%%%%"
+					+ user1.getFacilities().get(0).getCategory());
 			String registerJson = objectMapper.writeValueAsString(user);
 
 			return registerJson;
@@ -255,4 +259,12 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	}
 
+	public List<Facilities> bill(String id) {
+
+		viewDetailsList = registrationRepository.findById(id);
+
+		List<Facilities> facilityList = viewDetailsList.get(0).getFacilities();
+
+		return facilityList;
+	}
 }

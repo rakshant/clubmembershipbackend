@@ -172,6 +172,13 @@ public class UserController {
 		return hmap.get(type);
 	}
 
+	@RequestMapping(value = "/viewbillingdetails/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Facilities> billUser(
+			@PathVariable("id") String id) {
+		List<Facilities> billList = registrationService.bill(id);
+		return billList;
+	}
+	
 	/*
 	 * @RequestMapping(value="/bill", method=RequestMethod.POST,
 	 * produces=MediaType.APPLICATION_JSON_VALUE,

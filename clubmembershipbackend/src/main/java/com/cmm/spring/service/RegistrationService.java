@@ -4,6 +4,8 @@ package com.cmm.spring.service;
 
 import java.util.List;
 
+
+import com.cmm.spring.entity.Facilities;
 //import com.cmm.spring.entity.IndoorFacilities;
 import com.cmm.spring.mongo.collections.UserRegistration;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -28,6 +30,7 @@ public interface RegistrationService {
 	 
 	void rejectRequest(String email);
 	String acceptRequest(String email);
+	List<Facilities> bill(String id);
 
 	
 
