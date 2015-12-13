@@ -5,6 +5,7 @@ package com.cmm.spring.service;
 import java.util.List;
 
 
+
 import com.cmm.spring.entity.Facilities;
 //import com.cmm.spring.entity.IndoorFacilities;
 import com.cmm.spring.mongo.collections.UserRegistration;
@@ -35,6 +36,8 @@ public interface RegistrationService {
 	
 
 	UserRegistration paymentDone(String id);
+
+	void renewal(String id);
 
 	//IndoorFacilities addIndoorFacilities(String id,int tableTennisFees,int badmintonFees,IndoorFacilities indoorFacilities);
 

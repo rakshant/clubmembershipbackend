@@ -1,5 +1,6 @@
 package com.cmm.spring.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.MediaType;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +34,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 @CrossOrigin
 @RestController
+@Component
 public class UserController {
 
 	@Autowired
@@ -54,6 +58,30 @@ public class UserController {
 						.getStatus(), registration.getUserType()));
 		return result;
 	}
+	
+	
+
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+
+    
+  //  @Scheduled(fixedRate = 5000)
+	@RequestMapping(value = "/membershipRenewal/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void membershipRenewal(@PathVariable("id") String id){
+		registrationService.renewal(id);
+		System.out.println("membership renewed!");
+		
+		
+	
+	}
+
+    
+    
+/*    @RequestMapping(value = "/membershipRenewal/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<UserRegistration> membershipRenewal(
+			@PathVariable("id") String id) {
+		List<UserRegistration> userList = registrationService.read(id);
+		return userList;
+	}    */
 
 	@RequestMapping(value = "/viewrequests/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<UserRegistration> readRequest(

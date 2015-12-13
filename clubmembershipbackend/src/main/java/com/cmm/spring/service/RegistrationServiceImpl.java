@@ -1,5 +1,7 @@
 package com.cmm.spring.service;
 
+
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -266,5 +268,49 @@ public class RegistrationServiceImpl implements RegistrationService {
 		List<Facilities> facilityList = viewDetailsList.get(0).getFacilities();
 
 		return facilityList;
+	}
+
+	public void renewal(String id) {
+		
+		System.out.println("int method renewal");
+		
+		
+		UserRegistration user = registrationRepository.findOne(id);
+		
+		if(isPermanent(id)){
+			
+			user.setUserType("permanent");
+			registrationRepository.save(user);
+			
+		}
+		
+		
+	}
+
+	private boolean isPermanent(String id) {
+		
+		
+		System.out.println("int method isPermanent");
+		
+		UserRegistration user = registrationRepository.findOne(id);
+		
+				Date d=new Date();
+		
+		
+		System.out.println("date: "+d);
+		
+		System.out.println("registered date: "+user.getRegisteredDate());
+		
+		
+		System.out.println("this time: " + d.getTime());
+		
+		System.out.println("registered time: "+user.getRegisteredDate().getTime());
+				
+		if(d.getTime()-user.getRegisteredDate().getTime() > 3){
+			return true;
+		}
+			
+		
+		return false;
 	}
 }
