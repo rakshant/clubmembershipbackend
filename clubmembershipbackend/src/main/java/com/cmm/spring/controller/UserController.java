@@ -58,8 +58,6 @@ public class UserController {
 						.getStatus(), registration.getUserType()));
 		return result;
 	}
-	
-	
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
@@ -69,12 +67,7 @@ public class UserController {
 	public void membershipRenewal(@PathVariable("id") String id){
 		registrationService.renewal(id);
 		System.out.println("membership renewed!");
-		
-		
-	
 	}
-
-    
     
 /*    @RequestMapping(value = "/membershipRenewal/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<UserRegistration> membershipRenewal(
@@ -103,14 +96,6 @@ public class UserController {
 		return user;
 	}
 
-	/*
-	 * @RequestMapping(value="/facilities/{myradio}", method=RequestMethod.POST,
-	 * produces=MediaType.APPLICATION_JSON_VALUE) public @ResponseBody
-	 * List<UserRegistration> readFacilities(@PathVariable("myradio") String
-	 * myradio) { List<UserRegistration>
-	 * userList=registrationService.viewFacilities(myradio); return userList; }
-	 */
-
 	@RequestMapping(value = "/paymentdone/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody UserRegistration paymentDone(
 			@PathVariable("id") String id) {
@@ -118,8 +103,6 @@ public class UserController {
 
 	}
 
-	// @RequestMapping(value = "/login", method = RequestMethod.POST, consumes =
-	// MediaType.APPLICATION_JSON_VALUE)
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody HashMap<String, String> loginUser(
 			@RequestBody Login login) throws JsonProcessingException {
@@ -184,10 +167,10 @@ public class UserController {
 		facility.add(new Facilities(facilities.getCategory(), facilities
 				.getType(), facilities.getPrice()));
 		System.out.println("------>" + facility);
-		// IndoorFacilities indoorFacilitiesList =
-		// registrationService.addIndoorFacilities(id,tableTennisFees,badmintonFees,indoorFacilities);
-		registrationService.saveFacility(new UserRegistration(facility), id);
-		return facilities.getCategory();
+	
+		registrationService.saveFacility(new UserRegistration(facility), id);		
+		return new HashMap<String, String>().put("success", facilities.getCategory());
+
 	}
 
 	@RequestMapping(value = "/getFee/{id}/{type}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -206,40 +189,5 @@ public class UserController {
 		List<Facilities> billList = registrationService.bill(id);
 		return billList;
 	}
-	
-	/*
-	 * @RequestMapping(value="/bill", method=RequestMethod.POST,
-	 * produces=MediaType.APPLICATION_JSON_VALUE,
-	 * consumes=MediaType.APPLICATION_JSON_VALUE) public @ResponseBody Billing
-	 * getBill(@RequestBody Billing bill) { billingService.bill(new
-	 * UserBilling(bill
-	 * .getEmailId(),bill.getUserType(),bill.getFacility(),bill.getAmount()));
-	 * return bill; }
-	 */
-
-	/*
-	 * @RequestMapping(value="/delete", method=RequestMethod.POST,
-	 * produces=MediaType.TEXT_PLAIN_VALUE,
-	 * consumes=MediaType.APPLICATION_JSON_VALUE) public @ResponseBody String
-	 * deleteUser(@RequestBody Registration registration) {
-	 * registrationService.delete(registration.getUserName()); return
-	 * "User deleted"; }
-	 * 
-	 * @RequestMapping(value="/update", method=RequestMethod.POST,
-	 * produces=MediaType.TEXT_PLAIN_VALUE,
-	 * consumes=MediaType.APPLICATION_JSON_VALUE) public @ResponseBody String
-	 * updateUser(@RequestBody Registration registration) {
-	 * registrationService.update(registration.getUserName()); return
-	 * "User updated"; }
-	 */
-
-	// @RequestMapping(value="/delete", method=RequestMethod.POST,
-	// produces=MediaType.APPLICATION_JSON_VALUE,
-	// consumes=MediaType.APPLICATION_JSON_VALUE)
-	// public @ResponseBody Registration deleteUser(@RequestBody Registration
-	// registration) {
-	// registrationService.delete();
-	// return registration;
-	// }
 
 }

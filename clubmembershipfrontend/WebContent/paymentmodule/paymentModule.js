@@ -34,7 +34,7 @@ app.controller('validateCtrl', function($scope,$http) {
 				}
 				
 			}).success(function(data){
-				window.open('http://localhost:8089/clubmembershipfrontend/paymentmodule/success.html');
+				window.open('http://localhost:8089/clubmembershipfrontend/paymentmodule/success.html','_self');
 
 			});
 		}	
