@@ -1,14 +1,20 @@
 package com.cmm.spring.service;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
+
 import com.cmm.spring.entity.Facilities;
 import com.cmm.spring.mongo.collections.UserEmail;
 import com.cmm.spring.mongo.collections.UserRegistration;
@@ -118,6 +124,40 @@ public class RegistrationServiceImpl implements RegistrationService {
 		}
 	}
 
+	
+	public UserRegistration addFile(String id,UserRegistration file) throws IOException 
+	{
+		UserRegistration user = new UserRegistration();
+		user = registrationRepository.findOne(id);
+		
+		if (user!=null) 
+		{	
+			user.setBytes(file.getBytes());
+			registrationRepository.save(user);
+			return user;	
+		}
+		else
+			return null;	
+	}
+	
+	public ResponseEntity<byte[]> getFile(String id) throws FileNotFoundException
+	{
+		UserRegistration user = new UserRegistration();
+		user = registrationRepository.findOne(id);
+		if(user!=null)
+		{		
+			return ResponseEntity
+					.ok()
+					.contentType(MediaType.IMAGE_JPEG)
+					.body(user.getBytes());
+			
+		}
+		else
+		{			
+			return null;
+		}	
+	}
+
 	public UserRegistration viewDetails(String id) {
 		UserRegistration viewDetails = registrationRepository.findOne(id);
 		return viewDetails;
@@ -142,7 +182,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 		userEmail.setBody("Please pay the Entrance fee amount of Rs. " + 1000
 				+ " by accessing the link below. \n You will be contacted soon.\n"
 				+ "Thank you.\n Payment link: http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id:"
-				+ id + "?fee:" + 1000 + "?type:" + "entry");
+				+ id + "&fee:" + 1000 + "&type:" + "entry");
 
 		SimpleMailMessage simpleMailMessageObj = new SimpleMailMessage();
 		simpleMailMessageObj.setFrom(userEmail.getFromAddress());

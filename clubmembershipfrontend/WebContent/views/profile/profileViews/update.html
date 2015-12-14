@@ -41,7 +41,7 @@
 				</tr>
 				<tr>
 					<td>  <label class="col-md-5 control-label" for="filebutton">Upload photo</label></td>
-					<td><input id="filebutton" name="filebutton" class="input-file" type="file"></td>
+					<td><input id="profile_pic" fd-input class="input-file" type="file"	 ng-model="photo" accept="image/*" required></td>
 				</tr>
 			</tbody>
 		</table>
@@ -52,6 +52,7 @@
   <div class="col-md-8" >
     <button id="button1id" ng-click="update()" name="button1id" class="btn btn-success">Save</button>
     <button id="button2id"  name="button2id" class="btn btn-danger">Cancel</button>
+    <button id="button2"   ng-click="profile()" name="button2" class="btn btn-success">Add Pic</button>
   </div>
 </div>
 	</div>

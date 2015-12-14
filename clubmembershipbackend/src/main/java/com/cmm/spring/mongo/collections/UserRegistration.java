@@ -3,7 +3,6 @@ package com.cmm.spring.mongo.collections;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -58,10 +57,26 @@ public class UserRegistration {
 	private int paymentDone = 0;
 
 	private int totalAmount;
+	
+	private byte[] bytes=null;
 
 	List<Facilities> facilities;
 
 	public UserRegistration() {
+	}
+
+	//Constructor for file image
+	public UserRegistration(byte[] bytes)
+	{
+		this.bytes=bytes;
+	}
+		
+	public byte[] getBytes() {
+		return bytes;
+	}
+
+	public void setBytes(byte[] bytes) {
+		this.bytes = bytes;
 	}
 
 	public UserRegistration(String firstName, String lastName, String emailId,

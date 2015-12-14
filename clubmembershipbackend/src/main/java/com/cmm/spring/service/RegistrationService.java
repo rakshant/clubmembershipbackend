@@ -1,12 +1,20 @@
 package com.cmm.spring.service;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+
 import com.cmm.spring.entity.Facilities;
 import com.cmm.spring.mongo.collections.UserRegistration;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 public interface RegistrationService {
 
+	UserRegistration addFile(String id,UserRegistration file) throws IOException;
+	ResponseEntity<byte[]> getFile(String id) throws FileNotFoundException;
+	
 	String register(UserRegistration userRegistration) throws JsonProcessingException;
 
 	String saveFacility(UserRegistration userRegistration, String id) throws JsonProcessingException;

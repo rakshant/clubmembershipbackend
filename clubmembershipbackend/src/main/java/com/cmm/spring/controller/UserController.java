@@ -1,15 +1,15 @@
 package com.cmm.spring.controller;
 
-import java.text.SimpleDateFormat;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cmm.spring.entity.Facilities;
 import com.cmm.spring.entity.Fees;
@@ -49,6 +50,17 @@ public class UserController {
 	@Autowired
 	private Fees fees;
 
+	@RequestMapping(value ="/addFile/{id}", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE, consumes={MediaType.MULTIPART_FORM_DATA_VALUE})
+	public @ResponseBody UserRegistration addFile(@PathVariable("id") String id,@RequestParam("file") MultipartFile file) throws IOException {
+		return registrationService.addFile(id,new UserRegistration(file.getBytes()));
+	}
+	
+	@RequestMapping(value="/getImage/{id}", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> getFile(@PathVariable("id") String id) throws FileNotFoundException{
+	
+		return 	registrationService.getFile(id);
+	}
+	
 	@RequestMapping(value = "/register", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String registerUser(
 			@RequestBody Registration registration)
