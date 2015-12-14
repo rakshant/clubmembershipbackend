@@ -13,14 +13,6 @@ app.controller('RegisterationCtrl', function($scope, $http,url,$uibModal) {
 				'mobileNumber' : $scope.mobileNo,
 				'occupation' : $scope.occupation,
 			}
-		}).success(function(data){
-			$scope.firstName="",
-				 $scope.lastName="",
-				 $scope.email="",
-				 $scope.date="",
-				$scope.mobileNo="",
-				$scope.occupation=""
-					
 		});
 		
 

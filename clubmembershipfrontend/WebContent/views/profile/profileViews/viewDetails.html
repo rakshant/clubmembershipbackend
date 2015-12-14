@@ -20,7 +20,7 @@
 				</tr>
 				<tr>
 					<td>DOB</td>
-					<td>{{ viewDetails.dateOfBirth | date:MM/dd/yyyy}}</td>
+					<td>{{ viewDetails.dateOfBirth | date : 'shortDate' }}</td>
 				</tr>
 				<tr>
 					<td>Mobile No</td>
@@ -32,7 +32,7 @@
 				</tr>
 				<tr>
 					<td>Registered Date</td>
-					<td>{{ viewDetails.registeredDate}}</td>
+					<td>{{ viewDetails.registeredDate | date : 'shortDate'}}</td>
 				</tr>
 				<tr>
 					<td>Facilities</td>
