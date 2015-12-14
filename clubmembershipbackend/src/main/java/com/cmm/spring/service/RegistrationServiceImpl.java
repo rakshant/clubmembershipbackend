@@ -50,16 +50,18 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 		if (registrationCheckList.size() != 0) {
 			flag = 1;
+			
+			return "failed";
 		}
 
 		if (flag == 0) {
 
 			UserRegistration user = registrationRepository.insert(userRegistration);
 			String registerJson = mapper.writeValueAsString(user);
-			return registerJson;
+			return "success";
 		}
 
-		return null;
+		return "failed";
 	}
 
 	public List<UserRegistration> pendingRequest(String id) {
@@ -97,7 +99,6 @@ public class RegistrationServiceImpl implements RegistrationService {
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		if (user != null) {
-			// Setting all the old details of that document
 			if (userRegistration.getOccupation() != null)
 				user.setOccupation(userRegistration.getOccupation());
 
