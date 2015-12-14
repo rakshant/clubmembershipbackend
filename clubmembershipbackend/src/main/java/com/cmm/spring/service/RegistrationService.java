@@ -21,7 +21,7 @@ public interface RegistrationService {
 
 	String acceptRequest(String email);
 
-	List<Facilities> viewBill(String id);
+	List<Facilities> getBillsByUser(String id);
 
 	UserRegistration payBill(String id);
 
