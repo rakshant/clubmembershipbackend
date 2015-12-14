@@ -4,9 +4,9 @@ app.controller('CarouselDemoCtrl', function($scope,$http) {
 	$scope.slides = [ {
 		image : 'images\\ch1.jpg'
 	}, {
-		image : 'images\\ch2.jpg'
+		image : 'images\\ch4.jpg'
 	}, {
-		image : 'images\\ch3.jpg'
+		image : 'images\\ch5.jpg'
 	}, ];
 	
 	
