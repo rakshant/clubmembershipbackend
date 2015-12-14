@@ -141,8 +141,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 		userEmail.setSubject("ClubMembership: Entrance fee amount payment");
 		userEmail.setBody("Please pay the Entrance fee amount of Rs. " + 1000
 				+ " by accessing the link below. \n You will be contacted soon.\n"
-				+ "Thank you.\n Payment link: http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id:"
-				+ id + "?fee:" + 1000 + "?type:" + "entry");
+				+ "Thank you.\n Payment link: http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id="
+				+ id + "&fee=" + 1000 + "&type=" + "entry");
 
 		SimpleMailMessage simpleMailMessageObj = new SimpleMailMessage();
 		simpleMailMessageObj.setFrom(userEmail.getFromAddress());
