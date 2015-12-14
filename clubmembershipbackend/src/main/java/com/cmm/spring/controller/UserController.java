@@ -92,12 +92,20 @@ public class UserController {
 	}
 
     
-	/*@RequestMapping(value = "/membershipRenewal/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void membershipRenewal(@PathVariable("id") String id){
-		registrationService.renewal(id);
-		System.out.println("membership renewed!");
+	@RequestMapping(value = "/membershipRenewal/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String membershipRenewal(@PathVariable("id") String id){
+		if(registrationService.renewal(id)){
+			System.out.println("membership renewed!");
+			return "success";
+		}
+		else{
+			System.out.println("membership not renewed!");
+			return "failure";
+		}
+		
 	}
-*/
+
+	
 	
 	@RequestMapping(value = "/pendingrequests/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<UserRegistration> readRequest(
@@ -111,7 +119,6 @@ public class UserController {
 	public @ResponseBody UserRegistration viewUser(
 			@PathVariable("id") String id) {
 		UserRegistration user = registrationService.viewDetails(id);
-		System.out.println("$$$$$$"+user);
 		return user;
 	}
 

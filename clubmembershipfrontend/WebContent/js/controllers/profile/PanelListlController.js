@@ -1,6 +1,6 @@
 var app = angular.module("profile");
 
-app.controller('PanelListCtrl', function($scope,$timeout,$http, url) {
+app.controller('PanelListCtrl', function($scope,$http, url) {
 	$http({
 		method : 'GET',
 		url : url + 'users' + "/" + localStorage.getItem('userId'),
@@ -13,15 +13,8 @@ app.controller('PanelListCtrl', function($scope,$timeout,$http, url) {
 	}
 	$scope.checkUser = function(key) {
 		return localStorage.getItem(key).trim() === "User"
-				|| localStorage.getItem(key).trim() === "PermanentUser";
-	}
+				|| localStorage.getItem(key).trim() === "permanent";
+	}	
 	
-	for(i=0;i<100;i++){
-		$timeout(callAtTimeout, 3000);
-	}
 });
 
-
-function callAtTimeout() {
-	console.log("Timeout occurred");
-}

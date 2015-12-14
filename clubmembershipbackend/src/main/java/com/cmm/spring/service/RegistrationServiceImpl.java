@@ -264,18 +264,19 @@ public class RegistrationServiceImpl implements RegistrationService {
 		return facilityList;
 	}
 
-	public void renewal(String id) {
+	public boolean renewal(String id) {
 
 		System.out.println("int method renewal");
-
 		UserRegistration user = registrationRepository.findOne(id);
-
 		if (isPermanent(id)) {
-
-			user.setUserType("permanent");
-			registrationRepository.save(user);
+			//user.setUserType("permanent");
+			//registrationRepository.save(user);
+			return true;
 		}
+		return false;
+		
 	}
+	
 
 	private boolean isPermanent(String id) {
 
@@ -283,17 +284,25 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 		UserRegistration user = registrationRepository.findOne(id);
 
-		Date d = new Date();
+		Date currentDate = new Date();
 
-		System.out.println("date: " + d);
+		System.out.println("date: " + currentDate);
 
 		System.out.println("registered date: " + user.getRegisteredDate());
 
-		System.out.println("this time: " + d.getTime());
+		System.out.println("this time: " + currentDate.getTime());
+		
+		Date registeredDate=user.getRegisteredDate();
+		
+		long currentMinutes=currentDate.getTime();
+		System.out.println("********current min: "+currentMinutes);
+		
+		long registeredMinutes=registeredDate.getTime();
+		System.out.println("********reg min: "+registeredMinutes);
 
-		System.out.println("registered time: " + user.getRegisteredDate().getTime());
+	System.out.println(currentMinutes-registeredMinutes);
 
-		if (d.getTime() - user.getRegisteredDate().getTime() > 3) {
+		if (currentMinutes - registeredMinutes > 180000) {
 			return true;
 		}
 

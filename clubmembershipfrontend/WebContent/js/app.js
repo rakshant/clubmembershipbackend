@@ -19,10 +19,12 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 	}).state('profile.reservedFacilityTemperaryMember', {
 		url : "/reservedFacilityTemperaryMember",
 		templateUrl : "views/profile/profileViews/reservedFacilityTemperaryMember.html"
-	})
-	.state('profile.viewBillingDetails', {
+	}).state('profile.viewBillingDetails', {
 		url : "/viewBillingDetails",
 		templateUrl : "views/profile/profileViews/viewBillingDetails.html"
+	}).state('profile.renewal', {
+		url : "/renewal",
+		templateUrl : "views/profile/profileViews/renewal.html"
 	});
 
 	$urlRouterProvider.otherwise("/home");

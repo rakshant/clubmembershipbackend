@@ -33,5 +33,5 @@ public interface RegistrationService {
 
 	UserRegistration payBill(String id);
 
-	void renewal(String id);
+	boolean renewal(String id);
 }
