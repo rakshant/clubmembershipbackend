@@ -217,7 +217,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	}
 
-	public List<Facilities> viewBill(String id) {
+	public List<Facilities> billByUser(String id) {
 
 		UserRegistration user = registrationRepository.findOne(id);
 		List<Facilities> facilityList = user.getFacilities();
