@@ -10,7 +10,7 @@
 					<span></span>
 				</div>
 				<div class="form-group">
-					<label class="col-md-3 control-label" >Email</label>
+					<label class="col-md-3 control-label" >Email<span style="color: red">*</span></label>
 					<div class="col-md-9">
 						<input type="text" class="form-control" ng-model="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
 							name="email" placeholder="Email Address" ng-model="email"required>
@@ -21,7 +21,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-md-3 control-label" >First Name</label>
+					<label class="col-md-3 control-label" >First Name<span style="color: red">*</span></label>
 					<div class="col-md-9">
 						<input type="text" class="form-control" ng-model="firstName"  ng-pattern="/^[a-zA-Z\s]*$/"
 							name="firstName" placeholder="First Name" ng-model="firstName"required>
@@ -32,7 +32,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-md-3 control-label">Last Name</label>
+					<label class="col-md-3 control-label">Last Name<span style="color: red">*</span></label>
 					<div class="col-md-9">
 						<input type="text" class="form-control" ng-model="lastName"  ng-pattern="/^[a-zA-Z\s]*$/"
 							name="lastName" placeholder="Last Name" ng-model="lastName"required>
@@ -43,7 +43,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-md-3 control-label">Mobile No.</label>
+					<label class="col-md-3 control-label">Mobile No.<span style="color: red">*</span></label>
 					<div class="col-md-9">
 						<input type="number" class="form-control" ng-model="mobileNo" ng-pattern="/[0-9]/" ng-maxlength="10"
 							name="mobileNo" placeholder="Mobile Number" ng-model="mobileNo"required>
@@ -54,7 +54,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-md-3 control-label">Occupation</label>
+					<label class="col-md-3 control-label">Occupation<span style="color: red">*</span></label>
 					<div class="col-md-9">
 						<input type="text" class="form-control" ng-model="occupation" ng-pattern="/^[a-zA-Z\s]*$/"
 							name="occupation" placeholder="occupation" ng-model="occupation"required>
@@ -66,7 +66,7 @@
 				</div>
 
 				<div class="form-group">
-					<label class="col-md-3 control-label">DOB</label>
+					<label class="col-md-3 control-label">DOB<span style="color: red">*</span></label>
 					<div class="col-md-9">
 						<input type="date" class="form-control" ng-model="date"  ng-pattern="/^((\d{4})-(\d{2})-(\d{2})|(\d{2})\/(\d{2})\/(\d{4}))$/"
 							name="date" ng-model="date"required/>
