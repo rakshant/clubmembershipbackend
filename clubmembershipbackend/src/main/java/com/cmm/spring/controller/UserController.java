@@ -167,7 +167,7 @@ public class UserController {
 	@RequestMapping(value = "/bill/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Facilities> getBillsByUser(
 			@PathVariable("id") String id) {
-		List<Facilities> billList = registrationService.billByUser(id);
+		List<Facilities> billList = registrationService.getBillsByUser(id);
 		return billList;
 	}
 
