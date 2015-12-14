@@ -4,7 +4,7 @@ app.controller('RegisterationCtrl', function($scope, $http,url,$uibModal) {
 	$scope.submit = function() {
 		$http({
 			method : 'post',
-			url : url+'register',			
+			url : url+'users/register',			
 			data : {
 				'firstName' : $scope.firstName,
 				'lastName' : $scope.lastName,

@@ -1,9 +1,3 @@
-
-
-
-
-
-
 var app=angular.module("home");
 
 app.controller('PermanentFacilitiesCtrl', function($scope, $state,$http,$rootScope,url) {	

@@ -14,8 +14,8 @@ app.controller('validateCtrl', function($scope,$http) {
 	$scope.pay=function(){
 		
 		if(type==="entry"){
-			$http({method : 'get',
-				url : 'http://localhost:8080/paymentdone/'+str[0].substring(4)
+			$http({method : 'put',
+				url : 'http://localhost:8080/users/payment/'+str[0].substring(4)
 				
 			}).success(function(data){
 				window.open('http://localhost:8089/clubmembershipfrontend/paymentmodule/success.html');
@@ -24,7 +24,7 @@ app.controller('validateCtrl', function($scope,$http) {
 		}
 		else{			
 			$http({method : 'put',
-				url : 'http://localhost:8080/paymentFacilities/'+str[0].substring(4),
+				url : 'http://localhost:8080/users/facilities/'+str[0].substring(4),
 				data : {
 					'price' : $scope.amount,
 					'type':str[2].substring(5),

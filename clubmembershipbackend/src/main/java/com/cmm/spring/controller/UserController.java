@@ -99,6 +99,7 @@ public class UserController {
 	public @ResponseBody UserRegistration viewUser(
 			@PathVariable("id") String id) {
 		UserRegistration user = registrationService.viewDetails(id);
+		System.out.println("$$$$$$"+user);
 		return user;
 	}
 

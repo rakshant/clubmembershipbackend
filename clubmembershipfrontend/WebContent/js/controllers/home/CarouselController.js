@@ -8,9 +8,10 @@ app.controller('CarouselDemoCtrl', function($scope,$http) {
 	}, {
 		image : 'images\\ch3.jpg'
 	}, ];
+	
+	
+		localStorage.removeItem('userId');
+		localStorage.removeItem('userType')
+		
 });
 
-
-//for(var i=0;i<100000;i++){
-//setTimeout(function(){ $http.get("http://google.com") }, 3000);		
-//}

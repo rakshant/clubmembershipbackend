@@ -20,7 +20,7 @@ app.controller('FacilitiesCtrl', function($scope, $state,$http,$rootScope,url) {
 			console.log(category);
 			$http({
 				method : 'GET',
-				url : url+'getFee' + "/" + localStorage.getItem('userId')+"/"+$scope.tempOption,			
+				url : url+'users/fee' + "/" + localStorage.getItem('userId')+"/"+$scope.tempOption,			
 			}).success(function(data) {
 				window.open('http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id='+localStorage.getItem('userId')+'&fee='+data+'&type='+$scope.tempOption+'&category='+category, '_blank');
 			});			

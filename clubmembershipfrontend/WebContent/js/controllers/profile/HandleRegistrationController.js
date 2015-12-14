@@ -4,7 +4,7 @@ app.controller('HandleRegistrationCtrl', function($scope, $state,$http,$rootScop
 		function refresh(){
 			$http({
 				method : 'GET',
-				url : url+'viewrequests/'+localStorage.getItem('userId')		
+				url : url+'users/pendingrequests/'+localStorage.getItem('userId')		
 			}).success(function(data) {
 				$scope.personalDetails = data;	
 				$rootScope.count=$scope.personalDetails.length;
@@ -16,7 +16,7 @@ app.controller('HandleRegistrationCtrl', function($scope, $state,$http,$rootScop
 		$scope.accept=function(id){
 			$http({
 				method : 'GET',
-				url : url+'processrequest?email='+id+'&status=accept'		
+				url : url+'users/request?email='+id+'&status=accept'		
 			}).success(function(data) {
 				refresh();			
 			});
@@ -24,12 +24,9 @@ app.controller('HandleRegistrationCtrl', function($scope, $state,$http,$rootScop
 		$scope.reject=function(id){
 			$http({
 				method : 'GET',
-				url : url+'processrequest?email='+id+'&status=reject'		
+				url : url+'users/request?email='+id+'&status=reject'		
 			}).success(function(data) {
 				refresh();			
 			});
 		}
 });
-
-
-//?id='+localStorage.getItem("userId").trim()
