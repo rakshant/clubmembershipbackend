@@ -79,15 +79,13 @@ public class UserController {
 		return response;
 	}
 
-  /*  private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-
     
-	@RequestMapping(value = "/membershipRenewal/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	/*@RequestMapping(value = "/membershipRenewal/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void membershipRenewal(@PathVariable("id") String id){
 		registrationService.renewal(id);
 		System.out.println("membership renewed!");
-	}*/
-
+	}
+*/
 	
 	@RequestMapping(value = "/pendingrequests/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<UserRegistration> readRequest(
