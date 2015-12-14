@@ -20,7 +20,7 @@
 				</tr>
 				<tr>
 					<td> <label class="col-sm-7">Date Of Birth :</label></td>
-					<td><input type="number" class="form-control" id="dateOfBirth" ng-model="dateOfBirth" ng-value="viewDetails.dateOfBirth" disabled></td>
+					<td><input type="number" class="form-control" id="dateOfBirth" ng-model="dateOfBirth" ng-value="viewDetails.dateOfBirth  | date : 'shortDate' " disabled></td>
 				</tr>
 				<tr>
 					<td><label class="col-sm-5" >Mobile No. :</label></td>
@@ -33,11 +33,11 @@
 				
 				<tr>
 					<td> <label class="col-sm-7" >Registered Date :</label></td>
-					<td><input type="number" class="form-control" id="registerDate" ng-model="registeredDate" ng-value="viewDetails.registeredDate" placeholder="Register Date" disabled></td>
+					<td><input type="number" class="form-control" id="registerDate" ng-model="registeredDate  | date : 'shortDate'" ng-value="viewDetails.registeredDate" placeholder="Register Date" disabled></td>
 				</tr>
 				<tr>
 					<td> <label class="col-sm-5" for="inputEmail1">Password :</label></td>
-					<td><input type="text" class="form-control" id="password" ng-model="password" placeholder="Email"></td>
+					<td><input type="password" class="form-control" id="password" ng-model="password" placeholder="password"></td>
 				</tr>
 				<tr>
 					<td>  <label class="col-md-5 control-label" for="filebutton">Upload photo</label></td>

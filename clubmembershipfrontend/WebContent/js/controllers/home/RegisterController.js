@@ -14,7 +14,7 @@ app.controller('RegisterationCtrl', function($scope, $http,url,$uibModal) {
 				'occupation' : $scope.occupation,
 			}
 		});
-
+	
 		$uibModal.open({
 		      templateUrl: 'views/modal.html',
 		      controller: function ($scope,$uibModalInstance) {
