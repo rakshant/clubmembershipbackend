@@ -8,27 +8,35 @@
 			<tbody>
 				<tr>
 					<td>First Name</td>
-					<td>{{ viewDetails[0].firstName }}</td>
+					<td>{{ viewDetails.firstName }}</td>
 				</tr>
 				<tr>
 					<td>Last name</td>
-					<td>{{ viewDetails[0].lastName }}</td>
+					<td>{{ viewDetails.lastName }}</td>
 				</tr>
 				<tr>
 					<td>Email ID</td>
-					<td>{{ viewDetails[0].emailId }}</td>
+					<td>{{ viewDetails.emailId }}</td>
 				</tr>
 				<tr>
 					<td>DOB</td>
-					<td>{{ viewDetails[0].dateOfBirth | date:MM/dd/yyyy}}</td>
+					<td>{{ viewDetails.dateOfBirth | date:MM/dd/yyyy}}</td>
 				</tr>
 				<tr>
 					<td>Mobile No</td>
-					<td>{{ viewDetails[0].mobileNumber}}</td>
+					<td>{{ viewDetails.mobileNumber}}</td>
 				</tr>
 				<tr>
 					<td>Occupation</td>
-					<td>{{ viewDetails[0].occupation}}</td>
+					<td>{{ viewDetails.occupation}}</td>
+				</tr>
+				<tr>
+					<td>Registered Date</td>
+					<td>{{ viewDetails.registeredDate}}</td>
+				</tr>
+				<tr>
+					<td>Facilities</td>
+					<td>{{ viewDetails.facilities}}</td>
 				</tr>
 			</tbody>
 		</table>
