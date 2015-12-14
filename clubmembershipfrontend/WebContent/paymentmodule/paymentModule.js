@@ -23,9 +23,7 @@ app.controller('validateCtrl', function($scope,$http) {
 			
 		}
 		
-		if(){
-			
-		}
+		
 		else{			
 			$http({method : 'put',
 				url : 'http://localhost:8080/users/facilities/'+str[0].substring(4),

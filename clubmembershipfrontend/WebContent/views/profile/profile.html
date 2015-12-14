@@ -29,7 +29,9 @@
 				<li class="list-group-item"><a
 					ui-sref="profile.renewal">Renew Membership</a></li>
 			</ul>
-			<img ng-src="http://localhost:8080/users/getImage/{{viewDetails.id}}" class="img-thumbnail" alt="Profile Pic" height="200px" width="265px"> 
+			<img ng-if="image" ng-src="images/logo.png" class="img-thumbnail" alt="Profile Pic" height="200px" width="265px"> 
+			
+			<img ng-if="!image" ng-src="http://localhost:8080/users/getImage/{{viewDetails.id}}" class="img-thumbnail" alt="Profile Pic" height="200px" width="265px"> 
 		</div>
 	</div>
 	<div class="col-md-9">

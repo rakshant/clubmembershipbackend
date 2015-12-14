@@ -33,7 +33,7 @@
 				
 				<tr>
 					<td> <label class="col-sm-7" >Registered Date :</label></td>
-					<td><input type="number" class="form-control" id="registerDate" ng-model="registeredDate  | date : 'shortDate'" ng-value="viewDetails.registeredDate" placeholder="Register Date" disabled></td>
+					<td><input type="text" class="form-control" id="registerDate" ng-model="viewDetails.registeredDate|date:'dd/MM/yyyy'" placeholder="Register Date" disabled></td>
 				</tr>
 				<tr>
 					<td> <label class="col-sm-5" for="inputEmail1">Password :</label></td>

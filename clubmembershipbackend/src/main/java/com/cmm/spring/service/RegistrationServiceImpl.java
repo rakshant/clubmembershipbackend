@@ -65,12 +65,11 @@ public class RegistrationServiceImpl implements RegistrationService {
 			Date currentDate=new Date();
 			Date enteredDate=userRegistration.getDateOfBirth();
 		
-			if(currentDate.compareTo(enteredDate)!=-1){
-				
-			UserRegistration user = registrationRepository.insert(userRegistration);
-			String registerJson = mapper.writeValueAsString(user);
-			return "success";
-		}
+//			if(currentDate.compareTo(enteredDate)!=-1){	
+			    UserRegistration user = registrationRepository.insert(userRegistration);
+			    String registerJson = mapper.writeValueAsString(user);
+			    return "success";
+//		    }
 		}
 
 		return "failed";

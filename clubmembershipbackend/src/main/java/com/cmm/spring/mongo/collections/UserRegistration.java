@@ -59,10 +59,10 @@ public class UserRegistration {
 	private int totalAmount;
 	
 	private byte[] bytes=null;
-
 	List<Facilities> facilities;
 
 	public UserRegistration() {
+		
 	}
 
 	//Constructor for file image
@@ -94,6 +94,8 @@ public class UserRegistration {
 		this.password = "" + ((int) (Math.random() * 9000) + 1000);
 		this.status = status;
 		this.userType = userType;
+		
+		
 
 	}
 
