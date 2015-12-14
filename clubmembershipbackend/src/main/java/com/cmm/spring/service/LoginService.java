@@ -9,7 +9,7 @@ public interface LoginService  {
 	
 	
 
-	String loginUser(UserLogin userLogin) throws JsonProcessingException;
+	String login(UserLogin userLogin) throws JsonProcessingException;
 
 	UserLogin logout(String emailId);
 

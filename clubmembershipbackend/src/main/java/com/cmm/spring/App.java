@@ -7,12 +7,14 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.cmm.spring.entity.Registration;
 
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan
+@EnableScheduling
 @ImportResource("classpath:Mail-bean.xml")
 public class App {
 	public static void main(String[] args) {

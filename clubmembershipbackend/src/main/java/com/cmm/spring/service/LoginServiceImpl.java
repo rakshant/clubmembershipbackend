@@ -28,7 +28,7 @@ public class LoginServiceImpl implements LoginService {
 	List<UserRegistration> registrationCheckList;
 	List<UserRegistration> loggedInUserList;
 
-	public String loginUser(UserLogin userLogin) {
+	public String login(UserLogin userLogin) {
 
 		Query query = new Query();
 

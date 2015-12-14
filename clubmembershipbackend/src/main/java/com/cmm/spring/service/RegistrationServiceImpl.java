@@ -35,7 +35,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	List<UserRegistration> permanentUserDetails;
 	List<UserRegistration> viewDetailsList;
 
-	public String save(UserRegistration userRegistration) throws JsonProcessingException {
+	public String register(UserRegistration userRegistration) throws JsonProcessingException {
 
 		int flag = 0;
 		ObjectMapper mapper = new ObjectMapper();
@@ -45,6 +45,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 		query.addCriteria(Criteria.where("emailId").regex(userRegistration.getEmailId()));
 
 		registrationCheckList = mongoOperation.find(query, UserRegistration.class);
+		
+		
 
 		if (registrationCheckList.size() != 0) {
 			flag = 1;
@@ -52,15 +54,15 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 		if (flag == 0) {
 
-			UserRegistration userReg = registrationRepository.insert(userRegistration);
-			String registerJson = mapper.writeValueAsString(userReg);
+			UserRegistration user = registrationRepository.insert(userRegistration);
+			String registerJson = mapper.writeValueAsString(user);
 			return registerJson;
 		}
 
 		return null;
 	}
 
-	public List<UserRegistration> read(String id) {
+	public List<UserRegistration> pendingRequest(String id) {
 
 		if (isSecretary(id)) {
 
@@ -115,9 +117,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 		}
 	}
 
-	public List<UserRegistration> view(String id) {
-		viewDetailsList = registrationRepository.findById(id);
-		return viewDetailsList;
+	public UserRegistration viewDetails(String id) {
+		UserRegistration viewDetails = registrationRepository.findOne(id);
+		return viewDetails;
 	}
 
 	public void rejectRequest(String email) {
@@ -136,7 +138,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 		userEmail.setFromAddress("clubmembershipuser@gmail.com");
 		userEmail.setToAddress(email);
 		userEmail.setSubject("ClubMembership: Entrance fee amount payment");
-		userEmail.setBody("Please pay the Entrance fee amount of Rs. " + 1200
+		userEmail.setBody("Please pay the Entrance fee amount of Rs. " + 1000
 				+ " by accessing the link below. \n You will be contacted soon.\n"
 				+ "Thank you.\n Payment link: http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id:"
 				+ id + "?fee:" + 1000 + "?type:" + "entry");
@@ -164,7 +166,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	}
 
-	public UserRegistration paymentDone(String id) {
+	public UserRegistration payBill(String id) {
 
 		UserRegistration user = registrationRepository.findOne(id);
 
@@ -214,10 +216,10 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	}
 
-	public List<Facilities> bill(String id) {
+	public List<Facilities> viewBill(String id) {
 
-		viewDetailsList = registrationRepository.findById(id);
-		List<Facilities> facilityList = viewDetailsList.get(0).getFacilities();
+		UserRegistration user = registrationRepository.findOne(id);
+		List<Facilities> facilityList = user.getFacilities();
 		return facilityList;
 	}
 

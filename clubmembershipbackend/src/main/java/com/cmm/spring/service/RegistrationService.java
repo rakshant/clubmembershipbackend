@@ -7,23 +7,23 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 public interface RegistrationService {
 
-	String save(UserRegistration userRegistration) throws JsonProcessingException;
+	String register(UserRegistration userRegistration) throws JsonProcessingException;
 
 	String saveFacility(UserRegistration userRegistration, String id) throws JsonProcessingException;
 
-	List<UserRegistration> read(String id);
+	List<UserRegistration> pendingRequest(String id);
 
 	String update(String id, UserRegistration userRegistration) throws JsonProcessingException;
 
-	List<UserRegistration> view(String id);
+	UserRegistration viewDetails(String id);
 
 	void rejectRequest(String email);
 
 	String acceptRequest(String email);
 
-	List<Facilities> bill(String id);
+	List<Facilities> viewBill(String id);
 
-	UserRegistration paymentDone(String id);
+	UserRegistration payBill(String id);
 
 	void renewal(String id);
 }

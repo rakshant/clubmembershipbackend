@@ -14,10 +14,6 @@
 
 	<context:component-scan base-package="com.cmm.spring" />
 
-
-
-	
-
 	<bean id="feeStructure" class="com.cmm.spring.entity.Fees">
 
 		<property name="fee">
