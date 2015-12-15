@@ -7,18 +7,18 @@
 				data-target="#bs-example-navbar-collapse-1">
 				<span class="sr-only">Toggle navigation</span>
 			</button>
-			<a class="navbar-brand" href="#"></a>
+			<a class="navbar-brand"  href="#"></a>
 			<span><img src="images/logo.png"
 				class="logo" height=60px width=60px> <img src="images/name6.png"
 				class="logo" height=50px></span>
 		</div>
 		
 			
-			<div class="collapse navbar-collapse pull-right"
-				ng-if="profile()">Hi!!!
-				<div></div>
-				<button type="button" ng-click="loginCheck()"  class="btn btn-primary" style="left:100px;top:70px">Logout</button>
-			</div>
+			<span class="collapse navbar-collapse pull-right" ng-if="profile()" ng-controller="viewCtrl">
+			<span class="navbar-brand"> Hello {{ viewDetails.firstName }}</span>
+				<a class="navbar-brand"  href="#">Logout</a>
+				<!-- <button type="button" ng-click="loginCheck()"  class="btn btn-primary" style="left:100px;top:70px">Logout</button> -->
+			</span> 
 		
 	</div>
 </nav>
