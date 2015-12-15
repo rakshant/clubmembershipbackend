@@ -26,7 +26,10 @@ app.controller('validateCtrl', function($scope,$http) {
 		
 		else if(type==="permanent"){
 			$http({method : 'put',
-				url : 'http://localhost:8080/users/payment/'+str[0].substring(4)+'permanent'
+				url : 'http://localhost:8080/users/payment/'+str[0].substring(4)+'permanent',
+				data:{
+					'facilities': JSON.parse(localStorage.getItem('facility'))
+				}
 				
 			}).success(function(data){
 				window.open('http://localhost:8089/clubmembershipfrontend/paymentmodule/success.html');
@@ -38,9 +41,11 @@ app.controller('validateCtrl', function($scope,$http) {
 			$http({method : 'put',
 				url : 'http://localhost:8080/users/facilities/'+str[0].substring(4),
 				data : {
-					'price' : $scope.amount,
-					'type':str[2].substring(5),
-					'category':str[3].substring(9)
+				
+									'price' : $scope.amount,
+									'type':str[2].substring(5),
+									'category':str[3].substring(9)
+						
 				}
 				
 			}).success(function(data){

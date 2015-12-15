@@ -328,12 +328,25 @@ public class RegistrationServiceImpl implements RegistrationService {
 		if (user != null) {
 
 			user.setFacilities(userRegistration.getFacilities());
-			UserRegistration user1 = registrationRepository.save(user);
+			registrationRepository.save(user);
 			String registerJson = objectMapper.writeValueAsString(user);
 			return registerJson;
 		} else {
 			return null;
 		}
+
+		
+		/*if (user != null) {
+			
+			user.getFacilities().addAll(userRegistration.getFacilities());
+
+			user.setFacilities(user.getFacilities());
+			registrationRepository.save(user);
+			String registerJson = objectMapper.writeValueAsString(user);
+			return registerJson;
+		} else {
+			return null;
+		}*/
 
 	}
 

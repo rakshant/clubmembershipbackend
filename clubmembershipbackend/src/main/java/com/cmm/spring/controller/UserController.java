@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -173,6 +174,7 @@ public class UserController {
 		return hosts;
 	}
 
+	
 	@RequestMapping(value = "/facilities/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String reserveFacilities(@PathVariable("id") String id,
 			@RequestBody Facilities facilities) throws JsonProcessingException {
@@ -186,6 +188,21 @@ public class UserController {
 
 	}
 	
+	/*@RequestMapping(value = "/facilities/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public String reserveFacilities(@PathVariable("id") String id,
+			@RequestBody Map<String,List<Facilities>> facilities) throws JsonProcessingException {
+		
+		List<Facilities> item=facilities.get("item");
+		
+		List<Facilities> facility = new ArrayList<Facilities>();
+		facility.add(new Facilities(facilities.getCategory(), facilities
+				.getType(), facilities.getPrice()));
+	
+		registrationService.saveFacility(new UserRegistration(item), id);		
+		return new HashMap<String, String>().put("success", facilities.getCategory());
+
+	}
+*/
 	
 
 	@RequestMapping(value = "/fee/{id}/{type}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

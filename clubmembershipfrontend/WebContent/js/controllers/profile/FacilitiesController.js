@@ -23,8 +23,27 @@ app.controller('FacilitiesCtrl', function($scope, $state,$http,$rootScope,url) {
 				method : 'GET',
 				url : url+'users/fee' + "/" + localStorage.getItem('userId')+"/"+$scope.tempOption,			
 			}).success(function(data) {
-				window.open('http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id='+localStorage.getItem('userId')+'&fee='+data+'&type='+$scope.tempOption+'&category='+category, '_blank');
+				window.open('http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id='
+						+localStorage.getItem('userId')+'&fee='+data+'&type='+$scope.tempOption+'&category='+category, '_blank');
 			});			
+		}
+		
+		
+		$scope.temporary=function(data){
+			if(localStorage.getItem('userType').trim()==="User"){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		$scope.permanent=function(data){
+			if(localStorage.getItem('userType').trim()==="permanent"){
+				return true;
+			}
+			else{
+				return false;
+			}
 		}
 });
 
