@@ -93,14 +93,17 @@ public class UserController {
 
     
 	@RequestMapping(value = "/membershipRenewal/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String membershipRenewal(@PathVariable("id") String id){
+	public HashMap<String, String> membershipRenewal(@PathVariable("id") String id){
+		HashMap<String, String> response = new HashMap<String, String>();
 		if(registrationService.renewal(id)){
 			System.out.println("membership renewed!");
-			return "success";
+			response.put("status","success");
+			return response;
 		}
 		else{
 			System.out.println("membership not renewed!");
-			return "failure";
+			response.put("status","failure");
+			return response;		
 		}
 		
 	}

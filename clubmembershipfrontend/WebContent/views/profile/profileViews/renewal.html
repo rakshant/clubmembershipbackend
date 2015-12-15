@@ -2,7 +2,7 @@
 	<div class="panel-heading">
 		<h3 class="panel-title">Membership renewal</h3>
 	</div>
-	<div class="panel-body" ng-controller="viewCtrl">
+	<div class="panel-body" ng-controller="RenewalCtrl">
 		<div class="jumbotron">
 			<table class="table table-hover">
 
@@ -11,15 +11,15 @@
 						<td><h4>
 								Do you want to become permanent member???
 								<h4></td>
-						<td><a class="btn btn-primary btn-md" role="button"
-							ng-click="checkPermanent()">Apply</a></td>
+					<td><button class="btn btn-primary btn-md""
+							ng-click="checkPermanent()">Apply</button></td>
 					</tr>
 					<tr>
 						<td><h4>
 								Apply to renew temporary membership???
 								<h4></td>
-						<td><a class="btn btn-primary btn-md" role="button"
-							ng-click="checkTemporary()">Apply</a></td>
+						<td><button class="btn btn-primary btn-md" 
+							ng-click="checkTemporary()">Apply</button></td>
 					</tr>
 				</tbody>
 			</table>

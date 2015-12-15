@@ -24,7 +24,17 @@ app.controller('validateCtrl', function($scope,$http) {
 		}
 		
 		
-		else{			
+		else if(type==="permanent"){
+			$http({method : 'put',
+				url : 'http://localhost:8080/users/payment/'+str[0].substring(4)
+				
+			}).success(function(data){
+				window.open('http://localhost:8089/clubmembershipfrontend/paymentmodule/success.html');
+			});
+		}
+
+		else
+		{			
 			$http({method : 'put',
 				url : 'http://localhost:8080/users/facilities/'+str[0].substring(4),
 				data : {

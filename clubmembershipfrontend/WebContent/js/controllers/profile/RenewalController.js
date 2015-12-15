@@ -1,15 +1,16 @@
 var app=angular.module("home");
 
-app.controller('FacilitiesCtrl', function($scope, $state,$http,$rootScope,url,$uibModal) {	
+app.controller('RenewalCtrl', function($scope, $state,$http,$rootScope,url,$uibModal) {	
 	
 	$scope.checkPermanent=function(){
-console.log("################################");
 		
 		$http({
 			method : 'GET',
 			url : url+'users/membershipRenewal' + "/" + localStorage.getItem('userId')		
 		}).success(function(data) {
-			if(data=="failure"){
+			
+			console.log("???????????????????????"+data);
+			if(data.status==="failure"){
 				$uibModal.open({
 					templateUrl : 'views/modal.html',
 					controller : function($scope, $uibModalInstance) {
@@ -21,7 +22,7 @@ console.log("################################");
 					}
 				});
 			}
-			if(data=="success"){
+			if(data.status ==="success"){
 				window.open('http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id='
 						+localStorage.getItem('userId')+'&fee='+20000+ '&type=' + 'permanent', '_blank');
 			}
@@ -29,31 +30,29 @@ console.log("################################");
 		});	
 	}
 	
+	
 	$scope.checkTemporary=function(){
 		$http({
 			method : 'GET',
 			url : url+'users/membershipRenewal' + "/" + localStorage.getItem('userId')		
 		}).success(function(data) {
-			if(data=="failure"){
+			if(data.status=="failure"){
 				$uibModal.open({
 					templateUrl : 'views/modal.html',
 					controller : function($scope, $uibModalInstance) {
 						$scope.message = "You tenure as temporary member is still left.. enjoy!!!"
-
 						$scope.ok = function() {
 							$uibModalInstance.close();
 						}
 					}
 				});
 			}
-			if(data=="success"){
+			if(data.status=="success"){
 				window.open('http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id="'
-						+ id + '&fee=' + 1000 + '&type=' + 'entry', '_blank');
-			}
-			
+						+ localStorage.getItem('userId') + '&fee=' + 1000 + '&type=' + 'entry', '_blank');
+			}			
 	});
-	}
-		
+	}		
 });
 
 
