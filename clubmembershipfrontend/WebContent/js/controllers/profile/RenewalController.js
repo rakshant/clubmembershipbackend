@@ -3,7 +3,8 @@ var app=angular.module("home");
 app.controller('FacilitiesCtrl', function($scope, $state,$http,$rootScope,url,$uibModal) {	
 	
 	$scope.checkPermanent=function(){
-
+console.log("################################");
+		
 		$http({
 			method : 'GET',
 			url : url+'users/membershipRenewal' + "/" + localStorage.getItem('userId')		

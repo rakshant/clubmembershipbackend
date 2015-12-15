@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cmm.spring.entity.Facilities;
 import com.cmm.spring.entity.Fees;
+import com.cmm.spring.entity.HostingCount;
 import com.cmm.spring.entity.Login;
 import com.cmm.spring.entity.Registration;
 import com.cmm.spring.mongo.collections.UserLogin;
@@ -161,6 +162,13 @@ public class UserController {
 				registration.getMobileNumber(), registration.getOccupation(),
 				registration.getPassword()));
 		return result;
+	}
+	
+	@RequestMapping(value = "/treasurer", method = RequestMethod.GET)
+	public @ResponseBody List<HostingCount> aggregateUser() throws JsonProcessingException {
+		List<HostingCount> hosts=registrationService.aggregationOfType();
+		//System.out.println(hosts);
+		return hosts;
 	}
 
 	@RequestMapping(value = "/facilities/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
