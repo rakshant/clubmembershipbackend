@@ -5,6 +5,7 @@ app.controller('FacilitiesCtrl', function($scope, $state,$http,$rootScope,url) {
 	
 	
 		$scope.check=function(id){
+
 			if($scope.tempOption==="tableTennis"||$scope.tempOption==="badminton"||$scope.tempOption==="billiards"||
 					$scope.tempOption==="healthClub"||$scope.tempOption==="squash"){
 				var category='Indoor'

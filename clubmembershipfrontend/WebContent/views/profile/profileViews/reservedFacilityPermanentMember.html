@@ -1,0 +1,177 @@
+
+<div class="panel  panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title">Facilities</h3>
+	</div>
+	<div class="panel-body" ng-controller="PermanentFacilitiesCtrl">
+		<table class="table table-hover">
+
+			<tbody>
+
+
+				<table>
+					<tr ng-repeat="facility in facilities" >
+						<td>{{facility.type}}</td>
+						<td>&nbsp;&nbsp;&nbsp;</td>
+						<td>&nbsp;&nbsp;&nbsp;</td>
+						<td>&nbsp;&nbsp;&nbsp;</td>
+						<td>&nbsp;&nbsp;&nbsp;</td>
+						<td>&nbsp;&nbsp;&nbsp;</td>
+						<td>&nbsp;&nbsp;&nbsp;</td>
+						<td><label class="btn btn-primary active">  <input
+						type="checkbox" data-checklist-model="user.facilities"
+						data-checklist-value="facility" /></label></td>
+					</tr>
+				</table>
+
+
+				<!-- <div ng-controller="PermanentFacilitiesCtrl">
+					<label ng-repeat="facility in facilities"
+						class="btn btn-primary active"> {{facility.type}} <input
+						type="checkbox" data-checklist-model="user.facilities"
+						data-checklist-value="facility" />
+					</label>
+				</div> -->
+				<!-- 	<tr class="success">
+					<th>Indoor Facilities</th>
+
+				</tr>
+				<tr>
+					<td>Table Tennis</td>
+					<td><label class="btn btn-primary active"> <input
+							type="checkbox" ng-model="permanentOption" name="permanent"
+							value="tableTennis">
+					</label></td>
+
+				</tr>
+				<tr>
+					<td>Badminton</td>
+					<td><label class="btn btn-primary active"> <input
+							type="checkbox" ng-model="permanentOption" name="permanent" value="badminton">
+					</label></td>
+
+				</tr>
+
+				<tr>
+					<td>Billiards</td>
+					<td><label class="btn btn-primary active"> <input
+							type="checkbox" ng-model="permanentOption" name="permanent" value="billiards">
+					</label></td>
+
+				</tr>
+
+				<tr>
+					<td>Health Club</td>
+					<td><label class="btn btn-primary active"> <input
+							type="checkbox" ng-model="permanentOption" name="permanent" value="healthClub">
+					</label></td>
+
+				</tr>
+				<tr>
+					<td>Squash</td>
+					<td><label class="btn btn-primary active"> <input
+							type="checkbox" ng-model="permanentOption" name="permanent" value="squash">
+					</label></td>
+
+				</tr>
+
+
+
+				<tr class="success">
+					<th>Outdoor Facilities</th>
+
+				</tr>
+				<tr>
+					<td>Lawn Tennis</td>
+					<td><label class="btn btn-primary active"> <input
+							type="checkbox" ng-model="permanentOption" name="permanent" value="lawnTennis">
+					</label></td>
+
+				</tr>
+				<tr>
+					<td>Swimming</td>
+					<td><label class="btn btn-primary active"> <input
+							type="checkbox" ng-model="permanentOption" name="permanent" value="swimming">
+					</label></td>
+
+				</tr>
+
+				<tr>
+					<td>Cricket</td>
+					<td><label class="btn btn-primary active"> <input
+							type="checkbox" ng-model="permanentOption" name="permanent" value="cricket">
+					</label></td>
+
+				</tr>
+
+				<tr>
+					<td>Playground</td>
+					<td><label class="btn btn-primary active"> <input
+							type="checkbox" ng-model="permanentOption" name="permanent" value="playground">
+					</label></td>
+
+				</tr>
+
+
+				<tr class="success">
+					<th>Leisure Centre</th>
+
+				</tr>
+				<tr>
+					<td>Card Room</td>
+					<td><label class="btn btn-primary active"> <input
+							type="checkbox" ng-model="permanentOption" name="permanent" value="cardRoom">
+					</label></td>
+
+				</tr>
+				<tr>
+					<td>Library</td>
+					<td><label class="btn btn-primary active"> <input
+							type="checkbox" ng-model="permanentOption" name="permanent" value="library">
+					</label></td>
+
+				</tr>
+
+				<tr>
+					<td>Restaurant & Bar</td>
+					<td><label class="btn btn-primary active"> <input
+							type="checkbox" ng-model="permanentOption" name="permanent"
+							value="restaurantBar">
+					</label></td>
+
+				</tr>
+
+				<tr>
+					<td>Banquet Hall</td>
+					<td><label class="btn btn-primary active"> <input
+							type="checkbox" ng-model="permanentOption" name="permanent"
+							value="banquetHall">
+					</label></td>
+
+				</tr>
+
+				<tr>
+					<td>Conference Hall</td>
+					<td><label class="btn btn-primary active"> <input
+							type="checkbox" ng-model="permanentOption" name="permanent"
+							value="conferenceHall">
+					</label></td>
+
+				</tr> -->
+			</tbody>
+		</table>
+		<div style="position: absolute; top: 500px; left: 500px;">
+
+			<button type="button" class="btn btn-success btn-lg"
+				data-toggle="button" ng-click="check()">Pay</button>
+		</div>
+	</div>
+</div>
+
+
+</html>
+
+
+
+
+

@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cmm.spring.entity.Facilities;
 import com.cmm.spring.entity.Fees;
+import com.cmm.spring.entity.HostingCount;
 import com.cmm.spring.entity.Login;
 import com.cmm.spring.entity.Registration;
 import com.cmm.spring.mongo.collections.UserLogin;
@@ -165,6 +166,13 @@ public class UserController {
 				registration.getPassword()));
 		return result;
 	}
+	
+	@RequestMapping(value = "/treasurer", method = RequestMethod.GET)
+	public @ResponseBody List<HostingCount> aggregateUser() throws JsonProcessingException {
+		List<HostingCount> hosts=registrationService.aggregationOfType();
+		//System.out.println(hosts);
+		return hosts;
+	}
 
 	@RequestMapping(value = "/facilities/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String reserveFacilities(@PathVariable("id") String id,
@@ -178,6 +186,8 @@ public class UserController {
 		return new HashMap<String, String>().put("success", facilities.getCategory());
 
 	}
+	
+	
 
 	@RequestMapping(value = "/fee/{id}/{type}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int getFee(@PathVariable("id") String id,
