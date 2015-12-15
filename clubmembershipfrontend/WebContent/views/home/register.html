@@ -74,7 +74,7 @@
 							name="date" ng-model="date"required/>
 							<span style="color: red"ng-show="myRegistration.date.$dirty && myRegistration.date.$invalid">
                  <span ng-show="myRegistration.date.$error.required"> Date required.</span> 
-				<span ng-show="myRegistration.date.$error.pattern">Follow dd/mm/yyyy </span>
+				<span ng-show="myRegistration.date.$error.pattern">Follow mm/dd/yyyy </span>
 					</span>
 					</div>
 				</div>
@@ -83,17 +83,20 @@
 				<div class="form-group">
 					<!-- Button -->
 					<div class="col-md-offset-3 col-md-9">
-						<button type="button" ng-click="submit()" class="btn btn-info"
+					
+		
+					
+						<button type="reset" ng-click="submit()" class="btn btn-info"
 						
-						ng-disabled="myRegistration.email.$dirty && myRegistration.email.$invalid || myRegistration.firstName.$dirty && myRegistration.firstName.$invalid||
-						myRegistration.lastName.$dirty &&myRegistration.lastName.$invalid||myRegistration.mobileNo.$dirty &&myRegistration.mobileNo.$invalid||
-						myRegistration.occupation.$dirty &&myRegistration.occupation.$invalid||myRegistration.date.$dirty &&myRegistration.date.$invalid"
+						ng-disabled="myRegistration.email.$pristine||myRegistration.firstName.$pristine||myRegistration.lastName.$pristine||myRegistration.mobileNo.$pristine||myRegistration.occupation.$pristine||myRegistration.date.$pristine||myRegistration.email.$dirty && myRegistration.email.$invalid || myRegistration.firstName.$dirty && myRegistration.firstName.$invalid||
+						myRegistration.lastName.$dirty && myRegistration.lastName.$invalid||myRegistration.mobileNo.$dirty && myRegistration.mobileNo.$invalid||
+						myRegistration.occupation.$dirty && myRegistration.occupation.$invalid||myRegistration.date.$dirty && myRegistration.date.$invalid"
 						
 						
 						
 						
-						>sign
-							up</button>
+						>Sign
+							Up</button>
 					</div>
 				</div>
 		</div>
