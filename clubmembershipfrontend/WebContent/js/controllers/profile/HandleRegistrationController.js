@@ -23,7 +23,7 @@ app.controller('HandleRegistrationCtrl', function($scope, $state,$http,$rootScop
 				$uibModal.open({
 					templateUrl : 'views/modal.html',
 					controller : function($scope, $uibModalInstance) {
-						$scope.message = "Messege sent to the user"
+						$scope.message = "Email sent to the User"
 
 						$scope.ok = function() {
 							$uibModalInstance.close();
@@ -43,7 +43,7 @@ app.controller('HandleRegistrationCtrl', function($scope, $state,$http,$rootScop
 				$uibModal.open({
 					templateUrl : 'views/modal.html',
 					controller : function($scope, $uibModalInstance) {
-						$scope.message = "User rejected membership"
+						$scope.message = "Membership Rejected"
 
 						$scope.ok = function() {
 							$uibModalInstance.close();

@@ -68,11 +68,11 @@ public class RegistrationServiceImpl implements RegistrationService {
 			int currentYear=currentDate.getYear();
 			int enteredYear=enteredDate.getYear();
 			
-			
+			System.out.println(enteredYear-currentYear);
 			
 			if(currentDate.compareTo(enteredDate)!=-1){	
 				
-				if(enteredYear-currentYear>16){
+				if(currentYear-enteredYear>16){
 				
 				
 			    UserRegistration user = registrationRepository.insert(userRegistration);
