@@ -1,6 +1,6 @@
 var app=angular.module("home");
 
-app.controller('HandleRegistrationCtrl', function($scope, $state,$http,$rootScope,url) {	
+app.controller('HandleRegistrationCtrl', function($scope, $state,$http,$rootScope,url,$uibModal) {	
 		function refresh(){
 			$http({
 				method : 'GET',
@@ -18,7 +18,20 @@ app.controller('HandleRegistrationCtrl', function($scope, $state,$http,$rootScop
 				method : 'GET',
 				url : url+'users/request?email='+id+'&status=accept'		
 			}).success(function(data) {
-				refresh();			
+				refresh();	
+				
+				$uibModal.open({
+					templateUrl : 'views/modal.html',
+					controller : function($scope, $uibModalInstance) {
+						$scope.message = "Messege sent to the user"
+
+						$scope.ok = function() {
+							$uibModalInstance.close();
+						}
+					}
+				});
+				
+				
 			});
 		}
 		$scope.reject=function(id){
@@ -26,7 +39,21 @@ app.controller('HandleRegistrationCtrl', function($scope, $state,$http,$rootScop
 				method : 'GET',
 				url : url+'users/request?email='+id+'&status=reject'		
 			}).success(function(data) {
-				refresh();			
+				
+				$uibModal.open({
+					templateUrl : 'views/modal.html',
+					controller : function($scope, $uibModalInstance) {
+						$scope.message = "User rejected membership"
+
+						$scope.ok = function() {
+							$uibModalInstance.close();
+						}
+					}
+				});
+				refresh();		
+				
+				
+				
 			});
 		}
 });
