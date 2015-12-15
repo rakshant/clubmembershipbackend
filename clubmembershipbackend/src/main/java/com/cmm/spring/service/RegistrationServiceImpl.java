@@ -41,45 +41,46 @@ public class RegistrationServiceImpl implements RegistrationService {
 	List<UserRegistration> permanentUserDetails;
 	List<UserRegistration> viewDetailsList;
 
-	public String register(UserRegistration userRegistration) throws JsonProcessingException {
+	public String register(UserRegistration userRegistration)
+			throws JsonProcessingException {
 
 		int flag = 0;
 		ObjectMapper mapper = new ObjectMapper();
 
 		Query query = new Query();
 
-		query.addCriteria(Criteria.where("emailId").regex(userRegistration.getEmailId()));
+		query.addCriteria(Criteria.where("emailId").regex(
+				userRegistration.getEmailId()));
 
-		registrationCheckList = mongoOperation.find(query, UserRegistration.class);
-		
-		
+		registrationCheckList = mongoOperation.find(query,
+				UserRegistration.class);
 
 		if (registrationCheckList.size() != 0) {
 			flag = 1;
-			
+
 			return "failed";
 		}
 
 		if (flag == 0) {
-			
-			Date currentDate=new Date();
-			Date enteredDate=userRegistration.getDateOfBirth();
-		
-			int currentYear=currentDate.getYear();
-			int enteredYear=enteredDate.getYear();
-			
-			System.out.println(enteredYear-currentYear);
-			
-			if(currentDate.compareTo(enteredDate)!=-1){	
-				
-				if(currentYear-enteredYear>16){
-				
-				
-			    UserRegistration user = registrationRepository.insert(userRegistration);
-			    String registerJson = mapper.writeValueAsString(user);
-			    return "success";
+
+			Date currentDate = new Date();
+			Date enteredDate = userRegistration.getDateOfBirth();
+
+			int currentYear = currentDate.getYear();
+			int enteredYear = enteredDate.getYear();
+
+			System.out.println(enteredYear - currentYear);
+
+			if (currentDate.compareTo(enteredDate) != -1) {
+
+				if (currentYear - enteredYear > 16) {
+
+					UserRegistration user = registrationRepository
+							.insert(userRegistration);
+					String registerJson = mapper.writeValueAsString(user);
+					return "success";
 				}
-		    }
+			}
 		}
 
 		return "failed";
@@ -93,7 +94,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 			query.addCriteria(Criteria.where("status").is(0));
 
-			registrationRequestUsersList = mongoOperation.find(query, UserRegistration.class);
+			registrationRequestUsersList = mongoOperation.find(query,
+					UserRegistration.class);
 
 			return registrationRequestUsersList;
 
@@ -111,7 +113,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 		return false;
 	}
 
-	public String update(String id, UserRegistration userRegistration) throws JsonProcessingException {
+	public String update(String id, UserRegistration userRegistration)
+			throws JsonProcessingException {
 
 		UserRegistration user = new UserRegistration();
 
@@ -139,38 +142,30 @@ public class RegistrationServiceImpl implements RegistrationService {
 		}
 	}
 
-	
-	public UserRegistration addFile(String id,UserRegistration file) throws IOException 
-	{
+	public UserRegistration addFile(String id, UserRegistration file)
+			throws IOException {
 		UserRegistration user = new UserRegistration();
 		user = registrationRepository.findOne(id);
-		
-		if (user!=null) 
-		{	
+
+		if (user != null) {
 			user.setBytes(file.getBytes());
 			registrationRepository.save(user);
-			return user;	
-		}
-		else
-			return null;	
+			return user;
+		} else
+			return null;
 	}
-	
-	public ResponseEntity<byte[]> getFile(String id) throws FileNotFoundException
-	{
+
+	public ResponseEntity<byte[]> getFile(String id)
+			throws FileNotFoundException {
 		UserRegistration user = new UserRegistration();
 		user = registrationRepository.findOne(id);
-		if(user!=null)
-		{		
-			return ResponseEntity
-					.ok()
-					.contentType(MediaType.IMAGE_JPEG)
+		if (user != null) {
+			return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG)
 					.body(user.getBytes());
-			
-		}
-		else
-		{			
+
+		} else {
 			return null;
-		}	
+		}
 	}
 
 	public UserRegistration viewDetails(String id) {
@@ -180,13 +175,15 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	public void rejectRequest(String email) {
 		System.out.println("message received to reject request-" + email);
-		UserRegistration user = registrationRepository.findByEmailId(email).get(0);
+		UserRegistration user = registrationRepository.findByEmailId(email)
+				.get(0);
 		registrationRepository.delete(user);
 	}
 
 	public String acceptRequest(String email) {
 
-		UserRegistration user = registrationRepository.findByEmailId(email).get(0);
+		UserRegistration user = registrationRepository.findByEmailId(email)
+				.get(0);
 		String id = user.getId();
 
 		System.out.println("message received to accept request" + email);
@@ -194,10 +191,12 @@ public class RegistrationServiceImpl implements RegistrationService {
 		userEmail.setFromAddress("clubmembershipuser@gmail.com");
 		userEmail.setToAddress(email);
 		userEmail.setSubject("ClubMembership: Entrance fee amount payment");
-		userEmail.setBody("Please pay the Entrance fee amount of Rs. " + 1000
-				+ " by accessing the link below. \n You will be contacted soon.\n"
-				+ "Thank you.\n Payment link: http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id="
-				+ id + "&fee=" + 1000 + "&type=" + "entry");
+		userEmail
+				.setBody("Please pay the Entrance fee amount of Rs. "
+						+ 1000
+						+ " by accessing the link below. \n You will be contacted soon.\n"
+						+ "Thank you.\n Payment link: http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id="
+						+ id + "&fee=" + 1000 + "&type=" + "entry");
 
 		SimpleMailMessage simpleMailMessageObj = new SimpleMailMessage();
 		simpleMailMessageObj.setFrom(userEmail.getFromAddress());
@@ -234,9 +233,11 @@ public class RegistrationServiceImpl implements RegistrationService {
 			email.setFromAddress("clubmembershipuser@gmail.com");
 			email.setToAddress(user.getEmailId());
 			email.setSubject("Club Membership: Login credentials.");
-			email.setBody("Dear" + user.getFirstName() + "\n You have been successfully registered with our club."
-					+ "\nYour login credentials are: \n Username: " + user.getEmailId() + "Password: "
-					+ user.getPassword() + "\n" + "Thank you. Looking forward to you visit.");
+			email.setBody("Dear" + user.getFirstName()
+					+ "\n You have been successfully registered with our club."
+					+ "\nYour login credentials are: \n Username: "
+					+ user.getEmailId() + "Password: " + user.getPassword()
+					+ "\n" + "Thank you. Looking forward to you visit.");
 
 			registrationRepository.save(user);
 
@@ -258,17 +259,20 @@ public class RegistrationServiceImpl implements RegistrationService {
 		UserRegistration user = new UserRegistration();
 
 		user = registrationRepository.findOne(id);
+			
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		if (user != null) {
 
 			user.setFacilities(userRegistration.getFacilities());
-			UserRegistration user1 = registrationRepository.save(user);
+			registrationRepository.save(user);
 			String registerJson = objectMapper.writeValueAsString(user);
 			return registerJson;
-		} else {
+		} 
+		else {
 			return null;
 		}
+		
 
 	}
 
@@ -284,14 +288,13 @@ public class RegistrationServiceImpl implements RegistrationService {
 		System.out.println("int method renewal");
 		UserRegistration user = registrationRepository.findOne(id);
 		if (isPermanent(id)) {
-			//user.setUserType("permanent");
-			//registrationRepository.save(user);
+			// user.setUserType("permanent");
+			// registrationRepository.save(user);
 			return true;
 		}
 		return false;
-		
+
 	}
-	
 
 	private boolean isPermanent(String id) {
 
@@ -306,16 +309,16 @@ public class RegistrationServiceImpl implements RegistrationService {
 		System.out.println("registered date: " + user.getRegisteredDate());
 
 		System.out.println("this time: " + currentDate.getTime());
-		
-		Date registeredDate=user.getRegisteredDate();
-		
-		long currentMinutes=currentDate.getTime();
-		System.out.println("********current min: "+currentMinutes);
-		
-		long registeredMinutes=registeredDate.getTime();
-		System.out.println("********reg min: "+registeredMinutes);
 
-	System.out.println(currentMinutes-registeredMinutes);
+		Date registeredDate = user.getRegisteredDate();
+
+		long currentMinutes = currentDate.getTime();
+		System.out.println("********current min: " + currentMinutes);
+
+		long registeredMinutes = registeredDate.getTime();
+		System.out.println("********reg min: " + registeredMinutes);
+
+		System.out.println(currentMinutes - registeredMinutes);
 
 		if (currentMinutes - registeredMinutes > 180000) {
 			return true;

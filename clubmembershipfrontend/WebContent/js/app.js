@@ -25,6 +25,9 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 	}).state('profile.renewal', {
 		url : "/renewal",
 		templateUrl : "views/profile/profileViews/renewal.html"
+	}).state('profile.reservedFacilityPermanentMember', {
+		url : "/reservedFacilityPermanentMember",
+		templateUrl : "views/profile/profileViews/reservedFacilityPermanentMember.html"
 	});
 
 	$urlRouterProvider.otherwise("/home");

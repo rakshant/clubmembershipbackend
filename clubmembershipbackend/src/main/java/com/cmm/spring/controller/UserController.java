@@ -175,6 +175,8 @@ public class UserController {
 		return new HashMap<String, String>().put("success", facilities.getCategory());
 
 	}
+	
+	
 
 	@RequestMapping(value = "/fee/{id}/{type}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int getFee(@PathVariable("id") String id,
