@@ -1,164 +1,175 @@
+
 <div class="panel  panel-info">
 	<div class="panel-heading">
 		<h3 class="panel-title">Facilities</h3>
 	</div>
+
+
 	<div class="panel-body" ng-controller="FacilitiesCtrl">
-		<table class="table table-hover">
-
-			<tbody>
-				<tr class="success">
-					<th>Indoor Facilities</th>
-
-				</tr>
-				<tr>
-					<td>Table Tennis</td>
-					<td><label class="btn btn-primary active"> <input
-							type="radio" ng-model="tempOption" name="temp"
-							value="tableTennis">
-					</label></td>
-
-				</tr>
-				<tr>
-					<td>Badminton</td>
-					<td><label class="btn btn-primary active"> <input
-							type="radio" ng-model="tempOption" name="temp" value="badminton">
-					</label></td>
-
-				</tr>
-
-				<tr>
-					<td>Billiards</td>
-					<td><label class="btn btn-primary active"> <input
-							type="radio" ng-model="tempOption" name="temp" value="billiards">
-					</label></td>
-
-				</tr>
-
-				<tr>
-					<td>Health Club</td>
-					<td><label class="btn btn-primary active"> <input
-							type="radio" ng-model="tempOption" name="temp" value="healthClub">
-					</label></td>
-
-				</tr>
-				<tr>
-					<td>Squash</td>
-					<td><label class="btn btn-primary active"> <input
-							type="radio" ng-model="tempOption" name="temp" value="squash">
-					</label></td>
-
-				</tr>
 
 
+		<div ng-show="temporary()">
+			<table class="table table-hover">
 
-				<tr class="success">
-					<th>Outdoor Facilities</th>
+				<tbody>
+					<tr class="success">
+						<th>Indoor Facilities</th>
 
-				</tr>
-				<tr>
-					<td>Lawn Tennis</td>
-					<td><label class="btn btn-primary active"> <input
-							type="radio" ng-model="tempOption" name="temp" value="lawnTennis">
-					</label></td>
+					</tr>
+					<tr>
+						<td>Table Tennis</td>
+						<td><label class="btn btn-primary active"> <input
+								type="radio" ng-model="tempOption" name="temp"
+								value="tableTennis">
+						</label></td>
 
-				</tr>
-				<tr>
-					<td>Swimming</td>
-					<td><label class="btn btn-primary active"> <input
-							type="radio" ng-model="tempOption" name="temp" value="swimming">
-					</label></td>
+					</tr>
+					<tr>
+						<td>Badminton</td>
+						<td><label class="btn btn-primary active"> <input
+								type="radio" ng-model="tempOption" name="temp" value="badminton">
+						</label></td>
 
-				</tr>
+					</tr>
 
-				<tr>
-					<td>Cricket</td>
-					<td><label class="btn btn-primary active"> <input
-							type="radio" ng-model="tempOption" name="temp" value="cricket">
-					</label></td>
+					<tr>
+						<td>Billiards</td>
+						<td><label class="btn btn-primary active"> <input
+								type="radio" ng-model="tempOption" name="temp" value="billiards">
+						</label></td>
 
-				</tr>
+					</tr>
 
-				<tr>
-					<td>Playground</td>
-					<td><label class="btn btn-primary active"> <input
-							type="radio" ng-model="tempOption" name="temp" value="playground">
-					</label></td>
+					<tr>
+						<td>Health Club</td>
+						<td><label class="btn btn-primary active"> <input
+								type="radio" ng-model="tempOption" name="temp"
+								value="healthClub">
+						</label></td>
 
-				</tr>
+					</tr>
+					<tr>
+						<td>Squash</td>
+						<td><label class="btn btn-primary active"> <input
+								type="radio" ng-model="tempOption" name="temp" value="squash">
+						</label></td>
+
+					</tr>
 
 
-				<tr class="success">
-					<th>Leisure Centre</th>
 
-				</tr>
-				<tr>
-					<td>Card Room</td>
-					<td><label class="btn btn-primary active"> <input
-							type="radio" ng-model="tempOption" name="temp" value="cardRoom">
-					</label></td>
+					<tr class="success">
+						<th>Outdoor Facilities</th>
 
-				</tr>
-				<tr>
-					<td>Library</td>
-					<td><label class="btn btn-primary active"> <input
-							type="radio" ng-model="tempOption" name="temp" value="library">
-					</label></td>
+					</tr>
+					<tr>
+						<td>Lawn Tennis</td>
+						<td><label class="btn btn-primary active"> <input
+								type="radio" ng-model="tempOption" name="temp"
+								value="lawnTennis">
+						</label></td>
 
-				</tr>
+					</tr>
+					<tr>
+						<td>Swimming</td>
+						<td><label class="btn btn-primary active"> <input
+								type="radio" ng-model="tempOption" name="temp" value="swimming">
+						</label></td>
 
-				<tr>
-					<td>Restaurant & Bar</td>
-					<td><label class="btn btn-primary active"> <input
-							type="radio" ng-model="tempOption" name="temp"
-							value="restaurantBar">
-					</label></td>
+					</tr>
 
-				</tr>
+					<tr>
+						<td>Cricket</td>
+						<td><label class="btn btn-primary active"> <input
+								type="radio" ng-model="tempOption" name="temp" value="cricket">
+						</label></td>
 
-				<tr>
-					<td>Banquet Hall</td>
-					<td><label class="btn btn-primary active"> <input
-							type="radio" ng-model="tempOption" name="temp"
-							value="banquetHall">
-					</label></td>
+					</tr>
 
-				</tr>
+					<tr>
+						<td>Playground</td>
+						<td><label class="btn btn-primary active"> <input
+								type="radio" ng-model="tempOption" name="temp"
+								value="playground">
+						</label></td>
 
-				<tr>
-					<td>Conference Hall</td>
-					<td><label class="btn btn-primary active"> <input
-							type="radio" ng-model="tempOption" name="temp"
-							value="conferenceHall">
-					</label></td>
+					</tr>
 
-				</tr>
-			</tbody>
-		</table>
-		<div style="position: absolute; top: 900px; left: 500px;">
 
-			<button type="button" class="btn btn-success btn-lg"
-				data-toggle="button" ng-click="check()">Pay</button>
+					<tr class="success">
+						<th>Leisure Centre</th>
+
+					</tr>
+					<tr>
+						<td>Card Room</td>
+						<td><label class="btn btn-primary active"> <input
+								type="radio" ng-model="tempOption" name="temp" value="cardRoom">
+						</label></td>
+
+					</tr>
+					<tr>
+						<td>Library</td>
+						<td><label class="btn btn-primary active"> <input
+								type="radio" ng-model="tempOption" name="temp" value="library">
+						</label></td>
+
+					</tr>
+
+					<tr>
+						<td>Restaurant & Bar</td>
+						<td><label class="btn btn-primary active"> <input
+								type="radio" ng-model="tempOption" name="temp"
+								value="restaurantBar">
+						</label></td>
+
+					</tr>
+
+					<tr>
+						<td>Banquet Hall</td>
+						<td><label class="btn btn-primary active"> <input
+								type="radio" ng-model="tempOption" name="temp"
+								value="banquetHall">
+						</label></td>
+
+					</tr>
+
+					<tr>
+						<td>Conference Hall</td>
+						<td><label class="btn btn-primary active"> <input
+								type="radio" ng-model="tempOption" name="temp"
+								value="conferenceHall">
+						</label></td>
+
+					</tr>
+				</tbody>
+			</table>
+			<div style="position: absolute; top: 900px; left: 500px;">
+
+				<button type="button" class="btn btn-success btn-lg"
+					data-toggle="button" ng-click="check()">Pay</button>
+			</div>
+		</div>
+
+
+		<div ng-show="permanent()">
+			<table class="table table-hover">
+
+				<tbody>
+					<tr class="success">
+						<th>Indoor Facilities</th>
+					</tr>
+
+					<tr ng-repeat="facility in facilities">
+						<td>{{facility.type}}</td>
+
+						<td><label class="btn btn-primary active"> <input
+								type="checkbox" data-checklist-model="user.facilities"
+								data-checklist-value="facility" /></label></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</html>

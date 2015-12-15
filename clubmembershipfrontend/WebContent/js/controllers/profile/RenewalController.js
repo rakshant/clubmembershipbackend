@@ -7,9 +7,8 @@ app.controller('RenewalCtrl', function($scope, $state,$http,$rootScope,url,$uibM
 		$http({
 			method : 'GET',
 			url : url+'users/membershipRenewal' + "/" + localStorage.getItem('userId')		
-		}).success(function(data) {
+		}).success(function(data) {			
 			
-			console.log("???????????????????????"+data);
 			if(data.status==="failure"){
 				$uibModal.open({
 					templateUrl : 'views/modal.html',

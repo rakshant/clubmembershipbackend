@@ -33,7 +33,7 @@ public interface RegistrationService {
 
 	List<Facilities> getBillsByUser(String id);
 
-	UserRegistration payBill(String id);
+	UserRegistration payBill(String id, String type);
 
 	boolean renewal(String id);
 }

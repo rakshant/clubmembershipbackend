@@ -132,11 +132,10 @@ public class UserController {
 		return user;
 	}
 
-	@RequestMapping(value = "/payment/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/payment/{id}/{type}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody UserRegistration pay(
-			@PathVariable("id") String id) {
-		return registrationService.payBill(id);
-
+			@PathVariable("id") String id,@PathVariable("id") String type) {		
+				return registrationService.payBill(id,type);
 	}
 
 	@RequestMapping(value = "/request", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

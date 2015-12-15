@@ -15,7 +15,7 @@ app.controller('validateCtrl', function($scope,$http) {
 		
 		if(type==="entry"){
 			$http({method : 'put',
-				url : 'http://localhost:8080/users/payment/'+str[0].substring(4)
+				url : 'http://localhost:8080/users/payment/'+str[0].substring(4)+'entry'
 				
 			}).success(function(data){
 				window.open('http://localhost:8089/clubmembershipfrontend/paymentmodule/success.html');
@@ -26,7 +26,7 @@ app.controller('validateCtrl', function($scope,$http) {
 		
 		else if(type==="permanent"){
 			$http({method : 'put',
-				url : 'http://localhost:8080/users/payment/'+str[0].substring(4)
+				url : 'http://localhost:8080/users/payment/'+str[0].substring(4)+'permanent'
 				
 			}).success(function(data){
 				window.open('http://localhost:8089/clubmembershipfrontend/paymentmodule/success.html');

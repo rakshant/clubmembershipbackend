@@ -270,37 +270,51 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	}
 
-	public UserRegistration payBill(String id) {
-
+	public UserRegistration payBill(String id,String type) {
+		
 		UserRegistration user = registrationRepository.findOne(id);
+		
+		if(type.equals("entry")){
+			
 
-		if (user.getStatus() == 1) {
-			user.setPaymentDone(1);
+			if (user.getStatus() == 1) {
+				user.setPaymentDone(1);
 
-			UserEmail email = new UserEmail();
+				UserEmail email = new UserEmail();
 
-			email.setFromAddress("clubmembershipuser@gmail.com");
-			email.setToAddress(user.getEmailId());
-			email.setSubject("Club Membership: Login credentials.");
-			email.setBody("Dear" + user.getFirstName()
-					+ "\n You have been successfully registered with our club."
-					+ "\nYour login credentials are: \n Username: "
-					+ user.getEmailId() + "Password: " + user.getPassword()
-					+ "\n" + "Thank you. Looking forward to you visit.");
+				email.setFromAddress("clubmembershipuser@gmail.com");
+				email.setToAddress(user.getEmailId());
+				email.setSubject("Club Membership: Login credentials.");
+				email.setBody("Dear" + user.getFirstName()
+						+ "\n You have been successfully registered with our club."
+						+ "\nYour login credentials are: \n Username: "
+						+ user.getEmailId() + "Password: " + user.getPassword()
+						+ "\n" + "Thank you. Looking forward to you visit.");
 
-			registrationRepository.save(user);
+				registrationRepository.save(user);
 
-			SimpleMailMessage simpleMailMessageObj = new SimpleMailMessage();
-			simpleMailMessageObj.setFrom(email.getFromAddress());
-			simpleMailMessageObj.setTo(email.getToAddress());
-			simpleMailMessageObj.setSubject(email.getSubject());
-			simpleMailMessageObj.setText(email.getBody());
+				SimpleMailMessage simpleMailMessageObj = new SimpleMailMessage();
+				simpleMailMessageObj.setFrom(email.getFromAddress());
+				simpleMailMessageObj.setTo(email.getToAddress());
+				simpleMailMessageObj.setSubject(email.getSubject());
+				simpleMailMessageObj.setText(email.getBody());
 
-			mailSender.send(simpleMailMessageObj);
+				mailSender.send(simpleMailMessageObj);
 
+				return user;
+			}
+			else{
+				user.setPaymentDone(1);
+				return user;
+			}
+			
+		}
+		else{
+			user.setUserType("permanent");
 			return user;
 		}
-		return null;
+
+		
 
 	}
 
