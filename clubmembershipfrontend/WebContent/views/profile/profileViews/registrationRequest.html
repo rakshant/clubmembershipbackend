@@ -15,14 +15,14 @@
 						<th>Contact Details</th>
 						<th>DOB</th>
 						<th>Occupation</th>
-						<th>Action</th>
+						<th>Approve/Reject</th>
 					</tr>
 					<tr ng-repeat="personalDetail in personalDetails|filter:text">
 						<td>{{ $index+1}}</td>
-						<td>{{ personalDetail.firstName }}{{ personalDetail.lastName }}</td>
+						<td>{{ personalDetail.firstName }} {{ personalDetail.lastName }}</td>
 						<td>{{ personalDetail.emailId }}<br>{{ personalDetail.mobileNumber}}</td>
 						<td>{{ personalDetail.dateOfBirth | date:DD:MM:YYYY}}</td>
-						<td>{{ personalDetail.mobileNumber}}</td>
+						
 						<td>
 						<p>
 						<a class="btn btn-primary btn-md"  ng-click="accept(personalDetail.emailId)" role="button"><span class="glyphicon glyphicon-ok"></span></a>
