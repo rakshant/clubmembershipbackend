@@ -4,20 +4,13 @@
 <!-- java script files-->
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script
-	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<link rel="stylesheet"href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script type="text/javascript" src="js/lib/ui-bootstrap-tpls-0.14.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js" type="text/javascript"></script>
 <script src="paymentModule.js"></script>
-<script type="text/javascript"
-	src="js/lib/ui-bootstrap-tpls-0.14.3.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"
-	type="text/javascript"></script>
 
 
 </head>
@@ -25,157 +18,200 @@
 
 <body>
 	<!-- Header starts from here -->
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default" >
+         <div class="col-md-2"></div>
+		<div class="col-md-2">
+            
+		<img alt="" src="images/pay.png"></div>
+		 <div class="col-md-6">
+		<h1 id="header">Payment Gateway</h1>
+		</div>
 
-		</div>
-		<h3 id="header">
-			<center>Club Bank Payment</center>
-		</h3>
-		</div>
 	</nav>
+
+<!-- Header ends here -->
+
 	<!-- Main div -->
 	<div class="container">
+	<!-- Left side space -->
+            <div class="col-md-2"></div>
+            
+            <!-- middle div -->
+             <div class="col-md-8">
+<div class="jumbotron">
+<div class="container">
 
-		<div class="col-md-2"></div>
-		<div class="col-md-8">
-			<div class="jumbotron">
 
+  <form class="form-horizontal" role="form"  ng-app="myApp"
+				ng-controller="validateCtrl" name="myForm" novalidate>
+    <fieldset>
+      <legend>Enter card details</legend>
+      
+      <!--  Name on Card starts from here -->
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Name on Card</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" 
+          name="nameOnCard" placeholder="Enter Name"
+						ng-minlength="3" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="nameOnCard" required >
+			 <span style="color: red"
+						ng-show="myForm.nameOnCard.$dirty && myForm.nameOnCard.$invalid">
+						 <span
+						ng-show="myForm.nameOnCard.$error.required">Name is required.</span>
+						 <span
+						ng-show="myForm.nameOnCard.$error.minlength">Kindly enter  name.</span>
+						 
+						<span ng-show="myForm.nameOnCard.$error.pattern">Enter alphabets only.</span>
+					</span>			
+          
+          
+        </div>
+      </div>
+      
+       <!--  Name on Card end  here -->
+       
+        <!-- Card Number starts from here -->
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Card Number</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="cardNumber"  ng-minlength="16"
+						ng-maxlength="16" placeholder="Enter Card Number"
+						ng-pattern="/^\d{16}$/" ng-model="cardNumber" required>
+			<span style="color: red"ng-show="myForm.cardNumber.$dirty && myForm.cardNumber.$invalid">
+						<span ng-show="myForm.cardNumber.$error.required">Card number required.</span>
+						 <span ng-show="myForm.cardNumber.$error.minlength"> Enter 16 digit Card number.</span>
+						  <span ng-show="myForm.cardNumber.$error.maxlength"> Entered Card
+							number is large than expected .</span>
+							 <span ng-show="myForm.cardNumber.$error.pattern">Only number allowed.</span>
+							 </span>			
+						
+						
+        </div>
+      </div>
+      
+       <!-- Card Number ends  here -->
+       
+        <!-- Expiration Date starts from here -->
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Expiration Date</label>
+        <div class="col-sm-9">
+          <div class="row">
+            <div class="col-xs-4">
+              <select class="form-control col-sm-2" >
+                
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </div>
+            <div class="col-xs-4">
+              <select class="form-control" >
+               <option value="15">2015</option>
+                <option value="16">2016</option>
+                <option value="17">2017</option>
+                <option value="18">2018</option>
+                <option value="19">2019</option>
+                <option value="20">2020</option>
+                <option value="21">2021</option>
+                <option value="22">2022</option>
+                <option value="23">2023</option>
+                <option value="23">2024</option>
+                <option value="23">2025</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Expiration Date endhere -->
+      
+      <!-- Card CVV starts from here -->
+      <div class="form-group">
+        <label class="col-sm-3 control-label" >Card CVV</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" placeholder="Security Code" name="cardVerificationValue"
+						 ng-minlength="3" ng-maxlength="3"
+						placeholder="Enter Card Verification Value Details"
+						ng-pattern="/^\d{3}$/" ng-model="cardVerificationValue" required>
+				<span style="color: red"
+						ng-show="myForm.cardVerificationValue.$dirty && myForm.cardVerificationValue.$invalid">
+						<span ng-show="myForm.cardVerificationValue.$error.required">Card Verification Value required.</span>
+						 <span
+						ng-show="myForm.cardVerificationValue.$error.minlength">
+							Enter 3 digit Card Verification Value .</span> <span
+						ng-show="myForm.cardVerificationValue.$error.maxlength">
+							Entered Card Verification Value number is large than expected.</span> <span
+						ng-show="myForm.cardVerificationValue.$error.pattern">Only
+							number allowed.</span>
 
-
-
-
-				<form class="form-horizontal" role="form" ng-app="myApp"
-					ng-controller="validateCtrl" name="myForm" novalidate>
-
-					<!-- Name on card  starts from here-->
-					<div class="form-group">
-						<label>Name on card</label><br> <input type="text"
-							class="col-sm-4" name="nameOnCard" placeholder="Enter Name"
-							ng-minlength="3" ng-pattern="/^[a-zA-Z\s]*$/"
-							ng-model="nameOnCard" required><br> <span
+					</span>		
+						
+						
+        </div>
+      </div>
+      
+       <!-- CVV Date endhere -->
+      
+      <!--Amount  starts from here -->
+      
+      <div class="form-group">
+						<label class="col-sm-3 control-label">Amount</label><br> 
+						 <div class="col-sm-9">
+						 <input
+							type="number" class="form-control" name="amount" 
+							placeholder="Enter amount" ng-model="amount" required> <span
 							style="color: red"
-							ng-show="myForm.nameOnCard.$dirty && myForm.user.$invalid">
-							<span ng-show="myForm.nameOnCard.$error.required">Name is
-								required.</span> <span ng-show="myForm.nameOnCard.$error.minlength">Kindly
-								enter name.</span> <span ng-show="myForm.nameOnCard.$error.pattern">Enter
-								alphabets only.</span>
-						</span>
-					</div>
-					<!-- Name on card  end here-->
-
-					<!-- Card number starts from here-->
-					<div class="form-group">
-						<label>Card Number</label><br> <input type="number"
-							class="col-sm-4" name="cardNumber" ng-minlength="16"
-							ng-maxlength="16" placeholder="Enter Card Number"
-							ng-pattern="/[0-9]/" ng-model="cardNumber" required> <span
-							style="color: red"
-							ng-show="myForm.cardNumber.$dirty && myForm.cardNumber.$invalid">
-							<span ng-show="myForm.cardNumber.$error.required">Card
-								number required.</span> <span
-							ng-show="myForm.cardNumber.$error.minlength"> Enter 16
-								digit Card number.</span> <span
-							ng-show="myForm.cardNumber.$error.maxlength"> Entered Card
-								number is large than expected .</span> <span
-							ng-show="myForm.cardNumber.$error.pattern">Only number
-								allowed.</span>
-						</span>
-					</div>
-					<!-- Name on card  end here-->
-					<br>
-					<!-- CardVerificationValue starts from here-->
-					<div class="form-group">
-						<label>Card Verification Value.</label><br> <input
-							type="number" class="col-sm-4" name="cardVerificationValue"
-							ng-minlength="3" ng-maxlength="3"
-							placeholder="Enter Card Verification Value Details"
-							ng-pattern="/[0-9]/" ng-model="cardVerificationValue" required>
-						<span style="color: red"
-							ng-show="myForm.cardVerificationValue.$dirty && myForm.cardVerificationValue.$invalid">
-							<span ng-show="myForm.cardVerificationValue.$error.required">Card
-								Verification Value required.</span> <span
-							ng-show="myForm.cardVerificationValue.$error.minlength">
-								Enter 3 digit Card Verification Value .</span> <span
-							ng-show="myForm.cardVerificationValue.$error.maxlength">
-								Entered Card Verification Value number is large than expected.</span> <span
-							ng-show="myForm.cardVerificationValue.$error.pattern">Only
-								number allowed.</span>
+							ng-show="myForm.amount.$dirty && myForm.amount.$invalid">
+							<span ng-show="myForm.amount.$error.required">Amount
+								required.</span> <!-- Amount ends from here-->
 
 						</span>
 					</div>
-					<!-- CardVerificationValue end here-->
-					<br>
-					<!-- Expiry date starts from here-->
-					<div class="form-group">
-						<label>Expiry Date</label><br>
-						<!-- Month starts from here-->
-						<input type="number" class="col-sm-1" name="month" min="01"
-							max="12" ng-minlength="2" ng-maxlength="2" ng-pattern="/[0-9]/"
-							placeholder="month" ng-model="month" required>
-						<div class="form-group">
-
-							<span style="color: red"
-								ng-show="myForm.month.$dirty && myForm.month.$invalid"> <span
-								ng-show="myForm.month.$error.required"> Month Required.</span> <span
-								ng-show="myForm.month.$error.minlength"> Enter month as 2
-									digit. </span> <span ng-show="myForm.month.$error.maxlength">
-									Entered Month is large than expected.</span> <span
-								ng-show="myForm.cardnumber.$error.pattern">Only number
-									allowed.</span>
-							</span>
-							<!-- Month  end  here-->
-
-							<!-- Year starts from here-->
-							<input type="number" class="col-sm-1" name="year"
-								ng-minlength="4" ng-maxlength="4" placeholder="YYYY"
-								ng-pattern="/[0-9]/" ng-model="year" required> <span
-								style="color: red"
-								ng-show="myForm.year.$dirty && myForm.year.$invalid"> <span
-								ng-show="myForm.year.$error.required">Year required.</span> <span
-								ng-show="myForm.year.$error.minlength"> Enter Year as 4
-									digit. </span> <span ng-show="myForm.year.$error.maxlength">
-									Entered year is large than expected.</span> <span
-								ng-show="myForm.cardnumber.$error.pattern">Only digits
-									are allowed.</span>
-							</span>
-						</div>
-						<!-- Year  ends from here-->
-						<br>
-						<!-- Amount starts from here-->
-						<div class="form-group">
-							<label>Amount</label><br> &nbsp&nbsp <input type="number"
-								class="col-sm-4" name="amount" placeholder="Enter amount"
-								ng-model="amount" required> <span style="color: red"
-								ng-show="myForm.amount.$dirty && myForm.amount.$invalid">
-								<span ng-show="myForm.amount.$error.required">Amount
-									required.</span> <!-- Amount ends from here-->
-
-							</span>
-						</div>
-						<br>
-
-						<!-- Button  ends  here-->
-						<button type="submit" class="btn btn-primary btn-primary"
-							ng-click="pay()"
-							ng-disabled="myForm.user.$dirty && myForm.user.$invalid || myForm.cardnumber.$dirty && myForm.cardnumber.$invalid || myForm.CardVerificationValue.$dirty && myForm.CardVerificationValue.$invalid ||myForm.month.$dirty && myForm.month.$invalid || myForm.year.$dirty && myForm.year.$invalid||myForm.amount.$dirty && myForm.amount.$invalid ">Submit</button>
-				</form>
-				<!-- Form end  here-->
-			</div>
+					</div>
+      
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+          <button type="submit" class="btn btn-success" 
+          ng-disabled="myForm.nameOnCard.$dirty && myForm.nameOnCard.$invalid || myForm.cardNumber.$dirty && myForm.cardNumber.$invalid 
+          || myForm.cardVerificationValue.$dirty && myForm.cardVerificationValue.$invalid ||myForm.amount.$dirty && myForm.amount.$invalid ">Submit</button>
+          
+         
+         <button type="cancel" class="btn btn-danger"> Cancel </button>
+         
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
 
 
+
+			
+			<!-- Form end  here-->
 		</div>
 
-		<div class="col-md-2"></div>
-
-
-
-		<!-- Name of form -->
-		<h2>Payment</h2>
-		<!-- Form starts from here -->
-
-
-
 	</div>
+	</div>
+	<div class="col-md-2">
+            </div>
+
+<div class="col-md-4"></div>
+<div class="col-md-8">
+<nav class="navbar navbar-default" >
+
+<h6>Secured Gateway </h6>
+</div>
+</nav>
+           
 
 	<!-- Footer starts from here-->
 
