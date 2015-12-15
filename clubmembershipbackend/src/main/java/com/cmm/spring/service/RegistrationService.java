@@ -22,6 +22,8 @@ public interface RegistrationService {
 	List<UserRegistration> pendingRequest(String id);
 
 	String update(String id, UserRegistration userRegistration) throws JsonProcessingException;
+	
+	public List<com.cmm.spring.entity.HostingCount> aggregationOfType();
 
 	UserRegistration viewDetails(String id);
 

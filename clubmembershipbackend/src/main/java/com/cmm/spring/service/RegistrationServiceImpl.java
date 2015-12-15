@@ -2,7 +2,9 @@ package com.cmm.spring.service;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +18,18 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
 import com.cmm.spring.entity.Facilities;
+import com.cmm.spring.entity.HostingCount;
 import com.cmm.spring.mongo.collections.UserEmail;
 import com.cmm.spring.mongo.collections.UserRegistration;
 import com.cmm.spring.rest.repository.RegistrationRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mongodb.AggregationOutput;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
 
 @Service
 public class RegistrationServiceImpl implements RegistrationService {
@@ -139,6 +148,49 @@ public class RegistrationServiceImpl implements RegistrationService {
 		}
 	}
 
+	
+
+	
+	public List<HostingCount> aggregationOfType(){
+		
+		  List<HostingCount> hostingCountList=new ArrayList<HostingCount>();
+	        HostingCount hostingCountObj=new HostingCount();
+	        List<DBObject> dbList=new ArrayList<DBObject>();
+
+		try{
+			MongoClient mongoClient = new MongoClient();
+			DB db = mongoClient.getDB("test");
+			DBCollection ledger = db.getCollection("user_registrations");
+			DBObject unwind=new BasicDBObject("$unwind","$facilities");
+			dbList.add(unwind);
+			DBObject projectFields = new BasicDBObject("Total_Fee", "$facilities.price");
+			projectFields.put("Category", "$facilities.category");
+	        projectFields.put("Name", "$facilities.type");
+	        DBObject project = new BasicDBObject("$project", projectFields );
+	        dbList.add(project);
+	        DBObject groupFields = new BasicDBObject( "_id", "$Name");
+	        groupFields.put("TotalFee", new BasicDBObject( "$sum", "$Total_Fee"));
+	        DBObject group = new BasicDBObject("$group", groupFields);
+	        dbList.add(group);		//This is adding parameters in DbObjectList
+	      
+	        AggregationOutput output = ledger.aggregate(dbList);
+	      
+	        Iterable<DBObject> iterable = output.results();
+	        Iterator<DBObject> iterator=iterable.iterator();
+	        while(iterator.hasNext()) 
+	        {
+	        	DBObject dbobj=iterator.next();	        	
+	        
+	        	hostingCountObj=mongoOperation.getConverter().read(HostingCount.class, dbobj);
+	        	
+	        	hostingCountList.add(hostingCountObj);	//This is adding parameters in HostingCountList
+	        }
+	        return hostingCountList;
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 	public UserRegistration addFile(String id,UserRegistration file) throws IOException 
 	{
