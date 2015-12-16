@@ -204,7 +204,13 @@ public class UserController {
 		List<Facilities> billList = registrationService.getBillsByUser(id);
 		return billList;
 	}
+	// Active user list viewed by prsident 
 	
+			@RequestMapping(value = "/activeuserlist", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+			public @ResponseBody List<UserRegistration> viewlist() {
+				List<UserRegistration> userlist = registrationService.viewActiveUserList();
+				return userlist;
+			}
 
 
 

@@ -49,6 +49,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	List<UserRegistration> userDetails;
 	List<UserRegistration> permanentUserDetails;
 	List<UserRegistration> viewDetailsList;
+	List<UserRegistration> userList;
 
 	public String register(UserRegistration userRegistration)
 			throws JsonProcessingException {
@@ -399,9 +400,30 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 		return false;
 	}
+	
+	
+	//view list of all active users
+			public List<UserRegistration> viewActiveUserList(){
+				
+				ObjectMapper mapper = new ObjectMapper();
+
+				Query query = new Query();
+
+				query.addCriteria(Criteria.where("status").regex("1"));
+				userList=registrationRepository.findByStatus(1);
+				
+				return userList;
+			
+			}
+
 
 	public String checkUsersList(String emailId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+	
+	
+	
 }

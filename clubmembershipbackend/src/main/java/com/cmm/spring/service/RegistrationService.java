@@ -37,4 +37,6 @@ public interface RegistrationService {
 
 	boolean renewal(String id);
 	String checkUsersList(String emailId);
+	
+	List<UserRegistration>  viewActiveUserList();
 }
