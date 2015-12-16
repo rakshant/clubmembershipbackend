@@ -36,10 +36,11 @@
 					<td>Registered Date</td>
 					<td>{{ viewDetails.registeredDate | date :  'dd/MM/yyyy'}}</td>
 				</tr>
-				<tr>
-					<td>Facilities</td>
-					<td>{{ viewDetails.facilities}}</td>
-				</tr>
+				
+				
+				<td>Facilities</td>
+		    <td ng-repeat="facility in facilityDetails" class="facility">{{ facility.type }}</td>
+			
 			</tbody>
 		</table>
 	</div>

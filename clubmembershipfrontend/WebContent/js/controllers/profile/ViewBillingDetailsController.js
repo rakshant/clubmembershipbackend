@@ -10,5 +10,6 @@ app.controller('viewBillingDetailsCtrl', function($scope, $http, $state, url) {
 
 		$scope.viewBillingDetails = data;
 
+
 	});
 });

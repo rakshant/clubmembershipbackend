@@ -195,8 +195,11 @@ public class UserRegistration {
 		return "UserRegistration [id=" + id + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", emailId=" + emailId
 				+ ", dateOfBirth=" + dateOfBirth + ", mobileNumber="
-				+ mobileNumber + ", occupation=" + occupation + ", status="
-				+ status + ", userType=" + userType + "]";
+				+ mobileNumber + ", occupation=" + occupation
+				+ ", registeredDate=" + registeredDate + ", status=" + status
+				+ ", userType=" + userType + ", entranceFee=" + entranceFee
+				+ ", paymentDone=" + paymentDone + ", facilities=" + facilities
+				+ "]";
 	}
 
 	public int getEntranceFee() {

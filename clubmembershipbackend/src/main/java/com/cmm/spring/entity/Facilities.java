@@ -2,6 +2,12 @@ package com.cmm.spring.entity;
 
 public class Facilities {
 
+	@Override
+	public String toString() {
+		return "Facilities [category=" + category + ", type=" + type
+				+ ", price=" + price + "]";
+	}
+
 	private String category;
 	private String type;
 	private int price;

@@ -28,6 +28,9 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 	}).state('profile.userlist', {
 		url : "/userlist",
 		templateUrl : "views/profile/profileViews/userlist.html"
+	}).state('profile.addons', {
+		url : "/addons",
+		templateUrl : "views/profile/profileViews/addons.html"
 	});
 
 	$urlRouterProvider.otherwise("/home");

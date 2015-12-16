@@ -354,16 +354,23 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 		UserRegistration user = registrationRepository.findOne(id);
 		List<Facilities> facilityList = user.getFacilities();
+		
+		if(user.getUserType().equals("permanent")){
+			
+			Facilities f=new Facilities("Sports Club","Membership Renewal",20000);
+			
+			facilityList.add(f);
+			
+		}
+
 		return facilityList;
 	}
 
 	public boolean renewal(String id) {
 
-		System.out.println("int method renewal");
+	
 		UserRegistration user = registrationRepository.findOne(id);
 		if (isPermanent(id)) {
-			// user.setUserType("permanent");
-			// registrationRepository.save(user);
 			return true;
 		}
 		return false;
