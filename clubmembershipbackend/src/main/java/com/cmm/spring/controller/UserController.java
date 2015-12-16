@@ -98,12 +98,12 @@ public class UserController {
 	public HashMap<String, String> membershipRenewal(@PathVariable("id") String id){
 		HashMap<String, String> response = new HashMap<String, String>();
 		if(registrationService.renewal(id)){
-			System.out.println("membership renewed!");
+		
 			response.put("status","success");
 			return response;
 		}
 		else{
-			System.out.println("membership not renewed!");
+			
 			response.put("status","failure");
 			return response;		
 		}
@@ -113,7 +113,7 @@ public class UserController {
 	
 	
 	@RequestMapping(value = "/pendingrequests/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<UserRegistration> readRequest(
+	public @ResponseBody List<UserRegistration> getPendingRequestsBySecretary(
 			@PathVariable("id") String id) {
 		List<UserRegistration> userList = registrationService.pendingRequest(id);
 		return userList;
@@ -121,7 +121,7 @@ public class UserController {
 	
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody UserRegistration viewUser(
+	public @ResponseBody UserRegistration getUser(
 			@PathVariable("id") String id) {
 		UserRegistration user = registrationService.viewDetails(id);
 		return user;
@@ -134,7 +134,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/payment/{id}/{type}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody UserRegistration pay(
+	public @ResponseBody UserRegistration payBill(
 			@PathVariable("id") String id,@PathVariable("id") String type) {		
 				return registrationService.payBill(id,type);
 	}
@@ -175,7 +175,7 @@ public class UserController {
 	}
 
 	
-	@RequestMapping(value = "/facilities/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/facility/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String reserveFacilities(@PathVariable("id") String id,
 			@RequestBody Facilities facilities) throws JsonProcessingException {
 		
@@ -218,6 +218,15 @@ public class UserController {
 			@PathVariable("id") String id) {
 		List<Facilities> billList = registrationService.getBillsByUser(id);
 		return billList;
+	}
+	
+
+
+	@RequestMapping(value = "/check/{emailId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String checkUsers(
+			@PathVariable("emailId") String emailId) {
+		String userList = registrationService.checkUsersList(emailId);
+		return userList;
 	}
 
 }

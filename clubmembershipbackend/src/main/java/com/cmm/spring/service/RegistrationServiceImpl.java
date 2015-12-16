@@ -78,7 +78,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 			int currentYear = currentDate.getYear();
 			int enteredYear = enteredDate.getYear();
 
-			System.out.println(enteredYear - currentYear);
+
 
 			if (currentDate.compareTo(enteredDate) != -1) {
 
@@ -223,7 +223,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 
 	public void rejectRequest(String email) {
-		System.out.println("message received to reject request-" + email);
+
 		UserRegistration user = registrationRepository.findByEmailId(email)
 				.get(0);
 		registrationRepository.delete(user);
@@ -235,7 +235,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 				.get(0);
 		String id = user.getId();
 
-		System.out.println("message received to accept request" + email);
+	
 		UserEmail userEmail = new UserEmail();
 		userEmail.setFromAddress("clubmembershipuser@gmail.com");
 		userEmail.setToAddress(email);
@@ -256,9 +256,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 		try {
 			mailSender.send(simpleMailMessageObj);
 
-			System.out.println(user.getEmailId());
+			
 			user.setStatus(1);
-			System.out.println(user.getId());
+			
 			registrationRepository.save(user);
 
 		} catch (Exception e) {
@@ -335,18 +335,6 @@ public class RegistrationServiceImpl implements RegistrationService {
 			return null;
 		}
 
-		
-		/*if (user != null) {
-			
-			user.getFacilities().addAll(userRegistration.getFacilities());
-
-			user.setFacilities(user.getFacilities());
-			registrationRepository.save(user);
-			String registerJson = objectMapper.writeValueAsString(user);
-			return registerJson;
-		} else {
-			return null;
-		}*/
 
 	}
 
@@ -359,7 +347,6 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	public boolean renewal(String id) {
 
-		System.out.println("int method renewal");
 		UserRegistration user = registrationRepository.findOne(id);
 		if (isPermanent(id)) {
 			// user.setUserType("permanent");
@@ -372,32 +359,38 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	private boolean isPermanent(String id) {
 
-		System.out.println("int method isPermanent");
-
 		UserRegistration user = registrationRepository.findOne(id);
 
 		Date currentDate = new Date();
 
-		System.out.println("date: " + currentDate);
-
-		System.out.println("registered date: " + user.getRegisteredDate());
-
-		System.out.println("this time: " + currentDate.getTime());
-
 		Date registeredDate = user.getRegisteredDate();
 
 		long currentMinutes = currentDate.getTime();
-		System.out.println("********current min: " + currentMinutes);
-
+		
 		long registeredMinutes = registeredDate.getTime();
-		System.out.println("********reg min: " + registeredMinutes);
 
-		System.out.println(currentMinutes - registeredMinutes);
+
 
 		if (currentMinutes - registeredMinutes > 180000) {
 			return true;
 		}
 
 		return false;
+	}
+
+	public String checkUsersList(String emailId) {
+		
+		UserRegistration user = registrationRepository.findOne(emailId);
+		
+		if(user!=null){
+			
+			return "failed";
+			
+		}
+		
+		return "success";
+		
+		
+		
 	}
 }
