@@ -417,14 +417,11 @@ public class RegistrationServiceImpl implements RegistrationService {
 	
 	
 	//view list of all active users
-			public List<UserRegistration> viewActiveUserList(){
+public List<UserRegistration> viewActiveUserList(){
 				
-				ObjectMapper mapper = new ObjectMapper();
-
-				Query query = new Query();
-
-				query.addCriteria(Criteria.where("status").regex("1"));
-				userList=registrationRepository.findByStatus(1);
+  Query query = new Query();
+  query.addCriteria(Criteria.where("status").regex("1"));
+  userList=registrationRepository.findByStatus(1);
 				
 				return userList;
 			
