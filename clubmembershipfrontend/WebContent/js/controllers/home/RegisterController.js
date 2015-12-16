@@ -36,4 +36,19 @@ app.controller('RegisterationCtrl', function($scope, $http,url,$uibModal) {
 		
 	}
 	
+	
+	$scope.check=function(){
+		
+		$http({
+			method : 'get',
+			url : url+'users/check'+ "/" + $scope.email			
+			
+		})
+		
+		
+		
+		
+	}
+	
+	
 });

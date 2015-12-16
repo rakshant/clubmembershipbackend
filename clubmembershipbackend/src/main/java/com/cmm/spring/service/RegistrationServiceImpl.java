@@ -78,7 +78,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 			int currentYear = currentDate.getYear();
 			int enteredYear = enteredDate.getYear();
 
-			System.out.println(enteredYear - currentYear);
+			
 
 			if (currentDate.compareTo(enteredDate) != -1) {
 
@@ -223,7 +223,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 
 	public void rejectRequest(String email) {
-		System.out.println("message received to reject request-" + email);
+		
 		UserRegistration user = registrationRepository.findByEmailId(email)
 				.get(0);
 		registrationRepository.delete(user);
@@ -235,7 +235,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 				.get(0);
 		String id = user.getId();
 
-		System.out.println("message received to accept request" + email);
+	
 		UserEmail userEmail = new UserEmail();
 		userEmail.setFromAddress("clubmembershipuser@gmail.com");
 		userEmail.setToAddress(email);
@@ -398,5 +398,10 @@ public class RegistrationServiceImpl implements RegistrationService {
 		}
 
 		return false;
+	}
+
+	public String checkUsersList(String emailId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

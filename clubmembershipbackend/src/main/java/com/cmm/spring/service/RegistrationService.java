@@ -36,4 +36,5 @@ public interface RegistrationService {
 	UserRegistration payBill(String id, String type);
 
 	boolean renewal(String id);
+	String checkUsersList(String emailId);
 }

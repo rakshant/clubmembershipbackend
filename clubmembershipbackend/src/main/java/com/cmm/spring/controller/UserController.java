@@ -101,11 +101,11 @@ public class UserController {
 			@PathVariable("id") String id) {
 		HashMap<String, String> response = new HashMap<String, String>();
 		if (registrationService.renewal(id)) {
-			System.out.println("membership renewed!");
+		
 			response.put("status", "success");
 			return response;
 		} else {
-			System.out.println("membership not renewed!");
+			
 			response.put("status", "failure");
 			return response;
 		}
@@ -113,7 +113,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/pendingrequests/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<UserRegistration> readRequest(
+	public @ResponseBody List<UserRegistration> getPendingRequestsBySecretary(
 			@PathVariable("id") String id) {
 		List<UserRegistration> userList = registrationService
 				.pendingRequest(id);
@@ -121,7 +121,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody UserRegistration viewUser(@PathVariable("id") String id) {
+	public @ResponseBody UserRegistration getUser(
+			@PathVariable("id") String id) {
 		UserRegistration user = registrationService.viewDetails(id);
 		return user;
 	}
@@ -133,7 +134,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/payment/{id}/{type}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody UserRegistration pay(@PathVariable("id") String id,
+	public @ResponseBody UserRegistration payBill(@PathVariable("id") String id,
 			@PathVariable("type") String type) {
 
 		return registrationService.payBill(id, type);
@@ -203,5 +204,8 @@ public class UserController {
 		List<Facilities> billList = registrationService.getBillsByUser(id);
 		return billList;
 	}
+	
+
+
 
 }
