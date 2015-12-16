@@ -209,8 +209,26 @@ public class RegistrationServiceImpl implements RegistrationService {
 	        	
 	        	
 	        }       
+	    
+	        if(indoor_hostingCountList.size()<4)
+	        {
+	        	for(int i=indoor_hostingCountList.size();i<4;i++)
+	        		indoor_hostingCountList.add(new HostingCount());
+	        }
 	        
-	        hashmap.put("indoor", indoor_hostingCountList);
+	        if(outdoor_hostingCountList.size()<4)
+	        {
+	        	for(int i=outdoor_hostingCountList.size();i<4;i++)
+	        		outdoor_hostingCountList.add(new HostingCount());
+	        }
+	        
+	        if(leisure_hostingCountList.size()<4)
+	        {
+	        	for(int i=leisure_hostingCountList.size();i<4;i++)
+	        		leisure_hostingCountList.add(new HostingCount());
+	        }
+	        
+	    hashmap.put("indoor", indoor_hostingCountList);
       	hashmap.put("outdoor", outdoor_hostingCountList);
       	hashmap.put("leisure", leisure_hostingCountList);
       	
