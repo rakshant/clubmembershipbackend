@@ -32,23 +32,15 @@ app.controller('RegisterationCtrl', function($scope, $http,url,$uibModal) {
 		        $scope.ok=function(){
 		        	$uibModalInstance.close();
 		        	}
-		      }});
-		
+		      }});		
 	}
 	
 	
-	$scope.check=function(){
-		
+	$scope.check=function(){		
 		$http({
 			method : 'get',
 			url : url+'users/check'+ "/" + $scope.email			
 			
-		})
-		
-		
-		
-		
-	}
-	
-	
+		})		
+	}	
 });

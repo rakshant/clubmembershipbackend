@@ -9,7 +9,7 @@
 						Personal Details</a></li>
 
 				<li class="list-group-item"><span class="badge">{{count}}</span><a
-					ui-sref="profile.registrationRequest">New Registration Requests</a></li>				
+					ui-sref="profile.registrationRequest">New Registration Requests</a></li>
 			</ul>
 			<ul class="list-group" ng-show="checkUser('userType')">
 				<li class="list-group-item"><a ui-sref="profile.viewDetails">View
@@ -17,18 +17,39 @@
 				<li class="list-group-item"><a ui-sref="profile.update">Update
 						Personal Details</a></li>
 
-				<li class="list-group-item"><a ui-sref="profile.reservedFacilityTemperaryMember"> Reserve Facilities</a></li>
-				
-				
+				<li class="list-group-item"><a
+					ui-sref="profile.reservedFacilityTemperaryMember"> Reserve
+						Facilities</a></li>
+
+
 				<li class="list-group-item"><a
 					ui-sref="profile.viewBillingDetails"> View Billing Details</a></li>
-				
-				<li class="list-group-item"><a
-					ui-sref="profile.renewal">Renew Membership</a></li>
+
+				<li class="list-group-item"><a ui-sref="profile.renewal">Renew
+						Membership</a></li>
 			</ul>
-			<img ng-if="image" ng-src="images/logo.png" class="img-thumbnail" alt="Profile Pic" height="200px" width="265px"> 
-			
-			<img ng-if="!image" ng-src="http://localhost:8080/users/getImage/{{viewDetails.id}}" class="img-thumbnail" alt="Profile Pic" height="200px" width="265px"> 
+			<ul class="list-group" ng-show="checkPresident('userType')">
+				<li class="list-group-item"><a ui-sref="profile.viewDetails">View
+						Personal Details</a></li>
+				<li class="list-group-item"><a ui-sref="profile.update">Update
+						Personal Details</a></li>
+				<li class="list-group-item"><a ui-sref="profile.userlist">View Users List</a></li>
+
+
+			</ul>
+			<!-- <ul class="list-group" ng-show="checkTreasurer('userType')">
+				<li class="list-group-item"><a ui-sref="profile.viewDetails">View
+						Personal Details</a></li>
+				<li class="list-group-item"><a ui-sref="profile.update">Update
+						Personal Details</a></li>
+				
+			</ul> -->
+
+			<img ng-if="image" ng-src="images/logo.png" class="img-thumbnail"
+				alt="Profile Pic" height="200px" width="265px"> <img
+				ng-if="!image"
+				ng-src="http://localhost:8080/users/getImage/{{viewDetails.id}}"
+				class="img-thumbnail" alt="Profile Pic" height="200px" width="265px">
 		</div>
 	</div>
 	<div class="col-md-9">

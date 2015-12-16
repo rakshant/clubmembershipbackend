@@ -14,7 +14,11 @@ app.controller('PanelListCtrl', function($scope,$http, url) {
 	$scope.checkUser = function(key) {
 		return localStorage.getItem(key).trim() === "User"
 				|| localStorage.getItem(key).trim() === "permanent";
-	}	
+	}
+	
+	$scope.checkPresident = function(key) {
+		return localStorage.getItem(key).trim() === "President";			
+	}
 	
 });
 
