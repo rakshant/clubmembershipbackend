@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<!-- <script type="text/javascript"
+	src="js/lib/ui-bootstrap-tpls-0.14.3.min.js"></script> -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"
+	type="text/javascript"></script>
+<script type="text/javascript" src="GatewayController.js"></script>
+</head>
+<body>
+	<div class="container" ng-controller="dataCtrl">
+		<div class="row">
+			<div class="col-md-12" style="background-color: grey; height: 100px;">
+				<h1>User Details</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 " style="height: 522px;">
+				<div class="panel  panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">View Personal Details</h3>
+					</div>
+					<div class="panel-body" >
+						<table class="table table-hover">
+
+							<tbody>
+								<tr>
+									<td>First Name</td>
+									<td>{{firstName}}</td>
+								</tr>
+								<tr>
+									<td>Last name</td>
+									<td>{{lastName}}</td>
+								</tr>
+								<tr>
+									<td>Email ID</td>
+									<td>{{email}}</td>
+								</tr>
+								<tr>
+									<td>Mobile No</td>
+									<td>{{mobile}}</td>
+								</tr>
+								<tr>
+									<td>Occupation</td>
+									<td>{{occupation}}</td>
+								</tr>
+
+							</tbody>
+						</table>
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-9">
+								<button type="submit" ng-click="proceed()"
+									class="btn btn-success">Continue</button>
+								<button type="reset" class="btn btn-danger">Cancel</button>
+
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row ">
+			<div class="col-md-12 " style="height: 50px; background-color: grey;">
+				<h4>payment gateway @cmm</h4>
+			</div>
+		</div>
+	</div>
+
+
+
+</body>
+</html>

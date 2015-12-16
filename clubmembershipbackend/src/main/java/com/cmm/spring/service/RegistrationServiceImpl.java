@@ -241,12 +241,26 @@ public class RegistrationServiceImpl implements RegistrationService {
 		userEmail.setFromAddress("clubmembershipuser@gmail.com");
 		userEmail.setToAddress(email);
 		userEmail.setSubject("ClubMembership: Entrance fee amount payment");
-		userEmail
+		/*userEmail
 				.setBody("Please pay the Entrance fee amount of Rs. "
 						+ 1000
 						+ " by accessing the link below. \n You will be contacted soon.\n"
 						+ "Thank you.\n Payment link: http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id="
-						+ id + "&fee=" + 1000 + "&type=" + "entry");
+						+ id + "&fee=" + 1000 + "&type=" + "entry"+"&firstName"+user.getFirstName()+"&lastName"+user.getLastName()
+						+"&email"+user.getEmailId()+"&mobile"+user.getMobileNumber()+"&Occupation"+user.getOccupation());*/
+		String firstName=user.getFirstName();
+		String lastName=user.getLastName();
+		String emailID=user.getEmailId();
+		String occupation=user.getOccupation();
+		Long mobile=user.getMobileNumber();
+		
+		userEmail
+		.setBody("Please pay the Entrance fee amount of Rs. "
+				+ 1000
+				+ " by accessing the link below. \n You will be contacted soon.\n"
+				+ "Thank you.\n Payment link: http://localhost:8089/clubmembershipfrontend/paymentmodule/userdata.html?id="
+				+ id + "&fee=" + 1000 + "&type=" + "entry"+"&firstName="+firstName+"&lastName="+lastName
+				+"&email="+emailID+"&mobile="+mobile+"&Occupation="+occupation);
 
 		SimpleMailMessage simpleMailMessageObj = new SimpleMailMessage();
 		simpleMailMessageObj.setFrom(userEmail.getFromAddress());
