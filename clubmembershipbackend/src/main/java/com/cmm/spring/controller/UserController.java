@@ -211,6 +211,22 @@ public class UserController {
 				List<UserRegistration> userlist = registrationService.viewActiveUserList();
 				return userlist;
 			}
+			
+			@RequestMapping(value = "/check/{emailId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+			public HashMap<String, String> checkUsers(@PathVariable("emailId") String emailId){
+				HashMap<String, String> response = new HashMap<String, String>();
+				if(registrationService.checkUsersList(emailId)){
+				
+					response.put("status","failure");
+					return response;
+				}
+				else{
+					
+					response.put("status","success");
+					return response;		
+				}
+				
+			}
 
 
 

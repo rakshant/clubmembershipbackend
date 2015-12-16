@@ -35,12 +35,38 @@ app.controller('RegisterationCtrl', function($scope, $http,url,$uibModal) {
 		      }});		
 	}
 	
-	
-	$scope.check=function(){		
+		$scope.check=function(){
+		
 		$http({
-			method : 'get',
-			url : url+'users/check'+ "/" + $scope.email			
+			method : 'GET',
+			url : url+'users/check' + "/" +  $scope.email	
+		}).success(function(data) {			
 			
-		})		
-	}	
+			if(data.status==="failure"){
+				
+				
+				
+				
+				console.log(data.status);
+				
+				$uibModal.open({
+					templateUrl : 'views/modal.html',
+					controller : function($scope, $uibModalInstance) {
+						$scope.message = "Username Already Exists"
+
+						$scope.ok = function() {
+							$uibModalInstance.close();
+						}
+					}
+				});
+				
+				
+				$scope.email="";
+			
+			}
+			
+		});	
+	}
+	
+		
 });

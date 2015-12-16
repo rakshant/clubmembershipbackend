@@ -13,10 +13,15 @@
 					<label class="col-md-3 control-label" >Email<span style="color:red">*</span></label>
 					<div class="col-md-9">
 						<input type="text" class="form-control" ng-model="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
-							name="email" placeholder="Email Address" ng-model="email"required>
-							 <span style="color:red"ng-show="myRegistration.email.$dirty && myRegistration.email.$invalid">
-                 <span ng-show="myRegistration.email.$error.required">Email Id required.</span> 
+							name="email" placeholder="Email Address" ng-model="email" ng-change="check()" required>
+						
+					<span style="color:red"ng-show="myRegistration.email.$dirty && myRegistration.email.$invalid">
+			
+               <span ng-show="myRegistration.email.$error.required">Email Id required.</span>  
 				<span ng-show="myRegistration.email.$error.pattern">Enter correct Email Id.</span>
+				 <span ng-show="myRegistration.email.$error.change">Username Already Exists.</span> 
+				
+				
 					</span>
 					</div>
 				</div>
@@ -24,8 +29,15 @@
 					<label class="col-md-3 control-label" >First Name<span style="color:red">*</span></label>
 					<div class="col-md-9">
 						<input type="text" class="form-control" ng-model="firstName"  ng-pattern="/^[a-zA-Z\s]*$/"
-							name="firstName" placeholder="First Name" ng-model="firstName"required>
+							name="firstName" placeholder="First Name" ng-model="firstName"  ng-minlength="3" ng-maxlength="15" required">
 							<span style="color: red"ng-show="myRegistration.firstName.$dirty && myRegistration.firstName.$invalid">
+				
+				
+				
+				  <span style="color:red" ng-show="form1.name.$error.maxlength">
+        Sorry You are Exceeding the Limit</span>
+				 <span style="color:red" ng-show="myRegistration.firstName.$error.minlength">
+       							 Your Name Should Contain Atleast 3 Characters</span>
                  <span ng-show="myRegistration.firstName.$error.required">First Name required.</span> 
 				<span ng-show="myRegistration.firstName.$error.pattern"> Only alphabets are allowed</span>
 					</span>
@@ -70,7 +82,7 @@
 				<div class="form-group">
 					<label class="col-md-3 control-label">DOB<span style="color:red">*</span></label>
 					<div class="col-md-9">
-						<input type="date" class="form-control" ng-model="date"  ng-pattern="/^((\d{2})\/(\d{2})\/(\d{4})$/"
+						<input type="date" class="form-control" ng-model="date"
 							name="date" ng-model="date"required/>
 							<span style="color: red"ng-show="myRegistration.date.$dirty && myRegistration.date.$invalid">
                  <span ng-show="myRegistration.date.$error.required"> Date required.</span> 

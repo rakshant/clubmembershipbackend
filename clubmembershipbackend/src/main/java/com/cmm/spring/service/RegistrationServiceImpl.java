@@ -417,12 +417,21 @@ public class RegistrationServiceImpl implements RegistrationService {
 			}
 
 
-	public String checkUsersList(String emailId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
+			public boolean checkUsersList(String emailId) {
+				
+				emailId=emailId+".com";		
+				List<UserRegistration> user = registrationRepository.findByEmailId(emailId);
+				
+				if(user.size()==0){
+					
+					return false;
+				}
+				
+				else return true;
+
+
+				
+			}
 	
 	
 	

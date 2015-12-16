@@ -1,10 +1,10 @@
 var app = angular.module('myApp', []);
 app.controller('validateCtrl', function($scope,$http) {
-    $scope.nameOnCard = 'Akshay Pathade';
-    $scope.cardNumber = 5123456789012346;
-	$scope.cardVerificationValue = 100;
-	$scope.month = 10;
-	$scope.year = 2015;	
+    $scope.nameOnCard = '';
+    $scope.cardNumber = '';
+	$scope.cardVerificationValue = '';
+	$scope.month = '';
+	$scope.year = '';	
 	
 	var str=location.search.split('&');		
 	$scope.amount =parseInt(str[1].substring(4));
