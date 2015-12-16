@@ -2,11 +2,14 @@ package com.cmm.spring.service;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.UnknownHostException;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
 import com.cmm.spring.entity.Facilities;
+import com.cmm.spring.entity.HostingCount;
 import com.cmm.spring.mongo.collections.UserRegistration;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -23,7 +26,7 @@ public interface RegistrationService {
 
 	String update(String id, UserRegistration userRegistration) throws JsonProcessingException;
 	
-	public List<com.cmm.spring.entity.HostingCount> aggregationOfType();
+	public  HashMap<String,List<HostingCount>> aggregationOfType() throws UnknownHostException;
 
 	UserRegistration viewDetails(String id);
 
@@ -34,6 +37,7 @@ public interface RegistrationService {
 	List<Facilities> getBillsByUser(String id);
 
 	UserRegistration payBill(String id, String type);
+	
 
 	boolean renewal(String id);
 	boolean checkUsersList(String emailId);

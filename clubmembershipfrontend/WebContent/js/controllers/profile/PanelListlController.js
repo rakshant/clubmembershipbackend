@@ -21,7 +21,7 @@ app.controller('PanelListCtrl', function($scope,$http, url) {
 	}
 	
 	$scope.checkTreasurer = function(key) {
-		return localStorage.getItem(key).trim() === "Tresurer";			
+		return localStorage.getItem(key).trim() === "Treasurer";			
 	}
 	
 });

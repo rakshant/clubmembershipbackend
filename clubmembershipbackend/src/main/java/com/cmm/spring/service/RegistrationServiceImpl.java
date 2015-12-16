@@ -2,8 +2,10 @@ package com.cmm.spring.service;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -95,7 +97,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 		return "failed";
 	}
-
+	
+	
 	public List<UserRegistration> pendingRequest(String id) {
 
 		if (isSecretary(id)) {
@@ -152,13 +155,19 @@ public class RegistrationServiceImpl implements RegistrationService {
 		}
 	}
 
-	public List<HostingCount> aggregationOfType(){
+	public  HashMap<String,List<HostingCount>> aggregationOfType() throws UnknownHostException{
 		
-		  List<HostingCount> hostingCountList=new ArrayList<HostingCount>();
-	        HostingCount hostingCountObj=new HostingCount();
+		  List<HostingCount> indoor_hostingCountList=new ArrayList<HostingCount>();
+		  List<HostingCount> outdoor_hostingCountList=new ArrayList<HostingCount>();
+		  List<HostingCount> leisure_hostingCountList=new ArrayList<HostingCount>();
+		  HashMap<String,List<HostingCount>> hashmap=new HashMap<String,List<HostingCount>>();
+		
+		
+		//  List<HostingCount> hostingCountList=new ArrayList<HostingCount>();
+	        HostingCount hostingCountObj=new HostingCount(); 					//this is a temp object of our pojo class
 	        List<DBObject> dbList=new ArrayList<DBObject>();
 
-		try{
+		
 			MongoClient mongoClient = new MongoClient();
 			DB db = mongoClient.getDB("test");
 			DBCollection ledger = db.getCollection("user_registrations");
@@ -184,14 +193,32 @@ public class RegistrationServiceImpl implements RegistrationService {
 	        
 	        	hostingCountObj=mongoOperation.getConverter().read(HostingCount.class, dbobj);
 	        	
-	        	hostingCountList.add(hostingCountObj);	//This is adding parameters in HostingCountList
-	        }
-	        return hostingCountList;
-		}catch(Exception e){
-			e.printStackTrace();
-			return null;
-		}
+	        	if(hostingCountObj.getType().equals("tableTennis")||hostingCountObj.getType().equals("badminton")||hostingCountObj.getType().equals("chess")
+	        			||hostingCountObj.getType().equals("billiards")||hostingCountObj.getType().equals("healthClub")
+	        			||hostingCountObj.getType().equals("squash"))
+	        	indoor_hostingCountList.add(hostingCountObj);
+	        	
+	        	else if(hostingCountObj.getType().equals("lawnTennis")||hostingCountObj.getType().equals("swimming")
+	        			||hostingCountObj.getType().equals("cricket")||hostingCountObj.getType().equals("playground"))
+	        		outdoor_hostingCountList.add(hostingCountObj);
+	        	
+	        	else if(hostingCountObj.getType().equals("cardRoom")||hostingCountObj.getType().equals("library")
+	        			||hostingCountObj.getType().equals("restaurantBar")||hostingCountObj.getType().equals("banquetHall")
+	        			||hostingCountObj.getType().equals("conferenceHall"))
+	        	leisure_hostingCountList.add(hostingCountObj);        
+	        	
+	        	
+	        }       
+	        
+	        hashmap.put("indoor", indoor_hostingCountList);
+      	hashmap.put("outdoor", outdoor_hostingCountList);
+      	hashmap.put("leisure", leisure_hostingCountList);
+      	
+      	//System.out.println("YEAHHHHH !! : " + hashmap.get("indoor"));
+	        
+      	return hashmap;
 	}
+
 	public UserRegistration addFile(String id, UserRegistration file)
 			throws IOException {
 		UserRegistration user = new UserRegistration();

@@ -2,6 +2,7 @@ package com.cmm.spring.controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -168,9 +169,9 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/treasurer", method = RequestMethod.GET)
-	public @ResponseBody List<HostingCount> aggregateUser()
-			throws JsonProcessingException {
-		List<HostingCount> hosts = registrationService.aggregationOfType();
+	public @ResponseBody HashMap<String, List<HostingCount>> aggregateUser() throws JsonProcessingException, UnknownHostException {
+		HashMap<String, List<HostingCount>> hosts=registrationService.aggregationOfType();
+		//System.out.println(hosts);
 		return hosts;
 	}
 

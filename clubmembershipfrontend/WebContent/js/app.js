@@ -1,4 +1,4 @@
-var myApp = angular.module("app", [ 'ui.bootstrap', 'ui.router','home','profile']);
+var myApp = angular.module("app", [ 'ui.bootstrap','ng-fusioncharts', 'ui.router','home','profile']);
 myApp.constant("url","http://localhost:8080/");
 myApp.config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider.state('home', {
@@ -31,6 +31,12 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 	}).state('profile.addons', {
 		url : "/addons",
 		templateUrl : "views/profile/profileViews/addons.html"
+	}).state('profile.graph', {
+		url : "/graph",
+		templateUrl : "views/profile/profileViews/graph.html"
+	}).state('profile.allocateBudget', {
+		url : "/allocateBudget",
+		templateUrl : "views/profile/profileViews/allocateBudget.html"
 	}); 
 
 	$urlRouterProvider.otherwise("/home");
