@@ -1,3 +1,5 @@
+ <script type="text/javascript" src="js/controllers/home/ContactUsController.js"></script>  
+
 <div ng-controller="LogoutCtrl">
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container">
@@ -8,11 +10,13 @@
 				<span class="sr-only">Toggle navigation</span>
 			</button>
 			<a class="navbar-brand"  href="#"></a>
+				
 			<span><img src="images/logo.png"
 				class="logo" height=60px width=60px> <img src="images/name6.png"
 				class="logo" height=50px></span>
 		</div>
 		
+		<div class="collapse navbar-collapse pull-right" ng-controller="contactUsCtrl"><a class="navbar-brand" ng-click="contact()">Contact Us</a></div>
 			
 			<div class="collapse navbar-collapse pull-right" ng-if="profile()" ng-controller="viewCtrl">
 			<div class="navbar-brand" style="color:#d9edf7"> Hello {{ viewDetails.firstName }}&nbsp;</div>
