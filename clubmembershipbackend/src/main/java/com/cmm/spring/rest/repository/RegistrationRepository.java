@@ -12,4 +12,5 @@ public interface RegistrationRepository extends MongoRepository<UserRegistration
 	List<UserRegistration> findByEmailId(String emailId); 
 	List<UserRegistration> findByStatus(int status);
 	
+	
 }

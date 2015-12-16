@@ -420,28 +420,13 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	private boolean isPermanent(String id) {
 
-		System.out.println("int method isPermanent");
+	
 
 		UserRegistration user = registrationRepository.findOne(id);
-
 		Date currentDate = new Date();
-
-		System.out.println("date: " + currentDate);
-
-		System.out.println("registered date: " + user.getRegisteredDate());
-
-		System.out.println("this time: " + currentDate.getTime());
-
 		Date registeredDate = user.getRegisteredDate();
-
-		long currentMinutes = currentDate.getTime();
-		System.out.println("********current min: " + currentMinutes);
-
+		long currentMinutes = currentDate.getTime();		
 		long registeredMinutes = registeredDate.getTime();
-		System.out.println("********reg min: " + registeredMinutes);
-
-		System.out.println(currentMinutes - registeredMinutes);
-
 		if (currentMinutes - registeredMinutes > 180000) {
 			return true;
 		}
@@ -455,9 +440,10 @@ public List<UserRegistration> viewActiveUserList(){
 				
      Query query = new Query();
      query.addCriteria(Criteria.where("status").regex("1"));
-     return userList;
+       
+     return registrationRepository.findByStatus(1);
 			
-			}
+	}
 
 
 			public boolean checkUsersList(String emailId) {
