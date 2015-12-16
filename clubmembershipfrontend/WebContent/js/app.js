@@ -25,9 +25,9 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 	}).state('profile.renewal', {
 		url : "/renewal",
 		templateUrl : "views/profile/profileViews/renewal.html"
-	}).state('profile.userlist', {
-		url : "/userlist",
-		templateUrl : "views/profile/profileViews/userlist.html"
+	}).state('profile.userslist', {
+		url : "/userslist",
+		templateUrl : "views/profile/profileViews/userslist.html"
 	});
 
 	$urlRouterProvider.otherwise("/home");

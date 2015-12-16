@@ -1,0 +1,31 @@
+<div ng-controller="ViewUsersCtrl">
+	<div class="panel panel-info">
+	<div class="panel-heading">Registration Requests:</div>
+	<div class="panel-body">
+<div class="input-group">
+	<input type="text" class="form-control" ng-model="text" placeholder="Search by anything" accesskey="s">
+  <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-search"></span></span>
+</div><br>
+			<table class="table table-hover">
+	
+				<tbody>
+					<tr>
+						<th>S.No.</th>
+						<th>Name</th>
+						<th>Contact Details</th>
+						<th>DOB</th>
+						<th>Occupation</th>
+						
+					</tr>
+					<tr ng-repeat="userDetail in userDetails|filter:text">
+				   		<td>{{ $index+1}}</td>
+						<td>{{ userDetail.firstName }} {{ userDetail.lastName }}</td>
+						<td>{{ userDetail.emailId }}<br>{{ userDetail.mobileNumber}}</td>
+						<td>{{ userDetail.dateOfBirth | date:DD:MM:YYYY}}</td>
+						<td>{{ userDetail.occupation }}</td>					
+				
+					</tr>
+				</tbody>
+			</table>
+	</div>
+</div>

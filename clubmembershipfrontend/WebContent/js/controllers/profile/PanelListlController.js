@@ -20,5 +20,9 @@ app.controller('PanelListCtrl', function($scope,$http, url) {
 		return localStorage.getItem(key).trim() === "President";			
 	}
 	
+	$scope.checkTreasurer = function(key) {
+		return localStorage.getItem(key).trim() === "Tresurer";			
+	}
+	
 });
 
