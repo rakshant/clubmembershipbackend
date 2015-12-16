@@ -48,21 +48,25 @@ public class UserController {
 
 	@Autowired
 	private EmailService emailService;
-	
+
 	@Autowired
 	private Fees fees;
 
-	@RequestMapping(value ="/addFile/{id}", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE, consumes={MediaType.MULTIPART_FORM_DATA_VALUE})
-	public @ResponseBody UserRegistration addFile(@PathVariable("id") String id,@RequestParam("file") MultipartFile file) throws IOException {
-		return registrationService.addFile(id,new UserRegistration(file.getBytes()));
+	@RequestMapping(value = "/addFile/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+	public @ResponseBody UserRegistration addFile(
+			@PathVariable("id") String id,
+			@RequestParam("file") MultipartFile file) throws IOException {
+		return registrationService.addFile(id,
+				new UserRegistration(file.getBytes()));
 	}
-	
-	@RequestMapping(value="/getImage/{id}", method = RequestMethod.GET)
-	public ResponseEntity<byte[]> getFile(@PathVariable("id") String id) throws FileNotFoundException{
-	
-		return 	registrationService.getFile(id);
+
+	@RequestMapping(value = "/getImage/{id}", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> getFile(@PathVariable("id") String id)
+			throws FileNotFoundException {
+
+		return registrationService.getFile(id);
 	}
-	
+
 	@RequestMapping(value = "/register", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String registerUser(
 			@RequestBody Registration registration)
@@ -75,13 +79,12 @@ public class UserController {
 						.getStatus(), registration.getUserType()));
 		return result;
 	}
-	
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody HashMap<String, String> loginUser(
 			@RequestBody Login login) throws JsonProcessingException {
-		String result = loginService.login(new UserLogin(
-				login.getEmailId(), login.getPassword()));
+		String result = loginService.login(new UserLogin(login.getEmailId(),
+				login.getPassword()));
 		HashMap<String, String> response = new HashMap<String, String>();
 		if (result.equals("failed")) {
 			response.put("id", "failure");
@@ -93,36 +96,32 @@ public class UserController {
 		return response;
 	}
 
-    
 	@RequestMapping(value = "/membershipRenewal/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public HashMap<String, String> membershipRenewal(@PathVariable("id") String id){
+	public HashMap<String, String> membershipRenewal(
+			@PathVariable("id") String id) {
 		HashMap<String, String> response = new HashMap<String, String>();
-		if(registrationService.renewal(id)){
+		if (registrationService.renewal(id)) {
 			System.out.println("membership renewed!");
-			response.put("status","success");
+			response.put("status", "success");
+			return response;
+		} else {
+			System.out.println("membership not renewed!");
+			response.put("status", "failure");
 			return response;
 		}
-		else{
-			System.out.println("membership not renewed!");
-			response.put("status","failure");
-			return response;		
-		}
-		
+
 	}
 
-	
-	
 	@RequestMapping(value = "/pendingrequests/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<UserRegistration> readRequest(
 			@PathVariable("id") String id) {
-		List<UserRegistration> userList = registrationService.pendingRequest(id);
+		List<UserRegistration> userList = registrationService
+				.pendingRequest(id);
 		return userList;
 	}
-	
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody UserRegistration viewUser(
-			@PathVariable("id") String id) {
+	public @ResponseBody UserRegistration viewUser(@PathVariable("id") String id) {
 		UserRegistration user = registrationService.viewDetails(id);
 		return user;
 	}
@@ -134,9 +133,10 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/payment/{id}/{type}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody UserRegistration pay(
-			@PathVariable("id") String id,@PathVariable("id") String type) {		
-				return registrationService.payBill(id,type);
+	public @ResponseBody UserRegistration pay(@PathVariable("id") String id,
+			@PathVariable("type") String type) {
+
+		return registrationService.payBill(id, type);
 	}
 
 	@RequestMapping(value = "/request", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -166,49 +166,33 @@ public class UserController {
 				registration.getPassword()));
 		return result;
 	}
-	
+
 	@RequestMapping(value = "/treasurer", method = RequestMethod.GET)
-	public @ResponseBody List<HostingCount> aggregateUser() throws JsonProcessingException {
-		List<HostingCount> hosts=registrationService.aggregationOfType();
-		//System.out.println(hosts);
+	public @ResponseBody List<HostingCount> aggregateUser()
+			throws JsonProcessingException {
+		List<HostingCount> hosts = registrationService.aggregationOfType();
 		return hosts;
 	}
 
-	
-	@RequestMapping(value = "/facilities/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String reserveFacilities(@PathVariable("id") String id,
+	@RequestMapping(value = "/facilities/{id}/{type}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public String reserveFacilities(@PathVariable("id") String id,@PathVariable("type") String type,
 			@RequestBody Facilities facilities) throws JsonProcessingException {
-		
+
 		List<Facilities> facility = new ArrayList<Facilities>();
 		facility.add(new Facilities(facilities.getCategory(), facilities
 				.getType(), facilities.getPrice()));
-	
-		registrationService.saveFacility(new UserRegistration(facility), id);		
-		return new HashMap<String, String>().put("success", facilities.getCategory());
+
+		registrationService.saveFacility(new UserRegistration(facility), id,type);
+		return new HashMap<String, String>().put("success",
+				facilities.getCategory());
 
 	}
-	
-	/*@RequestMapping(value = "/facilities/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String reserveFacilities(@PathVariable("id") String id,
-			@RequestBody Map<String,List<Facilities>> facilities) throws JsonProcessingException {
-		
-		List<Facilities> item=facilities.get("item");
-		
-		List<Facilities> facility = new ArrayList<Facilities>();
-		facility.add(new Facilities(facilities.getCategory(), facilities
-				.getType(), facilities.getPrice()));
-	
-		registrationService.saveFacility(new UserRegistration(item), id);		
-		return new HashMap<String, String>().put("success", facilities.getCategory());
 
-	}
-*/
-	
 
 	@RequestMapping(value = "/fee/{id}/{type}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int getFee(@PathVariable("id") String id,
 			@PathVariable("type") String type) throws JsonProcessingException {
-				
+
 		HashMap<String, Integer> hmap = fees.getFee();
 		return hmap.get(type);
 	}

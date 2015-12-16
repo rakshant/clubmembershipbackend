@@ -17,7 +17,7 @@ public interface RegistrationService {
 	
 	String register(UserRegistration userRegistration) throws JsonProcessingException;
 
-	String saveFacility(UserRegistration userRegistration, String id) throws JsonProcessingException;
+	String saveFacility(UserRegistration userRegistration, String id,String type) throws JsonProcessingException;
 
 	List<UserRegistration> pendingRequest(String id);
 

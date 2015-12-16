@@ -168,7 +168,7 @@
 						 <div class="col-sm-9">
 						 <input
 							type="number" class="form-control" name="amount" 
-							placeholder="Enter amount" ng-model="amount" required> <span
+							placeholder="Enter amount" ng-model="amount" disabled> <span
 							style="color: red"
 							ng-show="myForm.amount.$dirty && myForm.amount.$invalid">
 							<span ng-show="myForm.amount.$error.required">Amount
@@ -180,12 +180,12 @@
       
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-9">
-          <button type="submit" class="btn btn-success" 
+          <button type="submit" ng-click="pay()" class="btn btn-success" 
           ng-disabled="myForm.nameOnCard.$dirty && myForm.nameOnCard.$invalid || myForm.cardNumber.$dirty && myForm.cardNumber.$invalid 
           || myForm.cardVerificationValue.$dirty && myForm.cardVerificationValue.$invalid ||myForm.amount.$dirty && myForm.amount.$invalid ">Submit</button>
           
          
-         <button type="cancel" class="btn btn-danger"> Cancel </button>
+         <button type="reset" class="btn btn-danger"> Cancel </button>
          
         </div>
       </div>

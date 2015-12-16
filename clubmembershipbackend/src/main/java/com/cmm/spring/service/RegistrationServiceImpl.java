@@ -275,8 +275,6 @@ public class RegistrationServiceImpl implements RegistrationService {
 		UserRegistration user = registrationRepository.findOne(id);
 		
 		if(type.equals("entry")){
-			
-
 			if (user.getStatus() == 1) {
 				user.setPaymentDone(1);
 
@@ -309,44 +307,45 @@ public class RegistrationServiceImpl implements RegistrationService {
 			}
 			
 		}
-		else{
+		else{			
 			user.setUserType("permanent");
+			registrationRepository.save(user);			
 			return user;
 		}
-
-		
-
 	}
 
-	public String saveFacility(UserRegistration userRegistration, String id)
+	public String saveFacility(UserRegistration userRegistration, String id,String type)
 			throws JsonProcessingException {
 		UserRegistration user = new UserRegistration();
 
 		user = registrationRepository.findOne(id);
 		ObjectMapper objectMapper = new ObjectMapper();
 
-		if (user != null) {
-
-			user.setFacilities(userRegistration.getFacilities());
-			registrationRepository.save(user);
-			String registerJson = objectMapper.writeValueAsString(user);
-			return registerJson;
-		} else {
-			return null;
-		}
-
 		
-		/*if (user != null) {
-			
-			user.getFacilities().addAll(userRegistration.getFacilities());
+		if(type.equals("temporary")){
+			if (user != null) {
 
-			user.setFacilities(user.getFacilities());
-			registrationRepository.save(user);
-			String registerJson = objectMapper.writeValueAsString(user);
-			return registerJson;
-		} else {
-			return null;
-		}*/
+				user.setFacilities(userRegistration.getFacilities());
+				registrationRepository.save(user);
+				String registerJson = objectMapper.writeValueAsString(user);
+				return registerJson;
+			} else {
+				return null;
+			}
+		}
+		else{
+			if (user != null) {
+				
+				user.getFacilities().addAll(userRegistration.getFacilities());
+
+				user.setFacilities(user.getFacilities());
+				registrationRepository.save(user);
+				String registerJson = objectMapper.writeValueAsString(user);
+				return registerJson;
+			} else {
+				return null;
+			}
+		}
 
 	}
 

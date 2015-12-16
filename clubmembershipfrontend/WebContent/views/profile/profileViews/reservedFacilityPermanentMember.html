@@ -1,53 +1,30 @@
 <div ng-controller="PermanentFacilitiesCtrl">
 	<table class="table table-hover">
-
 		<tbody>
-
-			
-
 			<tr ng-repeat="facility in facilities" class="facility"
 				id="{{facility.id}}">
-				<td style="width:60px" >
-				<div ng-if="$index==0"  class="alert alert-success" >
-				Indoor</div>
-				
-				
-				<div ng-if="$index==5"  class="alert alert-success" >
-				Outdoor</div>
-				<div ng-if="$index==9"  class="alert alert-success">
-				Leuisure</div>
+				<td style="width: 60px">
+					<div ng-if="$index==0" class="alert alert-success">Indoor</div>
+
+
+					<div ng-if="$index==5" class="alert alert-success">Outdoor</div>
+					<div ng-if="$index==9" class="alert alert-success">Leuisure</div>
 				</td>
-				
-				
+
+
 				<td>{{facility.type}}</td>
 				<td><label class="btn btn-primary active"> <input
 						type="checkbox" ng-change="sync(bool, facility)" ng-model="bool"
 						ng-checked="isChecked(facility.id)">
-				</label>
-				</td>
+				</label></td>
 			</tr>
 			<div style="position: absolute; top: 900px; left: 500px;">
 
 				<button type="button" class="btn btn-success btn-lg"
 					data-toggle="button" ng-click="check()">Pay</button>
 			</div>
-			<!-- 
-			<tr>
-
-				<button type="button" class="btn btn-success btn-lg"
-					ng-click="check()">Pay</button>
-
-			</tr>
- -->
- 
- 		</tbody>
-
+		</tbody>
 	</table>
-	<h3>Final Data Array</h3>
-	<pre>{{data | json}}</pre>
-
-	<h3>All Checkboxes Array</h3>
-	<pre>{{facilities | json}}</pre>
 </div>
 
 

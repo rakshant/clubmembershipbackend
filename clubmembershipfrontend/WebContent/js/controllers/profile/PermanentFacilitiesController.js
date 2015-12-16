@@ -52,9 +52,19 @@ app.controller('PermanentFacilitiesCtrl', function($scope,$http,url) {
 
  $scope.check=function(data){
 	 
-	 localStorage.setItem('facility',JSON.stringify({'item': $scope.data}));	
+		 localStorage.setItem('facility',JSON.stringify({'item': $scope.data}));
+		 var totalPrice=0;
 	 
-		 console.log("---------------++++++"+ $scope.user);
+	 	 for (var j = 0; j <  $scope.data.length; j++){
+	 		 
+	 		totalPrice=totalPrice+$scope.data[j].price; 
+
+		 }
+	 	 console.log("Price----->"+totalPrice);
+	 
+	window.open('http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id='
+					+localStorage.getItem('userId')+'&fee='+totalPrice+'&type=permanentFacility' , '_blank');
+		
 	 }
 
 	
