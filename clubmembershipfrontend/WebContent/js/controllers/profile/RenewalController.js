@@ -2,6 +2,11 @@ var app=angular.module("home");
 
 app.controller('RenewalCtrl', function($scope, $state,$http,$rootScope,url,$uibModal) {	
 	
+	
+	$scope.permanent = function() {
+		return localStorage.getItem('userType').trim() === "User";
+	}
+	
 	$scope.checkPermanent=function(){
 		
 		$http({

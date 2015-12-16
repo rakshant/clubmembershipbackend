@@ -101,11 +101,11 @@ public class UserController {
 			@PathVariable("id") String id) {
 		HashMap<String, String> response = new HashMap<String, String>();
 		if (registrationService.renewal(id)) {
-		
+
 			response.put("status", "success");
 			return response;
 		} else {
-			
+
 			response.put("status", "failure");
 			return response;
 		}
@@ -121,8 +121,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody UserRegistration getUser(
-			@PathVariable("id") String id) {
+	public @ResponseBody UserRegistration getUser(@PathVariable("id") String id) {
 		UserRegistration user = registrationService.viewDetails(id);
 		return user;
 	}
@@ -134,8 +133,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/payment/{id}/{type}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody UserRegistration payBill(@PathVariable("id") String id,
-			@PathVariable("type") String type) {
+	public @ResponseBody UserRegistration payBill(
+			@PathVariable("id") String id, @PathVariable("type") String type) {
 
 		return registrationService.payBill(id, type);
 	}
@@ -176,19 +175,20 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/facilities/{id}/{type}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String reserveFacilities(@PathVariable("id") String id,@PathVariable("type") String type,
+	public String reserveFacilities(@PathVariable("id") String id,
+			@PathVariable("type") String type,
 			@RequestBody Facilities facilities) throws JsonProcessingException {
 
 		List<Facilities> facility = new ArrayList<Facilities>();
 		facility.add(new Facilities(facilities.getCategory(), facilities
 				.getType(), facilities.getPrice()));
 
-		registrationService.saveFacility(new UserRegistration(facility), id,type);
+		registrationService.saveFacility(new UserRegistration(facility), id,
+				type);
 		return new HashMap<String, String>().put("success",
 				facilities.getCategory());
 
 	}
-
 
 	@RequestMapping(value = "/fee/{id}/{type}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int getFee(@PathVariable("id") String id,
@@ -204,30 +204,30 @@ public class UserController {
 		List<Facilities> billList = registrationService.getBillsByUser(id);
 		return billList;
 	}
-	        // Active user list viewed by prsident 
-	
-			@RequestMapping(value = "/active", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-			public @ResponseBody List<UserRegistration> viewlist() {
-				List<UserRegistration> userlist = registrationService.viewActiveUserList();
-				return userlist;
-			}
-			
-			@RequestMapping(value = "/check/{emailId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-			public HashMap<String, String> checkUsers(@PathVariable("emailId") String emailId){
-				HashMap<String, String> response = new HashMap<String, String>();
-				if(registrationService.checkUsersList(emailId)){
-				
-					response.put("status","failure");
-					return response;
-				}
-				else{
-					
-					response.put("status","success");
-					return response;		
-				}
-				
-			}
 
+	// Active user list viewed by president
 
+	@RequestMapping(value = "/active", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<UserRegistration> viewlist() {
+		List<UserRegistration> userlist = registrationService
+				.viewActiveUserList();
+		return userlist;
+	}
+
+	@RequestMapping(value = "/check/{emailId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public HashMap<String, String> checkUsers(
+			@PathVariable("emailId") String emailId) {
+		HashMap<String, String> response = new HashMap<String, String>();
+		if (registrationService.checkUsersList(emailId)) {
+
+			response.put("status", "failure");
+			return response;
+		} else {
+
+			response.put("status", "success");
+			return response;
+		}
+
+	}
 
 }

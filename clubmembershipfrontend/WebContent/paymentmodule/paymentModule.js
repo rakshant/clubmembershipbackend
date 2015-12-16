@@ -20,14 +20,14 @@ app.controller('validateCtrl', function($scope,$http) {
 	
 
 	
-	$scope.pay=function(){
+		$scope.pay=function(){
 		
 		if(type==="entry"){
 			$http({method : 'put',
 				url : 'http://localhost:8080/users/payment/'+str[0].substring(4)+'/entry'
 				
 			}).success(function(data){
-				window.open('http://localhost:8089/clubmembershipfrontend/paymentmodule/success.html');
+				window.open('http://localhost:8089/clubmembershipfrontend/index.html','_self');
 			});
 			
 		}
@@ -38,7 +38,7 @@ app.controller('validateCtrl', function($scope,$http) {
 				url : 'http://localhost:8080/users/payment/'+str[0].substring(4)+'/permanent'				
 				
 			}).success(function(data){
-				window.open('http://localhost:8089/clubmembershipfrontend/paymentmodule/success.html');
+				window.open('http://localhost:8089/clubmembershipfrontend/index.html','_self');
 			});
 		}
 		
@@ -57,14 +57,9 @@ app.controller('validateCtrl', function($scope,$http) {
 						'type':item[i].type,
 						'category':item[i].category
 					}
-
-				});
-						
-				
-						
-			}	
-			
-			window.open('http://localhost:8089/clubmembershipfrontend/paymentmodule/success.html','_self');
+				});						
+			}					
+			window.open('http://localhost:8089/clubmembershipfrontend/index.html#/profile/viewDetails','_self');			
 		}
 
 		else
@@ -79,7 +74,7 @@ app.controller('validateCtrl', function($scope,$http) {
 				}
 				
 			}).success(function(data){
-				window.open('http://localhost:8089/clubmembershipfrontend/paymentmodule/success.html','_self');
+				window.open('http://localhost:8089/clubmembershipfrontend/index.html#/profile/viewDetails','_self');
 
 			});
 		}	

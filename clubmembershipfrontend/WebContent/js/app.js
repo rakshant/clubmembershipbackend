@@ -31,7 +31,7 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 	}).state('profile.addons', {
 		url : "/addons",
 		templateUrl : "views/profile/profileViews/addons.html"
-	});
+	}); 
 
 	$urlRouterProvider.otherwise("/home");
 });
