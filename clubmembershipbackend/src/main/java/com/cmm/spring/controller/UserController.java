@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +55,7 @@ public class UserController {
 	@Autowired
 	private Fees fees;
 
-	@RequestMapping(value = "/addFile/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+	@RequestMapping(value = "/file/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
 	public @ResponseBody UserRegistration addFile(
 			@PathVariable("id") String id,
 			@RequestParam("file") MultipartFile file) throws IOException {
@@ -64,7 +63,7 @@ public class UserController {
 				new UserRegistration(file.getBytes()));
 	}
 
-	@RequestMapping(value = "/getImage/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/image/{id}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getFile(@PathVariable("id") String id)
 			throws FileNotFoundException {
 
@@ -172,8 +171,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/treasurer", method = RequestMethod.GET)
-	public @ResponseBody HashMap<String, List<HostingCount>> aggregateUser() throws JsonProcessingException, UnknownHostException {
-		HashMap<String, List<HostingCount>> hosts=registrationService.aggregationOfType();
+	public @ResponseBody HashMap<String, List<HostingCount>> aggregateClubDetails() throws JsonProcessingException, UnknownHostException {
+		HashMap<String, List<HostingCount>> hosts=registrationService.aggregationOfClubDetails();
 		//System.out.println(hosts);
 		return hosts;
 	}

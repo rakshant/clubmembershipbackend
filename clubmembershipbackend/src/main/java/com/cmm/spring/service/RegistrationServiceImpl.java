@@ -153,7 +153,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 		}
 	}
 
-	public  HashMap<String,List<HostingCount>> aggregationOfType() throws UnknownHostException{
+	public  HashMap<String,List<HostingCount>> aggregationOfClubDetails() throws UnknownHostException{
 		
 		  List<HostingCount> indoor_hostingCountList=new ArrayList<HostingCount>();
 		  List<HostingCount> outdoor_hostingCountList=new ArrayList<HostingCount>();

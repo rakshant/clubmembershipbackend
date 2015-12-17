@@ -28,7 +28,7 @@ app.controller('viewCtrl', function($scope, $http, $state, url) {
 		console.log("profile called");
 		var fd = new FormData();
 		fd.append('file', document.getElementById('profile_pic').files[0]);
-		$http.post(url+'users'+"/"+'addFile'+"/"+localStorage.getItem('userId'),fd,{
+		$http.post(url+'users'+"/"+'file'+"/"+localStorage.getItem('userId'),fd,{
 			transformRequest : angular.identity,
 			headers : {
 				'Content-Type' : undefined
