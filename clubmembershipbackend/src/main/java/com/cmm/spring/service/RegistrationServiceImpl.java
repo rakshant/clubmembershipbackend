@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -76,12 +77,22 @@ public class RegistrationServiceImpl implements RegistrationService {
 		}
 
 		if (flag == 0) {
-
+			
 			Date currentDate = new Date();
 			Date enteredDate = userRegistration.getDateOfBirth();
+			
+			Calendar calender=Calendar.getInstance();
+			
+			 int currentYear = calender.get(Calendar.YEAR);
+			 
 
-			int currentYear = currentDate.getYear();
-			int enteredYear = enteredDate.getYear();
+			 calender.setTime(enteredDate);
+			
+			 int enteredYear= calender.get(calender.YEAR);
+			 
+		
+
+		
 
 			
 

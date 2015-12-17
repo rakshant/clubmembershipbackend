@@ -52,7 +52,7 @@
         <label class="col-sm-3 control-label">Name on Card</label>
         <div class="col-sm-9">
           <input type="text" class="form-control" 
-          name="nameOnCard" placeholder="Enter Name"
+          name="nameOnCard" placeholder="Enter Name"  ng-model-options="{ updateOn: 'blur' }"
 						ng-minlength="3" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="nameOnCard" required >
 			 <span style="color: red"
 						ng-show="myForm.nameOnCard.$dirty && myForm.nameOnCard.$invalid">
@@ -74,7 +74,7 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">Card Number</label>
         <div class="col-sm-9">
-          <input type="text" class="form-control" name="cardNumber"  ng-minlength="16"
+          <input type="text" class="form-control" name="cardNumber"  ng-minlength="16"  ng-model-options="{ updateOn: 'blur' }"
 						ng-maxlength="16" placeholder="Enter Card Number"
 						ng-pattern="/^\d{16}$/" ng-model="cardNumber" required>
 			<span style="color: red"ng-show="myForm.cardNumber.$dirty && myForm.cardNumber.$invalid">
@@ -139,7 +139,7 @@
         <label class="col-sm-3 control-label" >Card CVV</label>
         <div class="col-sm-9">
           <input type="text" class="form-control" placeholder="Security Code" name="cardVerificationValue"
-						 ng-minlength="3" ng-maxlength="3"
+						 ng-minlength="3" ng-maxlength="3"  ng-model-options="{ updateOn: 'blur' }"
 						placeholder="Enter Card Verification Value Details"
 						ng-pattern="/^\d{3}$/" ng-model="cardVerificationValue" required>
 				<span style="color: red"
