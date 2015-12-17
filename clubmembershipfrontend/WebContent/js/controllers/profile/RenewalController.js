@@ -38,7 +38,7 @@ app.controller('RenewalCtrl', function($scope, $state,$http,$rootScope,url,$uibM
 	$scope.checkTemporary=function(){
 		$http({
 			method : 'GET',
-			url : url+'users/membershipRenewal' + "/" + localStorage.getItem('userId')		
+			url : url+'users/renewal' + "/" + localStorage.getItem('userId')		
 		}).success(function(data) {
 			if(data.status=="failure"){
 				$uibModal.open({
