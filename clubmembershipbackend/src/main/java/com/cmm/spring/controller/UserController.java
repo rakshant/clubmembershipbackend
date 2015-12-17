@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -157,7 +158,7 @@ public class UserController {
 		return hosts;
 	}
 
-	@RequestMapping(value = "/facilities/{id}/{type}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+/*	@RequestMapping(value = "/facilities/{id}/{type}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String reserveFacilities(@PathVariable("id") String id,
 			@PathVariable("type") String type,
 			@RequestBody Facilities facilities) throws JsonProcessingException, InterruptedException {
@@ -176,7 +177,17 @@ public class UserController {
 				facilities.getCategory());
 
 	}
+*/
+	@RequestMapping(value = "/facilities/{id}/{type}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public String reserveFacilities(@PathVariable("id") String id,
+			@PathVariable("type") String type,
+			@RequestBody Map<String,List<Facilities>> facilities) throws JsonProcessingException, InterruptedException {
+		List<Facilities> facility = facilities.get("item");
+		registrationService.saveFacility(new UserRegistration(facility), id,type);
+		return new HashMap<String, String>().put("success","done");
+	}
 
+	
 	@RequestMapping(value = "/fee/{id}/{type}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int getFee(@PathVariable("id") String id,
 			@PathVariable("type") String type) throws JsonProcessingException {

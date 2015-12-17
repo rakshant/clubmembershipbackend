@@ -374,12 +374,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 		}
 	}
 
-	public String saveFacility(UserRegistration userRegistration, String id,String type)
+/*	public String saveFacility(UserRegistration userRegistration, String id,String type)
 			throws JsonProcessingException , InterruptedException{
-		
-		
-		
-		
 		
 		UserRegistration user = new UserRegistration();
 
@@ -401,22 +397,24 @@ public class RegistrationServiceImpl implements RegistrationService {
 		else{
 			if (user != null) {
 				
-				if(user.getFacilities()!=null){
-					System.out.println("not null------"+userRegistration.getFacilities());
-					System.out.println("---->>>>"+user.getFacilities());
-					
+				//if(user.getFacilities()!=null){
 					List<Facilities> list=user.getFacilities();
-					list.addAll(userRegistration.getFacilities());
-					user.setFacilities(list);
-					registrationRepository.save(user);		
-					Thread.sleep(200);
+					if(list==null){
+						System.out.println("in null------");
+						user.setFacilities(userRegistration.getFacilities());
+					}
+					else{					
+						System.out.println("not null");
+						list.addAll(userRegistration.getFacilities());
+						user.setFacilities(list);
+						System.out.println("Yooooooo---"+registrationRepository.save(user));	
+					}
 
-				}
+				//}
 				else{
 					System.out.println("in null------"+userRegistration.getFacilities());
 					user.setFacilities(userRegistration.getFacilities());
-					registrationRepository.save(user);	
-					Thread.sleep(200);
+					System.out.println("Yooooooo---"+registrationRepository.save(user));				
 				}
 
 				user.setFacilities(user.getFacilities());
@@ -427,9 +425,41 @@ public class RegistrationServiceImpl implements RegistrationService {
 				return null;
 			}
 		}
-				
-
-	}
+	}*/
+	public String saveFacility(UserRegistration userRegistration, String id,String type)
+			throws JsonProcessingException , InterruptedException{
+		UserRegistration user =null;
+		user = registrationRepository.findOne(id);
+		ObjectMapper objectMapper = new ObjectMapper();
+		if(type.equals("temporary")){
+			if (user != null) {
+				user.setFacilities(userRegistration.getFacilities());
+				registrationRepository.save(user);
+				String registerJson = objectMapper.writeValueAsString(user);
+				return registerJson;
+			} else {
+				return null;
+			}
+		}
+		else{
+					user = registrationRepository.findOne(id);
+					System.out.println("Inside Permanent");
+					List<Facilities> list=user.getFacilities();
+					System.out.println("Case is "+list);
+					if(list==null){
+						System.out.println("match me as per case i am null"+list);
+						user.setFacilities(userRegistration.getFacilities());
+						registrationRepository.save(user);
+					}else{					
+						System.out.println("match me as per case i am not null"+list);
+						list.addAll(userRegistration.getFacilities());
+						user.setFacilities(list);
+						registrationRepository.save(user);
+					}
+				String registerJson = objectMapper.writeValueAsString(user);
+				return registerJson;
+			} 
+		}
 
 	public List<Facilities> getBillsByUser(String id) {
 
