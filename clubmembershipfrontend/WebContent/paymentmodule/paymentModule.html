@@ -22,7 +22,7 @@
          <div class="col-md-2"></div>
 		<div class="col-md-2">
             
-		<img alt="" src="images/pay.png"></div>
+		<img alt="" src="pay.png"></div>
 		 <div class="col-md-6">
 		<h1 id="header">Payment Gateway</h1>
 		</div>
@@ -45,7 +45,7 @@
   <form class="form-horizontal" role="form"  ng-app="myApp"
 				ng-controller="validateCtrl" name="myForm" novalidate>
     <fieldset>
-      <legend>Enter card details</legend>
+      <legend>Enter Card Details</legend>
       
       <!--  Name on Card starts from here -->
       <div class="form-group">
@@ -82,7 +82,7 @@
 						 <span ng-show="myForm.cardNumber.$error.minlength"> Enter 16 digit Card number.</span>
 						  <span ng-show="myForm.cardNumber.$error.maxlength"> Entered Card
 							number is large than expected .</span>
-							 <span ng-show="myForm.cardNumber.$error.pattern">Only number allowed.</span>
+							 <span ng-show="myForm.cardNumber.$error.pattern">Enter digits only</span>
 							 </span>			
 						
 						
@@ -207,13 +207,12 @@
 <div class="col-md-4"></div>
 <div class="col-md-8">
 <nav class="navbar navbar-default" >
-
-<h6>Secured Gateway </h6>
+<div class="col-md-5"></div>
+<div class="col-md-7">
+<h4> ©2015 Payment Gateway </h4>
 </div>
-</nav>
-           
 
-	<!-- Footer starts from here-->
+</nav>
 
 </body>
 

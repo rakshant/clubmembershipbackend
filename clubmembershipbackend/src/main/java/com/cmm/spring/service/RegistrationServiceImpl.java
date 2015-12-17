@@ -421,20 +421,21 @@ public class RegistrationServiceImpl implements RegistrationService {
 		return facilityList;
 	}
 
-	public boolean renewal(String id) {
+	public HashMap<String, String> renewal(String id) {
 
-	
+		HashMap<String, String> response = new HashMap<String, String>();
+		
 		
 		if (isPermanent(id)) {
-			return true;
+			response.put("status", "success");
+			return response;
 		}
-		return false;
+		response.put("status", "failure");
+		return response;
 
 	}
 
 	private boolean isPermanent(String id) {
-
-	
 
 		UserRegistration user = registrationRepository.findOne(id);
 		Date currentDate = new Date();

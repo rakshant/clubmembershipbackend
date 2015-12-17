@@ -39,7 +39,7 @@ public interface RegistrationService {
 	UserRegistration payBill(String id, String type);
 	
 
-	boolean renewal(String id);
+	HashMap<String, String> renewal(String id);
 	boolean checkUsersList(String emailId);
 	
 	List<UserRegistration>  viewActiveUserList();

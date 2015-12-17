@@ -24,5 +24,11 @@ app.controller('PanelListCtrl', function($scope,$http, url) {
 		return localStorage.getItem(key).trim() === "Treasurer";			
 	}
 	
+	$scope.checkLink=function(){
+		if(localStorage.getItem(key).trim() === "User")
+			return true;
+		else
+			return false;
+	}
 });
 

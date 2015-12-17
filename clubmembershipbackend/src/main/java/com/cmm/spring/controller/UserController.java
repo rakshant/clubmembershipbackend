@@ -104,15 +104,7 @@ public class UserController {
 	public HashMap<String, String> membershipRenewal(
 			@PathVariable("id") String id) {
 		HashMap<String, String> response = new HashMap<String, String>();
-		if (registrationService.renewal(id)) {
-
-			response.put("status", "success");
-			return response;
-		} else {
-
-			response.put("status", "failure");
-			return response;
-		}
+		return registrationService.renewal(id);
 
 	}
 
@@ -182,7 +174,11 @@ public class UserController {
 	public String reserveFacilities(@PathVariable("id") String id,
 			@PathVariable("type") String type,
 			@RequestBody Facilities facilities) throws JsonProcessingException {
+		
+		System.out.println("----@@@@@------"+facilities.getCategory()+"  "+ facilities
+				.getType()+"  "+ facilities.getPrice());
 
+		
 		List<Facilities> facility = new ArrayList<Facilities>();
 		facility.add(new Facilities(facilities.getCategory(), facilities
 				.getType(), facilities.getPrice()));
