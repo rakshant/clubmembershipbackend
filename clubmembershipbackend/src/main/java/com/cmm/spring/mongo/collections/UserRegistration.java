@@ -60,7 +60,7 @@ public class UserRegistration {
 
 	private int totalAmount;
 	
-	private byte[] bytes=null;
+	private byte[] imageBytes=null;
 	List<Facilities> facilities;
 	
 Set<AddOns> addOns;
@@ -83,15 +83,15 @@ public void setAddOns(Set<AddOns> addOns) {
 	//Constructor for file image
 	public UserRegistration(byte[] bytes)
 	{
-		this.bytes=bytes;
+		this.imageBytes=bytes;
 	}
 		
 	public byte[] getBytes() {
-		return bytes;
+		return imageBytes;
 	}
 
 	public void setBytes(byte[] bytes) {
-		this.bytes = bytes;
+		this.imageBytes = bytes;
 	}
 
 	public UserRegistration(String firstName, String lastName, String emailId,

@@ -28,7 +28,7 @@ public interface RegistrationService {
 
 	String update(String id, UserRegistration userRegistration) throws JsonProcessingException;
 	
-	public  HashMap<String,List<HostingCount>> aggregationOfType() throws UnknownHostException;
+	public  HashMap<String,List<HostingCount>> aggregationOfClubDetails() throws UnknownHostException;
 
 	UserRegistration viewDetails(String id);
 
