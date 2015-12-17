@@ -2,6 +2,7 @@ package com.cmm.spring.entity;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,6 +26,28 @@ public class Registration {
 	private int paymentDone = 0;
 
 	private List<Facilities> facilities;
+	
+	Set<AddOns> addOns;
+	
+	
+	
+	
+	
+public Registration(){}
+
+
+	public Registration(Set<AddOns> addOns) {
+		super();
+		this.addOns = addOns;
+	}
+
+	public Set<AddOns> getAddOns() {
+		return addOns;
+	}
+
+	public void setAddOns(Set<AddOns> addOns) {
+		this.addOns = addOns;
+	}
 
 	public String getFirstName() {
 		return firstName;

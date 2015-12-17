@@ -2,12 +2,14 @@ package com.cmm.spring.mongo.collections;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import com.cmm.spring.entity.AddOns;
 import com.cmm.spring.entity.Facilities;
 
 
@@ -60,6 +62,19 @@ public class UserRegistration {
 	
 	private byte[] bytes=null;
 	List<Facilities> facilities;
+	
+Set<AddOns> addOns;
+
+
+
+
+	public Set<AddOns> getAddOns() {
+	return addOns;
+}
+
+public void setAddOns(Set<AddOns> addOns) {
+	this.addOns = addOns;
+}
 
 	public UserRegistration() {
 		
@@ -109,6 +124,13 @@ public class UserRegistration {
 	}
 	
 	
+	
+	
+
+	public UserRegistration(Set<AddOns> addOns) {
+		super();
+		this.addOns = addOns;
+	}
 
 	public UserRegistration(List<Facilities> facilities) {
 		super();

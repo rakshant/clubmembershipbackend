@@ -6,8 +6,10 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cmm.spring.entity.AddOns;
 import com.cmm.spring.entity.Facilities;
 import com.cmm.spring.entity.Fees;
 import com.cmm.spring.entity.HostingCount;
@@ -230,5 +233,23 @@ public class UserController {
 		}
 
 	}
+	
+	@RequestMapping(value = "addons/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String addOns(@PathVariable("id") String id,@RequestBody AddOns addons)
+			throws JsonProcessingException {
+		
+		Set<AddOns> addOnsList=new HashSet<AddOns>();
+		
+		addOnsList.add(new AddOns(addons.getName(),addons.getDob(),addons.getRelation()));
+		
+		registrationService.updateAddOns(new UserRegistration(addOnsList), id);
+		
+		return new HashMap<String, String>().put("success",
+				addons.getRelation());
+
+	}
+
+	
+	
 
 }

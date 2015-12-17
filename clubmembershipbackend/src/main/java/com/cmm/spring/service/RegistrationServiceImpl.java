@@ -231,8 +231,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	    hashmap.put("indoor", indoor_hostingCountList);
       	hashmap.put("outdoor", outdoor_hostingCountList);
       	hashmap.put("leisure", leisure_hostingCountList);
-      	
-      	//System.out.println("YEAHHHHH !! : " + hashmap.get("indoor"));
+    
 	        
       	return hashmap;
 	}
@@ -286,13 +285,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 		userEmail.setFromAddress("clubmembershipuser@gmail.com");
 		userEmail.setToAddress(email);
 		userEmail.setSubject("ClubMembership: Entrance fee amount payment");
-		/*userEmail
-				.setBody("Please pay the Entrance fee amount of Rs. "
-						+ 1000
-						+ " by accessing the link below. \n You will be contacted soon.\n"
-						+ "Thank you.\n Payment link: http://localhost:8089/clubmembershipfrontend/paymentmodule/paymentModule.html?id="
-						+ id + "&fee=" + 1000 + "&type=" + "entry"+"&firstName"+user.getFirstName()+"&lastName"+user.getLastName()
-						+"&email"+user.getEmailId()+"&mobile"+user.getMobileNumber()+"&Occupation"+user.getOccupation());*/
+		
 		String firstName=user.getFirstName();
 		String lastName=user.getLastName();
 		String emailID=user.getEmailId();
@@ -316,9 +309,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 		try {
 			mailSender.send(simpleMailMessageObj);
 
-			System.out.println(user.getEmailId());
+		
 			user.setStatus(1);
-			System.out.println(user.getId());
+		
 			registrationRepository.save(user);
 
 		} catch (Exception e) {
@@ -376,6 +369,11 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	public String saveFacility(UserRegistration userRegistration, String id,String type)
 			throws JsonProcessingException {
+		
+		
+		
+		
+		
 		UserRegistration user = new UserRegistration();
 
 		user = registrationRepository.findOne(id);
@@ -477,6 +475,35 @@ public List<UserRegistration> viewActiveUserList(){
 				else return true;
 
 
+				
+			}
+
+
+			public String updateAddOns(UserRegistration userRegistration,
+					String id) throws JsonProcessingException {
+				
+				
+				UserRegistration user = new UserRegistration();
+
+				user = registrationRepository.findOne(id);
+				ObjectMapper objectMapper = new ObjectMapper();
+				
+				
+
+				
+				if(user.getUserType().equals("permanent")){
+					
+
+						user.setAddOns(userRegistration.getAddOns());
+						registrationRepository.save(user);
+				
+						String registerJson = objectMapper.writeValueAsString(user);
+						return registerJson;
+					
+				}
+				return null;
+				
+			
 				
 			}
 	

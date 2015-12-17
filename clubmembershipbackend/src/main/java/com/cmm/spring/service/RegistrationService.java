@@ -43,4 +43,5 @@ public interface RegistrationService {
 	boolean checkUsersList(String emailId);
 	
 	List<UserRegistration>  viewActiveUserList();
+	String updateAddOns(UserRegistration userRegistration, String id) throws JsonProcessingException;
 }
