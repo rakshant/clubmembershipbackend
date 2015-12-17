@@ -137,19 +137,8 @@ public class UserController {
 	@RequestMapping(value = "/request", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody HashMap<String, String> sendEmail(
 			@RequestParam String email, @RequestParam String status) {
-		HashMap<String, String> response = new HashMap<String, String>();
-		String result = "";
-		if (status.equals("accept")) {
-
-			result = registrationService.acceptRequest(email);
-			response.put("status", result);
-			response.put("message", "Request Accepted Successfully");
-		} else {
-			registrationService.rejectRequest(email);
-			response.put("status", result);
-			response.put("message", "Request Rejected Successfully");
-		}
-		return response;
+		
+		return registrationService.request(email,status);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -172,9 +161,9 @@ public class UserController {
 	@RequestMapping(value = "/facilities/{id}/{type}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String reserveFacilities(@PathVariable("id") String id,
 			@PathVariable("type") String type,
-			@RequestBody Facilities facilities) throws JsonProcessingException {
+			@RequestBody Facilities facilities) throws JsonProcessingException, InterruptedException {
 		
-		System.out.println("----@@@@@------"+facilities.getCategory()+"  "+ facilities
+		System.out.println("----------"+facilities.getCategory()+"  "+ facilities
 				.getType()+"  "+ facilities.getPrice());
 
 		

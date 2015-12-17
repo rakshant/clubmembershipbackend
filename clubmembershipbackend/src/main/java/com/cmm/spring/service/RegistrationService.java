@@ -22,7 +22,7 @@ public interface RegistrationService {
 	
 	String register(UserRegistration userRegistration) throws JsonProcessingException;
 
-	String saveFacility(UserRegistration userRegistration, String id,String type) throws JsonProcessingException;
+	String saveFacility(UserRegistration userRegistration, String id,String type) throws JsonProcessingException, InterruptedException;
 
 	List<UserRegistration> pendingRequest(String id);
 
@@ -47,4 +47,5 @@ public interface RegistrationService {
 	List<UserRegistration>  viewActiveUserList();
 	String updateAddOns(UserRegistration userRegistration, String id) throws JsonProcessingException;
 	Set<AddOns> viewAddOnsDetails(String id);
+	HashMap<String, String> request(String email,String status);
 }

@@ -56,7 +56,9 @@ app.controller('validateCtrl', function($scope,$http) {
 					}
 				});						
 			}					
-			window.open('http://localhost:8089/clubmembershipfrontend/index.html#/profile/viewDetails','_self');			
+			
+			//window.open(' http://localhost:8089/clubmembershipfrontend/paymentmodule/success.html','_self');
+			//window.open('http://localhost:8089/clubmembershipfrontend/index.html#/profile/viewDetails','_self');			
 		}
 
 		else
