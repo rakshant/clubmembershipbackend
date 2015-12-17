@@ -93,6 +93,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 			if (currentDate.compareTo(enteredDate) != -1) {
 
 				if (currentYear - enteredYear > 18) {
+					
+					userRegistration.setPreviousRenewalTime(userRegistration.getRegisteredDate().getTime());
 					registrationRepository.insert(userRegistration);
 					
 					return "success";
@@ -547,7 +549,11 @@ public List<UserRegistration> viewActiveUserList(){
 			}
 
 
-			public String checkRenewal(String id) {
+			public HashMap<String, String> checkRenewal(String id) {
+				
+
+				HashMap<String, String> response = new HashMap<String, String>();
+				
 				
 				
 				UserRegistration user=registrationRepository.findOne(id);
@@ -558,20 +564,32 @@ public List<UserRegistration> viewActiveUserList(){
 				long currentMinutes = currentDate.getTime();
 				
 				
+				System.out.println("currentMinutes: "+currentMinutes);
 				
-				if(user.getRenewal()==0 && (currentMinutes-previousRenewalTime)>180000 ){
+				System.out.println("previoius: "+previousRenewalTime);
+				
+				System.out.println(currentMinutes-previousRenewalTime);
+				
+				
+				if((currentMinutes-previousRenewalTime)>180000 ){
 					
 					user.setRenewal(2);
+					
+					user.setPreviousRenewalTime(currentMinutes);
+					
 					registrationRepository.save(user);
 					
-					return "success";
+					
+					response.put("status", "success");
+					return response;
 				
 				}
 				
 				
 				
 				
-				return "failure";
+				response.put("status", "failure");
+				return response;
 			}
 
 

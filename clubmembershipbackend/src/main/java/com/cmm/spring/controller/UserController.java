@@ -240,8 +240,8 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping(value = "/renewal/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody  String checkrenewal(
+	@RequestMapping(value = "/renewal/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody  HashMap<String, String> checkrenewal(
 			@PathVariable("id") String id) {
 
 		return registrationService.checkRenewal(id);
