@@ -20,14 +20,12 @@
 				
 				
 				
-				<tr ng-repeat="facility in viewBillingDetails" class="facility">
-				
-				
-				<td>{{ facility.category }}</td>
-				<td>{{ facility.type }}</td>
-				<td>${{ facility.price }}</td>
-			
-			</tr>
+				<th>Facilities</th>
+
+				<tr ng-repeat="facility in facilityDetails" class="facility">
+					<td>{{ $index+1}}.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ facility.type }}</td>
+
+				</tr>
 				
 				
 				

@@ -5,11 +5,11 @@
 	
 
 	
-	<form class="panel-body" ng-controller="AddOnsCtrl" name="myRegistration"  novalidate>
+	<form class="panel-body" ng-controller="AddOnsCtrl" name="myRegistration"  ng-submit="add()"  novalidate>
 		<table class="table table-hover">
 
 			<tbody>
-				<tr>
+				 <tr>
 					<td><label class="col-sm-5">First Name : </label></td>
 					<td><input type="text" class="form-control" id="firstName"
 						ng-model="name" placeholder="First Name" required></td>
@@ -62,7 +62,7 @@
 		<!-- Button (Double) -->
 		<div class="form-group" style="margin-top: 10px;">
 			<div class="col-md-8">
-				<button id="button1id" ng-click="add()" name="button1id" type="reset"
+				<button id="button1id"  name="button1id" type="reset"
 					class="btn btn-success" ng-disabled="myRegistration.name.$pristine||myRegistration.dob.$pristine">Save</button>
 				<button type="reset" id="button2id" name="button2id"
 					class="btn btn-danger">Cancel</button>

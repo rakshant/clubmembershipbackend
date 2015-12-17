@@ -44,7 +44,7 @@ app.controller('RenewalCtrl', function($scope, $state,$http,$rootScope,url,$uibM
 				$uibModal.open({
 					templateUrl : 'views/modal.html',
 					controller : function($scope, $uibModalInstance) {
-						$scope.message = "You tenure as temporary member is still left.. enjoy!!!"
+						$scope.message = "You tenure as temporary member is still left."
 						$scope.ok = function() {
 							$uibModalInstance.close();
 						}

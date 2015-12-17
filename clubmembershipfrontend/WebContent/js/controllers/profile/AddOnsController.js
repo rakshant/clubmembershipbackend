@@ -24,6 +24,8 @@ app.controller('AddOnsCtrl', function($scope, $state,$http,$rootScope,url,$uibMo
 				'relation' :relation
 			}).success(function(data) {
 				
+				  $scope.showTheForm = false;
+				
 
 					$uibModal.open({
 						templateUrl : 'views/modal.html',
@@ -31,6 +33,9 @@ app.controller('AddOnsCtrl', function($scope, $state,$http,$rootScope,url,$uibMo
 							$scope.message = "Member Added in your account"
 
 							$scope.ok = function() {
+								
+								
+								
 								$uibModalInstance.close();
 							}
 						}
