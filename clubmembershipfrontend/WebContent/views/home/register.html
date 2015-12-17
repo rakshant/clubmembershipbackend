@@ -83,12 +83,12 @@
 					<label class="col-md-3 control-label">DOB<span style="color:red">*</span></label>
 					<div class="col-md-9">
 						<input type="date" class="form-control" ng-model="date"
-							name="date" ng-model-options="{ updateOn: 'blur' }" min="1956-01-01" max="{{today}}" ng-model="date"required/>
+							name="date" ng-model-options="{ updateOn: 'blur' }" min="1956-01-01" max="1997-01-01" ng-model="date"required/>
 							<span style="color: red" ng-show="myRegistration.date.$dirty && myRegistration.date.$invalid">
                 
     <span ng-show="myRegistration.date.$error.required">DOB is required</span>
     <span ng-show="myRegistration.date.$error.min">Invalid DOB</span>
-     <span ng-show="myRegistration.date.$error.max">DOB cannot be more than today's date</span>
+     <span ng-show="myRegistration.date.$error.max">You have to be 18 years or Older to join the club</span>
 					</span>
 					</div>
 				</div>
