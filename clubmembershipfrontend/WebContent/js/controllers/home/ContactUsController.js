@@ -6,9 +6,12 @@ app.controller('contactUsCtrl', function($scope, $http, url, $state, $uibModal) 
 		$uibModal.open({
 			templateUrl : 'views/modal.html',
 			controller : function($scope, $uibModalInstance) {
-				$scope.message =
-						"Sports Club Dempo House, Near Fun Park,Baner, Pune,(MH), India.403001"+
-						"help.desk@sportsclub.com"
+				
+				
+				var msg="Address: Sports Club Dempo House, Near Fun Park,Baner, Pune,(MH), India.403001" +
+						"emailId: help.desk@sportsclub.com"
+				$scope.message = msg
+						
 	
 				$scope.ok = function() {
 					$uibModalInstance.close();

@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -19,6 +20,7 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
+import com.cmm.spring.entity.AddOns;
 import com.cmm.spring.entity.Facilities;
 import com.cmm.spring.entity.HostingCount;
 import com.cmm.spring.mongo.collections.UserEmail;
@@ -503,6 +505,16 @@ public List<UserRegistration> viewActiveUserList(){
 				
 			
 				
+			}
+
+
+			public Set<AddOns> viewAddOnsDetails(String id) {
+				
+				UserRegistration user=registrationRepository.findOne(id);
+				
+				Set<AddOns> addOnsList=user.getAddOns();
+			
+				return addOnsList;
 			}
 	
 	

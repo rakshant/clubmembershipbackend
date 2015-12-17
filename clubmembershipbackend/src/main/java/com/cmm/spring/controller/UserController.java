@@ -248,6 +248,12 @@ public class UserController {
 				addons.getRelation());
 
 	}
+	
+	@RequestMapping(value = "/addons/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody Set<AddOns> getAddOns(@PathVariable("id") String id) {
+		Set<AddOns> addOnsSet = registrationService.viewAddOnsDetails(id);
+		return addOnsSet;
+	}
 
 	
 	
