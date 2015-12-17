@@ -30,8 +30,11 @@ import com.cmm.spring.entity.Fees;
 import com.cmm.spring.entity.HostingCount;
 import com.cmm.spring.entity.Login;
 import com.cmm.spring.entity.Registration;
+import com.cmm.spring.entity.TreasurerBudget;
 import com.cmm.spring.mongo.collections.UserLogin;
 import com.cmm.spring.mongo.collections.UserRegistration;
+import com.cmm.spring.mongo.collections.UserTreasurerBudget;
+import com.cmm.spring.service.BudgetService;
 import com.cmm.spring.service.EmailService;
 import com.cmm.spring.service.LoginService;
 import com.cmm.spring.service.RegistrationService;
@@ -48,6 +51,9 @@ public class UserController {
 
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private BudgetService budgetService;
 
 	@Autowired
 	private EmailService emailService;
@@ -246,7 +252,15 @@ public class UserController {
 
 		return registrationService.checkRenewal(id);
 	}
-
+	
+	
+	@RequestMapping(value = "/budget", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody UserTreasurerBudget allocateBudget(
+			@RequestBody TreasurerBudget budget)
+			throws JsonProcessingException {
+		UserTreasurerBudget result = budgetService.allocateBudget(new UserTreasurerBudget(budget.getIndoor(),budget.getOutdoor(),budget.getLeisure()));
+		return result;
+	}
 	
 	
 

@@ -2,7 +2,7 @@
 	<div class="panel-heading">
 		<h3 class="panel-title">Allocate Budget for Pepole's Club</h3>
 	</div>
-	<div class="panel-body" ng-controller="viewCtrl" name="treasurer">
+	<form class="panel-body" ng-controller="budgetCtrl" name="treasurer">
 		<table class="table ">
 
 			<tbody>
@@ -17,15 +17,28 @@
 						<span ng-show="treasurer.indoor.$error.pattern">Only digits are allowed </span>
 						</span>
 					</td>
-					<td>  <input type="number"  ng-pattern="/[0-9]/"class="form-control" id="outdoor"></td>
-					<td>   <input type="number" ng-pattern="/[0-9]/" class="form-control" id="leisure"></td>
+					<td>  <input type="number"  ng-pattern="/[0-9]/"class="form-control" id="outdoor" ng-model="outdoor"></td>
+					<td>   <input type="number" ng-pattern="/[0-9]/" class="form-control" id="leisure" ng-model="leisure"></td>
 				</tr>
 				<tr>
-					<td>  <button id="button2id"  name="button2id" ng-click="cancle()" class="btn btn-success">Allocate</button></td>
-					<td> <button id="button2id"  name="button2id"  ng-click="cancle()" class="btn btn-success">Allocate</button></td>
-					<td> <button id="button2id"  name="button2id" ng-click="cancle()" class="btn btn-success">Allocate</button></td>
+					<td>  <button id="button2id"  type="reset" "button2id" ng-click="allocate()" class="btn btn-success">Allocate</button></td>
+					
 				</tr>
+				
+				
+				
+			  <tr>
+					<td> Indoor Bugdet Allocated: {{ budgetDetails.indoor }} </td>
+					<td> Outdoor Bugdet Allocated: {{ budgetDetails.outdoor }} </td>
+					<td> Leisure Bugdet Allocated: {{ budgetDetails.leisure }} </td>
+					
+								
+				</tr>
+				
+				<tr> <td style="font-weight: bold;">  Total Budget Allocated: {{ budgetDetails.indoor + budgetDetails.outdoor + budgetDetails.leisure }} </td>	</tr>
+				
+				
 				</tbody>
 				</table>
-	</div>
+	</form>
 </div>
