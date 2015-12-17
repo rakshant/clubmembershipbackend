@@ -57,7 +57,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 			throws JsonProcessingException {
 
 		int flag = 0;
-		ObjectMapper mapper = new ObjectMapper();
+	
 
 		Query query = new Query();
 
@@ -86,10 +86,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 			if (currentDate.compareTo(enteredDate) != -1) {
 
 				if (currentYear - enteredYear > 16) {
-
-					UserRegistration user = registrationRepository
-							.insert(userRegistration);
-					String registerJson = mapper.writeValueAsString(user);
+					registrationRepository.insert(userRegistration);
+					
 					return "success";
 				}
 			}
@@ -426,7 +424,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	public boolean renewal(String id) {
 
 	
-		UserRegistration user = registrationRepository.findOne(id);
+		
 		if (isPermanent(id)) {
 			return true;
 		}

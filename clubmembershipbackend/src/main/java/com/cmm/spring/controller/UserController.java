@@ -235,7 +235,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "addons/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String addOns(@PathVariable("id") String id,@RequestBody AddOns addons)
+	public @ResponseBody String updateAddOns(@PathVariable("id") String id,@RequestBody AddOns addons)
 			throws JsonProcessingException {
 		
 		Set<AddOns> addOnsList=new HashSet<AddOns>();

@@ -3,8 +3,9 @@ var app=angular.module("home");
 app.controller('AddOnsCtrl', function($scope, $state,$http,$rootScope,url,$uibModal) {	
 	
 	
-	
 	$scope.add = function() {
+		
+
 		
 			if($scope.tempOption==="spouse"){
 				var relation='spouse'

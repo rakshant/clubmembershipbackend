@@ -12,7 +12,7 @@
 				<div class="form-group">
 					<label class="col-md-3 control-label" >Email<span style="color:red">*</span></label>
 					<div class="col-md-9">
-						<input type="text" class="form-control" ng-model="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
+						<input type="text" class="form-control" ng-model="email"  ng-model-options="{ updateOn: 'blur' }" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
 							name="email" placeholder="Email Address" ng-model="email" ng-change="check()" required>
 						
 					<span style="color:red"ng-show="myRegistration.email.$dirty && myRegistration.email.$invalid">
@@ -28,7 +28,7 @@
 				<div class="form-group">
 					<label class="col-md-3 control-label" >First Name<span style="color:red">*</span></label>
 					<div class="col-md-9">
-						<input type="text" class="form-control" ng-model="firstName"  ng-pattern="/^[a-zA-Z\s]*$/"
+						<input type="text" class="form-control" ng-model="firstName"  ng-model-options="{ updateOn: 'blur' }" ng-pattern="/^[a-zA-Z\s]*$/"
 							name="firstName" placeholder="First Name" ng-model="firstName"  ng-minlength="3" ng-maxlength="15" required">
 							<span style="color: red"ng-show="myRegistration.firstName.$dirty && myRegistration.firstName.$invalid">
 				
@@ -47,7 +47,7 @@
 					<label class="col-md-3 control-label">Last Name<span style="color:red">*</span></label>
 					<div class="col-md-9">
 						<input type="text" class="form-control" ng-model="lastName"  ng-pattern="/^[a-zA-Z\s]*$/"
-							name="lastName" placeholder="Last Name" ng-model="lastName"required>
+							name="lastName" placeholder="Last Name" ng-model="lastName"  ng-model-options="{ updateOn: 'blur' }" required>
 							<span style="color: red"ng-show="myRegistration.lastName.$dirty && myRegistration.lastName.$invalid">
                  <span ng-show="myRegistration.lastName.$error.required">Last Name required.</span> 
 				<span ng-show="myRegistration.lastName.$error.pattern"> Only alphabets are allowed </span>
@@ -57,20 +57,20 @@
 				<div class="form-group">
 					<label class="col-md-3 control-label">Mobile No.<span style="color:red">*</span></label>
 					<div class="col-md-9">
-						<input type="number" class="form-control" ng-model="mobileNo" ng-pattern="/[0-9]/" ng-maxlength="10" ng-minlength="10"
+						<input type="number" class="form-control" ng-model="mobileNo"  ng-model-options="{ updateOn: 'blur' }" ng-pattern="/[0-9]/" ng-maxlength="10" ng-minlength="10"
 							name="mobileNo" placeholder="Mobile Number" ng-model="mobileNo"required>
 							<span style="color: red"ng-show="myRegistration.mobileNo.$dirty && myRegistration.mobileNo.$invalid">
                  <span ng-show="myRegistration.mobileNo.$error.required">Mobile Number required.</span> 
 				<span ng-show="myRegistration.mobileNo.$error.pattern">Only digits are allowed </span>
 				<span ng-show="myRegistration.mobileNo.$error.maxlength">Only 10 digit Mobile Number allowed. </span>
-				<span ng-show="myRegistration.mobileNo.$error.minlength">Only 10 digit Mobile Number allowed. </span>
+				<span ng-show="myRegistration.mobileNo.$error.minlength">Minimum 10 digit Mobile Number required </span>
 					</span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-md-3 control-label">Occupation<span style="color:red">*</span></label>
 					<div class="col-md-9">
-						<input type="text" class="form-control" ng-model="occupation" ng-pattern="/^[a-zA-Z\s]*$/"
+						<input type="text" class="form-control"  ng-model-options="{ updateOn: 'blur' }" ng-model="occupation" ng-pattern="/^[a-zA-Z\s]*$/"
 							name="occupation" placeholder="occupation" ng-model="occupation"required>
 							<span style="color: red"ng-show="myRegistration.occupation.$dirty && myRegistration.occupation.$invalid">
                  <span ng-show="myRegistration.occupation.$error.required">Occupation required.</span> 
@@ -83,10 +83,12 @@
 					<label class="col-md-3 control-label">DOB<span style="color:red">*</span></label>
 					<div class="col-md-9">
 						<input type="date" class="form-control" ng-model="date"
-							name="date" ng-model="date"required/>
-							<span style="color: red"ng-show="myRegistration.date.$dirty && myRegistration.date.$invalid">
-                 <span ng-show="myRegistration.date.$error.required"> Date required.</span> 
-				<span ng-show="myRegistration.date.$error.pattern">Follow mm/dd/yyyy </span>
+							name="date" ng-model-options="{ updateOn: 'blur' }" min="1956-01-01" max="{{today}}" ng-model="date"required/>
+							<span style="color: red" ng-show="myRegistration.date.$dirty && myRegistration.date.$invalid">
+                
+    <span ng-show="myRegistration.date.$error.required">DOB is required</span>
+    <span ng-show="myRegistration.date.$error.min">Invalid DOB</span>
+     <span ng-show="myRegistration.date.$error.max">DOB cannot be more than today's date</span>
 					</span>
 					</div>
 				</div>

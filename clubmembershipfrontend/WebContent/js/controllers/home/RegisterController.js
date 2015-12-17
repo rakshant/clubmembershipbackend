@@ -1,6 +1,10 @@
 var app=angular.module("home");
 
 app.controller('RegisterationCtrl', function($scope, $http,url,$uibModal) {
+	
+	var today=new Date();
+	  $scope.today = today.toISOString();
+	
 	$scope.submit = function() {
 		$http({
 			method : 'post',
