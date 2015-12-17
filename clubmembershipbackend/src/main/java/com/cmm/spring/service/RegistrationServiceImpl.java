@@ -90,15 +90,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 			
 			 int enteredYear= calender.get(calender.YEAR);
 			 
-		
-
-		
-
-			
-
 			if (currentDate.compareTo(enteredDate) != -1) {
 
-				if (currentYear - enteredYear > 16) {
+				if (currentYear - enteredYear > 18) {
 					registrationRepository.insert(userRegistration);
 					
 					return "success";
