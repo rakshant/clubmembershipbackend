@@ -18,32 +18,32 @@ static WebResource webResource2;
 	public static void setup()
 	{
 		Client client=Client.create();
-		webResource1=client.resource("http://localhost:8080/update/56686cacf236fe84be84b6df");
-		webResource2=client.resource("http://localhost:8080/update/46686cacf236fe84be84b6df"); //invalid object id
+		webResource1=client.resource("http://localhost:8080/users/5672a0d9f236e51474eec8bf");
+		webResource2=client.resource("http://localhost:8080/users/4672a0d9f236e51474eec8bf"); //invalid object id
 		
 	}
 	
 	@Test
 	public void testUpdateSuccess()
 	{
-		String registerData = "{\"emailId\":\"a@gmail.com\",\"mobileNumber\":999999999,\"occupation\":\"Devloper\",\"password\":9999}";
+		String registerData = "{\"mobileNumber\":999999999,\"occupation\":\"Devloper\",\"password\":9999}";
 		
-		ClientResponse response = webResource1.type("application/json").post(ClientResponse.class,registerData);
-		
+		ClientResponse response = webResource1.type("application/json").put(ClientResponse.class,registerData);
+		/*System.out.println(response);
 		String output = response.getEntity(String.class);
-		
-		assertNotEquals("{\"id\":null,\"firstName\":\"shruti\"\",\"lastName\":\"kumar Agrawal\",\"emailId\":\"a@gmail.com\",\"dateOfBirth\":\"1993-11-12\",\"mobileNumber\":999999999,\"occupation\":\"Devloper\",\"registeredDate\":\"1993-11-12\",\"password\":\"9999\",\"status\":0,\"userType\":\"New Member\"}",output);
+		System.out.println(output);*/
+		assertEquals(200,response.getStatus());
 	}
 	
 	@Test
 	public void testUpdatefailed()
 	{
 		
-		String registerData = "{\"emailId\":\"ab@gmail.com\",\"mobileNumber\":999999999,\"occupation\":\"Devloper\",\"password\":9999}";
+		String registerData = "{\"mobileNumber\":999999999,\"occupation\":\"Devloper\",\"password\":9999}";
 		
-		ClientResponse response = webResource2.type("application/json").post(ClientResponse.class,registerData);
+		ClientResponse response = webResource2.type("application/json").put(ClientResponse.class,registerData);
 		
-		String output = response.getEntity(String.class);
+		String output = response.getEntity(String.class);		
 		
 		assertEquals("",output);
 	}

@@ -39,6 +39,10 @@ app.controller('MyController', function($scope, $http, $state, url) {
 			       value: data.indoor[3].price
 			   }, 
 			   {
+				   label:data.indoor[4].type,
+			       value: data.indoor[4].price
+			   },
+			   {
 				   label:data.outdoor[0].type,
 			       value: data.outdoor[0].price
 			   }, 
@@ -69,6 +73,10 @@ app.controller('MyController', function($scope, $http, $state, url) {
 			   {
 				   label:data.leisure[3].type,
 			       value: data.leisure[3].price
+			   },
+			   {
+				   label:data.leisure[4].type,
+			       value: data.leisure[4].price
 			   }]};
 	
 	  $scope.dataSource=$scope.myDataSource;

@@ -1,37 +1,43 @@
 package com.clubmembershipbackend;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
 public class LogoutTest {
-	static Client client;
-	WebResource webResource;	
+	public static WebResource webResource1,webResource2;	
 	
 @BeforeClass
 	public static void setup() {
-	client = Client.create();
+	Client client = Client.create();
+	webResource1 = client.resource("http://localhost:8080/users/logout/5672d9baf2365ac78e23821f");
+	webResource2 = client.resource("http://localhost:8080/users/logout/46723b9bf236d256da8969ed");
 }
 
 @Test
 public void testLogout() {
-	webResource = client
-			.resource("http://localhost:8080/users/logout?5667014c3113e180ef341a1c");
-	String request = webResource.get(String.class);
-	assertNotNull(request);
+	
+	ClientResponse response = webResource1.type("application/json").get(ClientResponse.class);
+	
+	String output = response.getEntity(String.class);
+	
+	System.out.println(output);
+	assertEquals("{\"id\":\"5672d9baf2365ac78e23821f\",\"emailId\":\"onkar@gmail.com\",\"password\":\"9088\"}",output);
+	
 }
 
 @Test
 public void testLogoutWithoutLoggedIn() {
-	webResource = client
-			.resource("http://localhost:8080/users/logout?id=5667014c3113e180ef341a1c");
-	String request = webResource.get(String.class);
-	Assert.assertEquals("",request);
+	ClientResponse response = webResource2.type("application/json").get(ClientResponse.class);
+	
+	String request = response.getEntity(String.class);	
+	
+	assertEquals("",request);
 } 
 
 	
