@@ -22,6 +22,18 @@ app.controller('viewCtrl', function($scope, $http, $state, url) {
 		
 
 	});
+	
+	$scope.allocate=function()
+	{
+		localStorage.setItem('indoorBudget', $scope.indoor);
+		localStorage.setItem('outdoorBudget', $scope.outdoor);
+		localStorage.setItem('leisureBudget', $scope.leisure);
+	}
+	
+	
+	$scope.cancle=function(){
+		$state.go('profile.viewDetails');
+	}
 	//This is for adding profile pic
 	$scope.profile=function(){
 		
@@ -45,7 +57,8 @@ app.controller('viewCtrl', function($scope, $http, $state, url) {
 			'occupation' : $scope.occupation,
 			'password' : $scope.password,
 		}).success(function(data) {
-
+			$scope.profile();
+			$state.go('profile.viewDetails');
 		});
 	}
 });

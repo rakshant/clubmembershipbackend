@@ -247,7 +247,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 		user = registrationRepository.findOne(id);
 
 		if (user != null) {
-			user.setBytes(file.getBytes());
+			user.setBytes(file.getBytes(),true);
 			registrationRepository.save(user);
 			return user;
 		} else

@@ -26,6 +26,7 @@ app.controller('LoginCtrl', function($scope, $http, $state, $rootScope, url,$uib
 			} else {
 				localStorage.setItem('userType', data.userType);
 				localStorage.setItem('userId', data.id);
+				localStorage.setItem('imageStatus',data.imageStatus);
 				$state.go('profile.viewDetails');
 			}
 		});

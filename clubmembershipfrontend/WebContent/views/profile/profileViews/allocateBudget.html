@@ -1,6 +1,6 @@
 <div class="panel  panel-info">
 	<div class="panel-heading">
-		<h3 class="panel-title">Update Personal Details</h3>
+		<h3 class="panel-title">Allocate Budget for Pepole's Club</h3>
 	</div>
 	<div class="panel-body" ng-controller="viewCtrl" name="treasurer">
 		<table class="table ">
@@ -12,18 +12,20 @@
 				<td> <label class="col-sm-5" >Leisure</label></td>
 			</tr>
 				<tr>
-					<td> <input type="text" ng-pattern="/[0-9]/" class="form-control" id="indoor" ng-model="indoor">
+					<td> <input type="number" ng-pattern="/[0-9]/" class="form-control" id="indoor" ng-model="indoor">
 						<span style="color: red" ng-show="treasurer.indoor.$dirty && treasurer.indoor.$invalid">
 						<span ng-show="treasurer.indoor.$error.pattern">Only digits are allowed </span>
 						</span>
 					</td>
-					<td>  <input type="text"  ng-pattern="/[0-9]/"class="form-control" id="outdoor"></td>
-					<td>   <input type="text" ng-pattern="/[0-9]/" class="form-control" id="leisure"></td>
+					<td>  <input type="number"  ng-pattern="/[0-9]/"class="form-control" id="outdoor"></td>
+					<td>   <input type="number" ng-pattern="/[0-9]/" class="form-control" id="leisure"></td>
 				</tr>
 				<tr>
-					<td>  <button id="button2id"  name="button2id" class="btn btn-success">Allocate</button></td>
-					<td> <button id="button2id"  name="button2id" class="btn btn-success">Allocate</button></td>
-					<td> <button id="button2id"  name="button2id" class="btn btn-success">Allocate</button></td>
+					<td>  <button id="button2id"  name="button2id" ng-click="cancle()" class="btn btn-success">Allocate</button></td>
+					<td> <button id="button2id"  name="button2id"  ng-click="cancle()" class="btn btn-success">Allocate</button></td>
+					<td> <button id="button2id"  name="button2id" ng-click="cancle()" class="btn btn-success">Allocate</button></td>
 				</tr>
+				</tbody>
+				</table>
 	</div>
 </div>

@@ -61,6 +61,8 @@ public class UserRegistration {
 	private int totalAmount;
 	
 	private byte[] imageBytes=null;
+	private boolean imageStatus=false;
+
 	List<Facilities> facilities;
 	
 Set<AddOns> addOns;
@@ -92,8 +94,17 @@ public void setAddOns(Set<AddOns> addOns) {
 		return imageBytes;
 	}
 
-	public void setBytes(byte[] bytes) {
+	public void setBytes(byte[] bytes,boolean status) {
 		this.imageBytes = bytes;
+		this.imageStatus=status;
+	}
+
+	public boolean isImageStatus() {
+		return imageStatus;
+	}
+
+	public void setImageStatus(boolean imageStatus) {
+		this.imageStatus = imageStatus;
 	}
 
 	public UserRegistration(String firstName, String lastName, String emailId,

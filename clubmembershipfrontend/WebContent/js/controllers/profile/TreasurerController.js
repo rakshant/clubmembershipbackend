@@ -9,13 +9,15 @@ app.controller('MyController', function($scope, $http, $state, url) {
 	}).success(function(data) {
 	$scope.myDataSource = {
 			   chart: {
-			       caption: "Harry's SuperMart",
-			       subCaption: "Top 5 stores in last month by revenue",
+			       caption: "People's Club Funds",
+			       subCaption: "Total funds in the club by revenue",
 			       numberPrefix: "$",
 			       theme: "fint",
 			       showHoverEffect :"1",
 			       usePlotGradientColor:"1",
 			       plotGradientColor:"#ffffff",
+			       xAxisName: "Facilites",
+			       yAxisName: "Amount (In USD)",
 			      /* yAxisMaxValue: "5",
 			       yAxisMinValue: "0"*/
 			      
