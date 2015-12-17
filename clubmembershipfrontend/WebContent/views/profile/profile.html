@@ -30,6 +30,10 @@
 						
 			   <li class="list-group-item"><a ng-hide="checkLink()" ui-sref="profile.addons">Add AddOns
 						</a></li>
+						
+						
+			<li class="list-group-item"><a ui-sref="profile.viewAddOns">View AddOns
+						</a></li>
 			</ul>
 			<ul class="list-group" ng-show="checkPresident('userType')">
 				<li class="list-group-item"><a ui-sref="profile.viewDetails">View
@@ -54,7 +58,7 @@
 			<img ng-if="image" ng-src="images/logo.png" class="img-thumbnail"
 				alt="Profile Pic" height="200px" width="265px"> <img
 				ng-if="!image"
-				ng-src="http://localhost:8080/users/getImage/{{viewDetails.id}}"
+				ng-src="http://localhost:8080/users/image/{{viewDetails.id}}"
 				class="img-thumbnail" alt="Profile Pic" height="200px" width="265px">
 		</div>
 	</div>

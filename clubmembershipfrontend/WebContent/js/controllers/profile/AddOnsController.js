@@ -5,7 +5,6 @@ app.controller('AddOnsCtrl', function($scope, $state,$http,$rootScope,url,$uibMo
 	
 	$scope.add = function() {
 		
-
 		
 			if($scope.tempOption==="spouse"){
 				var relation='spouse'
@@ -16,7 +15,7 @@ app.controller('AddOnsCtrl', function($scope, $state,$http,$rootScope,url,$uibMo
 			if($scope.tempOption==="daughter"){
 				var relation='daughter'
 			}
-			console.log(relation);
+		
 			
 			
 			$http.put(url + 'users' + "/" +'addons' + "/" + localStorage.getItem('userId'), {
@@ -25,10 +24,7 @@ app.controller('AddOnsCtrl', function($scope, $state,$http,$rootScope,url,$uibMo
 				'relation' :relation
 			}).success(function(data) {
 				
-				  $scope.showTheForm = false;
-				
-
-					$uibModal.open({
+				$uibModal.open({
 						templateUrl : 'views/modal.html',
 						controller : function($scope, $uibModalInstance) {
 							$scope.message = "Member Added in your account"
@@ -50,6 +46,16 @@ app.controller('AddOnsCtrl', function($scope, $state,$http,$rootScope,url,$uibMo
 		
 		
 	}
+	
+	
+	
+	$scope.showThis=function(){
+		
+		$scope.message = "You Have Already Added One Member"
+		
+		
+	}
+	
 		
 		
 });

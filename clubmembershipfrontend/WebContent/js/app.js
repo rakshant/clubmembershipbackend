@@ -37,6 +37,9 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 	}).state('profile.allocateBudget', {
 		url : "/allocateBudget",
 		templateUrl : "views/profile/profileViews/allocateBudget.html"
+	}).state('profile.viewAddOns', {
+		url : "/viewAddOns",
+		templateUrl : "views/profile/profileViews/viewAddOns.html"
 	}); 
 
 	$urlRouterProvider.otherwise("/home");

@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.http.ResponseEntity;
 
+import com.cmm.spring.entity.AddOns;
 import com.cmm.spring.entity.Facilities;
 import com.cmm.spring.entity.HostingCount;
 import com.cmm.spring.mongo.collections.UserRegistration;
@@ -26,7 +28,7 @@ public interface RegistrationService {
 
 	String update(String id, UserRegistration userRegistration) throws JsonProcessingException;
 	
-	public  HashMap<String,List<HostingCount>> aggregationOfType() throws UnknownHostException;
+	public  HashMap<String,List<HostingCount>> aggregationOfClubDetails() throws UnknownHostException;
 
 	UserRegistration viewDetails(String id);
 
@@ -44,4 +46,5 @@ public interface RegistrationService {
 	
 	List<UserRegistration>  viewActiveUserList();
 	String updateAddOns(UserRegistration userRegistration, String id) throws JsonProcessingException;
+	Set<AddOns> viewAddOnsDetails(String id);
 }

@@ -1,0 +1,26 @@
+<div class="panel  panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title">View AddOns Details</h3>
+	</div>
+	<div class="panel-body" ng-controller="viewAddOnsCtrl">
+		<table class="table table-hover">
+
+			<tbody>
+				<tr>
+					<td>Name</td>
+					<td>{{ viewAddOns[0].name }}</td>
+				</tr>
+				<tr>
+					<td>DOB</td>
+					<td>{{ viewAddOns[0].dob | date : 'dd/MM/yyyy' }}</td>
+				</tr>
+	
+				<tr>
+					<td>Relation</td>
+					<td>{{ viewAddOns[0].relation}}</td>
+				</tr>
+			
+				
+		</table>
+	</div>
+</div>
