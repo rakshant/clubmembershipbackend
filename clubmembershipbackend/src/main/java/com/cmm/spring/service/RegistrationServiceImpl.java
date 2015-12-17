@@ -373,7 +373,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 
 	public String saveFacility(UserRegistration userRegistration, String id,String type)
-			throws JsonProcessingException {
+			throws JsonProcessingException , InterruptedException{
 		
 		
 		
@@ -399,7 +399,23 @@ public class RegistrationServiceImpl implements RegistrationService {
 		else{
 			if (user != null) {
 				
-				user.getFacilities().addAll(userRegistration.getFacilities());
+				if(user.getFacilities()!=null){
+					System.out.println("not null------"+userRegistration.getFacilities());
+					System.out.println("---->>>>"+user.getFacilities());
+					
+					List<Facilities> list=user.getFacilities();
+					list.addAll(userRegistration.getFacilities());
+					user.setFacilities(list);
+					registrationRepository.save(user);		
+					Thread.sleep(200);
+
+				}
+				else{
+					System.out.println("in null------"+userRegistration.getFacilities());
+					user.setFacilities(userRegistration.getFacilities());
+					registrationRepository.save(user);	
+					Thread.sleep(200);
+				}
 
 				user.setFacilities(user.getFacilities());
 				registrationRepository.save(user);
@@ -409,6 +425,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 				return null;
 			}
 		}
+				
 
 	}
 
@@ -555,6 +572,23 @@ public List<UserRegistration> viewActiveUserList(){
 				
 				
 				return "failure";
+			}
+
+
+			public HashMap<String, String> request(String email,String status) {
+				HashMap<String, String> response = new HashMap<String, String>();
+				String result = "";
+				if (status.equals("accept")) {
+
+					result = acceptRequest(email);
+					response.put("status", result);
+					response.put("message", "Request Accepted Successfully");
+				} else {
+					rejectRequest(email);
+					response.put("status", result);
+					response.put("message", "Request Rejected Successfully");
+				}
+				return response;
 			}
 	
 	

@@ -19,7 +19,7 @@
 <body>
 	<!-- Header starts from here -->
 	<nav class="navbar navbar-default" >
-         <div class="col-md-2"></div>
+         <div class="col-md-3"></div>
 		<div class="col-md-2">
             
 		<img alt="" src="pay.png"></div>
@@ -49,7 +49,7 @@
       
       <!--  Name on Card starts from here -->
       <div class="form-group">
-        <label class="col-sm-3 control-label">Name on Card</label>
+        <label class="col-sm-3 control-label">Name on Card<span style="color:red">*</span></label>
         <div class="col-sm-9">
           <input type="text" class="form-control" 
           name="nameOnCard" placeholder="Enter Name"  ng-model-options="{ updateOn: 'blur' }"
@@ -72,7 +72,7 @@
        
         <!-- Card Number starts from here -->
       <div class="form-group">
-        <label class="col-sm-3 control-label">Card Number</label>
+        <label class="col-sm-3 control-label">Card Number<span style="color:red">*</span></label>
         <div class="col-sm-9">
           <input type="text" class="form-control" name="cardNumber"  ng-minlength="16"  ng-model-options="{ updateOn: 'blur' }"
 						ng-maxlength="16" placeholder="Enter Card Number"
@@ -81,7 +81,7 @@
 						<span ng-show="myForm.cardNumber.$error.required">Card number required.</span>
 						 <span ng-show="myForm.cardNumber.$error.minlength"> Enter 16 digit Card number.</span>
 						  <span ng-show="myForm.cardNumber.$error.maxlength"> Entered Card
-							number is large than expected .</span>
+							number is more than 16 digits.</span>
 							 <span ng-show="myForm.cardNumber.$error.pattern">Enter digits only</span>
 							 </span>			
 						
@@ -93,7 +93,7 @@
        
         <!-- Expiration Date starts from here -->
       <div class="form-group">
-        <label class="col-sm-3 control-label">Expiration Date</label>
+        <label class="col-sm-3 control-label">Expiration Date<span style="color:red">*</span></label>
         <div class="col-sm-9">
           <div class="row">
             <div class="col-xs-4">
@@ -136,7 +136,7 @@
       
       <!-- Card CVV starts from here -->
       <div class="form-group">
-        <label class="col-sm-3 control-label" >Card CVV</label>
+        <label class="col-sm-3 control-label" >Card CVV<span style="color:red">*</span></label>
         <div class="col-sm-9">
           <input type="text" class="form-control" placeholder="Security Code" name="cardVerificationValue"
 						 ng-minlength="3" ng-maxlength="3"  ng-model-options="{ updateOn: 'blur' }"
@@ -149,9 +149,9 @@
 						ng-show="myForm.cardVerificationValue.$error.minlength">
 							Enter 3 digit Card Verification Value .</span> <span
 						ng-show="myForm.cardVerificationValue.$error.maxlength">
-							Entered Card Verification Value number is large than expected.</span> <span
-						ng-show="myForm.cardVerificationValue.$error.pattern">Only
-							number allowed.</span>
+							Entered Card Verification Value is more than 3 digits.</span> <span
+						ng-show="myForm.cardVerificationValue.$error.pattern">Enter digits only.
+							</span>
 
 					</span>		
 						
@@ -164,7 +164,7 @@
       <!--Amount  starts from here -->
       
       <div class="form-group">
-						<label class="col-sm-3 control-label">Amount</label><br> 
+						<label class="col-sm-3 control-label">Amount<span style="color:red">*</span></label><br> 
 						 <div class="col-sm-9">
 						 <input
 							type="number" class="form-control" name="amount" 
@@ -204,8 +204,6 @@
 	<div class="col-md-2">
             </div>
 
-<div class="col-md-4"></div>
-<div class="col-md-8">
 <nav class="navbar navbar-default" >
 <div class="col-md-5"></div>
 <div class="col-md-7">

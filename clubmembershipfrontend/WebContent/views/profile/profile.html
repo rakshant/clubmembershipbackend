@@ -26,15 +26,38 @@
 					ui-sref="profile.viewBillingDetails"> View Billing Details</a></li>
 
 				<li class="list-group-item"><a ui-sref="profile.renewal">Renew
+						Membership</a></li>					
+		
+			</ul>
+			
+			
+			<ul class="list-group" ng-show="checkPermanentUser('userType')">
+				<li class="list-group-item"><a ui-sref="profile.viewDetails">View
+						Personal Details</a></li>
+				<li class="list-group-item"><a ui-sref="profile.update">Update
+						Personal Details</a></li>
+
+				<li class="list-group-item"><a
+					ui-sref="profile.reservedFacilityTemperaryMember"> Reserve
+						Facilities</a></li>
+
+
+				<li class="list-group-item"><a
+					ui-sref="profile.viewBillingDetails"> View Billing Details</a></li>
+
+				<li class="list-group-item"><a ui-sref="profile.renewal">Renew
 						Membership</a></li>
 						
-			   <li class="list-group-item"><a ng-hide="checkLink()" ui-sref="profile.addons">Add AddOns
+			   <li class="list-group-item"><a  ui-sref="profile.addons">Add AddOns
 						</a></li>
 						
 						
 			<li class="list-group-item"><a ui-sref="profile.viewAddOns">View AddOns
 						</a></li>
 			</ul>
+			
+			
+			
 			<ul class="list-group" ng-show="checkPresident('userType')">
 				<li class="list-group-item"><a ui-sref="profile.viewDetails">View
 						Personal Details</a></li>

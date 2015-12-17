@@ -12,13 +12,17 @@ app.controller('PanelListCtrl', function($scope,$http, url) {
 		return localStorage.getItem(key).trim() === "Secretary";
 	}
 	$scope.checkUser = function(key) {
-		return localStorage.getItem(key).trim() === "User"
-				|| localStorage.getItem(key).trim() === "permanent";
+		return localStorage.getItem(key).trim() === "User";
 	}
 	
 	$scope.checkPresident = function(key) {
 		return localStorage.getItem(key).trim() === "President";			
 	}
+	
+	$scope.checkPermanentUser = function(key) {
+		return  localStorage.getItem(key).trim() === "permanent";
+	}
+	
 	
 	$scope.checkTreasurer = function(key) {
 		return localStorage.getItem(key).trim() === "Treasurer";			
