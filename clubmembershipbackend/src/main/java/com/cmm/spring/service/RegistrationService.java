@@ -47,6 +47,6 @@ public interface RegistrationService {
 	List<UserRegistration>  viewActiveUserList();
 	String updateAddOns(UserRegistration userRegistration, String id) throws JsonProcessingException;
 	Set<AddOns> viewAddOnsDetails(String id);
-	 String checkRenewal(String id);
+	HashMap<String, String> checkRenewal(String id);
 	HashMap<String, String> request(String email,String status);
 }

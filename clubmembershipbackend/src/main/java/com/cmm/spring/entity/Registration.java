@@ -31,6 +31,7 @@ public class Registration {
 	
 	
 	private int renewal=0;
+
 	
 	private long previousRenewalTime;
 	
