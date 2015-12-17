@@ -100,9 +100,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/membershipRenewal/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public HashMap<String, String> membershipRenewal(
-			@PathVariable("id") String id) {
-		HashMap<String, String> response = new HashMap<String, String>();
+	public HashMap<String, String> membershipRenewal(@PathVariable("id") String id) {
+		
 		return registrationService.renewal(id);
 
 	}

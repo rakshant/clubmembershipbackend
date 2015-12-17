@@ -17,29 +17,42 @@ public class RegisterTest {
 	public static void setup()
 	{
 		Client client=Client.create();
-		webResource=client.resource("http://localhost:8080/register");
+		webResource=client.resource("http://localhost:8080/users/register");
 	}
 	
 	@Test
 	public void testRegisterSuccess() 
 	{		
-		String registerData = "{\"firstName\":\"john\",\"lastName\":\"D\",\"emailId\":\"ruchi@gmail.com\",\"dateOfBirth\":\"1993-11-12\",\"mobileNumber\":9766919881,\"occupation\":\"engineer\",\"registeredDate\":\"1993-11-12\",\"password\":\"Ruchi\",\"status\":0,\"userType\":\"Ruchi\"}";
+		String registerData = "{\"firstName\":\"john\",\"lastName\":\"D\",\"emailId\":\"ruchi@gmail.com\",\"dateOfBirth\":\"1993-11-12\",\"mobileNumber\":9766919881,\"occupation\":\"engineer\"}";
 		
 		ClientResponse response = webResource.type("application/json").post(ClientResponse.class,registerData);
 		
 		String output = response.getEntity(String.class);
 		
-		assertNotEquals("{\"id\":null,\"firstName\":\"\",\"lastName\":\"D\",\"emailId\":\"ruchi@gmail.com\",\"dateOfBirth\":\"1993-11-12\",\"mobileNumber\":9766919881,\"occupation\":\"engineer\",\"registeredDate\":\"1993-11-12\",\"password\":\"Ruchi\",\"status\":0,\"userType\":\"Ruchi\"}",output);
+		assertEquals("success",output);
 	}	
+	
 	@Test
-	public void testRegisterNullValue() 
-	{		
-		String registerData = "{\"firstName\":\"\",\"lastName\":\"D\",\"emailId\":\"\",\"dateOfBirth\":\"1993-11-12\",\"mobileNumber\":9766919881,\"occupation\":\"engineer\",\"registeredDate\":\"1993-11-12\",\"password\":\"Ruchi\",\"status\":0,\"userType\":\"Ruchi\"}";
+	public void testRegisterFailed() 
+	{		//This is because same email id will be found in registered hence it will not allow to register again
+		String registerData = "{\"firstName\":\"john\",\"lastName\":\"D\",\"emailId\":\"agrawal@gmail.com\",\"dateOfBirth\":\"1993-11-12\",\"mobileNumber\":9766919881,\"occupation\":\"engineer\"}";
 		
 		ClientResponse response = webResource.type("application/json").post(ClientResponse.class,registerData);
 		
 		String output = response.getEntity(String.class);
 		
-		assertEquals("",output);
+		assertEquals("failed",output);
+	}	
+	
+	@Test
+	public void testRegisterNull() 
+	{		
+		String registerData = "{\"firstName\":\"john\",\"lastName\":\"D\",\"emailId\":\"\",\"dateOfBirth\":\"1993-11-12\",\"mobileNumber\":9766919881,\"occupation\":\"engineer\"}";
+		
+		ClientResponse response = webResource.type("application/json").post(ClientResponse.class,registerData);
+		
+		String output = response.getEntity(String.class);
+		
+		assertEquals("failed",output);
 	}	
 }

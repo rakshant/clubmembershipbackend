@@ -200,7 +200,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	        
 	        	hostingCountObj=mongoOperation.getConverter().read(HostingCount.class, dbobj);
 	        	
-	        	if(hostingCountObj.getType().equals("tableTennis")||hostingCountObj.getType().equals("badminton")||hostingCountObj.getType().equals("chess")
+	        	if(hostingCountObj.getType().equals("tableTennis")||hostingCountObj.getType().equals("badminton")
 	        			||hostingCountObj.getType().equals("billiards")||hostingCountObj.getType().equals("healthClub")
 	        			||hostingCountObj.getType().equals("squash"))
 	        	indoor_hostingCountList.add(hostingCountObj);
