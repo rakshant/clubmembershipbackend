@@ -5,6 +5,10 @@ app.controller('AddOnsCtrl', function($scope, $state,$http,$rootScope,url,$uibMo
 	
 	$scope.add = function() {
 		
+		var check = localStorage.getItem('addOn');
+		if (check == null) {
+		
+		
 		
 			if($scope.tempOption==="spouse"){
 				var relation='spouse'
@@ -24,6 +28,11 @@ app.controller('AddOnsCtrl', function($scope, $state,$http,$rootScope,url,$uibMo
 				'relation' :relation
 			}).success(function(data) {
 				
+				
+				
+				localStorage.setItem('addOn', 'exist');
+				
+				
 				$uibModal.open({
 						templateUrl : 'views/modal.html',
 						controller : function($scope, $uibModalInstance) {
@@ -41,7 +50,24 @@ app.controller('AddOnsCtrl', function($scope, $state,$http,$rootScope,url,$uibMo
 			});		
 		
 		
+		}
 		
+		else{
+			
+			
+			$uibModal.open({
+				templateUrl : 'views/modal.html',
+				controller : function($scope, $uibModalInstance) {
+					$scope.message = "You have Already Added AddOn member"
+
+					$scope.ok = function() {
+						
+						$uibModalInstance.close();
+					}
+				}
+			});
+			
+		}
 		
 		
 		

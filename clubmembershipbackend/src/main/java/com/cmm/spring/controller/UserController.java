@@ -249,6 +249,14 @@ public class UserController {
 		Set<AddOns> addOnsSet = registrationService.viewAddOnsDetails(id);
 		return addOnsSet;
 	}
+	
+	
+	@RequestMapping(value = "/renewal/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody  String checkrenewal(
+			@PathVariable("id") String id) {
+
+		return registrationService.checkRenewal(id);
+	}
 
 	
 	

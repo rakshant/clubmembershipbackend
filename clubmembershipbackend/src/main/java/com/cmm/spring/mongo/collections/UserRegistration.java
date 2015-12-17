@@ -65,7 +65,9 @@ public class UserRegistration {
 	
 Set<AddOns> addOns;
 
+private long previousRenewalTime;
 
+private int renewal=0;
 
 
 	public Set<AddOns> getAddOns() {
@@ -256,5 +258,23 @@ public void setAddOns(Set<AddOns> addOns) {
 	public void setTotalAmount(int totalAmount) {
 		this.totalAmount = totalAmount;
 	}
+
+	public int getRenewal() {
+		return renewal;
+	}
+
+	public void setRenewal(int renewal) {
+		this.renewal = renewal;
+	}
+
+	public long getPreviousRenewalTime() {
+		return previousRenewalTime;
+	}
+
+	public void setPreviousRenewalTime(long previousRenewalTime) {
+		this.previousRenewalTime = previousRenewalTime;
+	}
+
+
 
 }

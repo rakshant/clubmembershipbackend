@@ -18,7 +18,7 @@ app.controller('RenewalCtrl', function($scope, $state,$http,$rootScope,url,$uibM
 				$uibModal.open({
 					templateUrl : 'views/modal.html',
 					controller : function($scope, $uibModalInstance) {
-						$scope.message = "You are not allowed to become permanent member"
+						$scope.message = "You are not yet allowed to become permanent member"
 
 						$scope.ok = function() {
 							$uibModalInstance.close();

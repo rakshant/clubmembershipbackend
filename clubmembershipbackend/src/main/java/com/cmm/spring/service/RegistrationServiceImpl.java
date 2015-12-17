@@ -448,8 +448,14 @@ public class RegistrationServiceImpl implements RegistrationService {
 		Date currentDate = new Date();
 		Date registeredDate = user.getRegisteredDate();
 		long currentMinutes = currentDate.getTime();		
+		
+		user.setPreviousRenewalTime(currentMinutes);
+		
 		long registeredMinutes = registeredDate.getTime();
 		if (currentMinutes - registeredMinutes > 180000) {
+			
+			user.setRenewal(1);
+			registrationRepository.save(user);
 			return true;
 		}
 
@@ -521,6 +527,34 @@ public List<UserRegistration> viewActiveUserList(){
 				Set<AddOns> addOnsList=user.getAddOns();
 			
 				return addOnsList;
+			}
+
+
+			public String checkRenewal(String id) {
+				
+				
+				UserRegistration user=registrationRepository.findOne(id);
+				
+				long previousRenewalTime=user.getPreviousRenewalTime();
+				
+				Date currentDate = new Date();
+				long currentMinutes = currentDate.getTime();
+				
+				
+				
+				if(user.getRenewal()==0 && (currentMinutes-previousRenewalTime)>180000 ){
+					
+					user.setRenewal(2);
+					registrationRepository.save(user);
+					
+					return "success";
+				
+				}
+				
+				
+				
+				
+				return "failure";
 			}
 	
 	

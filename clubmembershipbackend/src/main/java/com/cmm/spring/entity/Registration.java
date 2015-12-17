@@ -30,7 +30,9 @@ public class Registration {
 	Set<AddOns> addOns;
 	
 	
+	private int renewal=0;
 	
+	private long previousRenewalTime;
 	
 	
 public Registration(){}
@@ -160,5 +162,28 @@ public Registration(){}
 	public void setPaymentDone(int paymentDone) {
 		this.paymentDone = paymentDone;
 	}
+
+
+	public int getRenewal() {
+		return renewal;
+	}
+
+
+	public void setRenewal(int renewal) {
+		this.renewal = renewal;
+	}
+
+
+	public long getPreviousRenewalTime() {
+		return previousRenewalTime;
+	}
+
+
+	public void setPreviousRenewalTime(long previousRenewalTime) {
+		this.previousRenewalTime = previousRenewalTime;
+	}
+
+
+	
 
 }
