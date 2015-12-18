@@ -44,35 +44,3 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 
 	$urlRouterProvider.otherwise("/home");
 });
-
-
-
-/*
-myApp.run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
-    $rootScope.$on('$routeChangeStart', function (event) {
-
-        if (!Auth.isLoggedIn()) {
-            console.log('DENY');
-            event.preventDefault();
-            $location.path('profile.viewDetails');
-        }
-        else {
-            console.log('ALLOW');
-            $location.path('/home');
-        }
-    });
-}]);
-
-
-myApp.factory('Auth', function(){
-	var user;
-
-	return{
-	    setUser : function(aUser){
-	        user =localStorage.getItem('userId');
-	    },
-	    isLoggedIn : function(){
-	        return(user)? user : false;
-	    }
-	  }
-	})*/
