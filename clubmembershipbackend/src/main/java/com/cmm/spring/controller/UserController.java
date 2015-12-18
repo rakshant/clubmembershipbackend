@@ -168,6 +168,7 @@ public class UserController {
 			@PathVariable("type") String type,
 			@RequestBody Map<String,List<Facilities>> facilities) throws JsonProcessingException, InterruptedException {
 		List<Facilities> facility = facilities.get("item");
+		System.out.println(facility);
 		registrationService.saveFacility(new UserRegistration(facility), id,type);
 		return new HashMap<String, String>().put("success","done");
 	}

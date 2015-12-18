@@ -55,9 +55,9 @@ app.controller('validateCtrl', function($scope,$http) {
 				$http({method : 'put',
 					url : 'http://localhost:8080/users/facilities/'+str[0].substring(4)+'/permanent',	
 					data:data
+				}).success(function(data){
+					window.open('http://localhost:8089/clubmembershipfrontend/index.html#/profile/viewDetails','_self');			
 				});						
-						
-			window.open('http://localhost:8089/clubmembershipfrontend/index.html#/profile/viewDetails','_self');			
 		}
 
 		else
