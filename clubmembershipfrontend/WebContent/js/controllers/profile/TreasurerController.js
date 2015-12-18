@@ -18,8 +18,7 @@ app.controller('MyController', function($scope, $http, $state, url) {
 			       plotGradientColor:"#ffffff",
 			       xAxisName: "Facilites",
 			       yAxisName: "Amount (In USD)",
-			      /* yAxisMaxValue: "5",
-			       yAxisMinValue: "0"*/
+			     
 			      
 			   },
 			   data:[{
