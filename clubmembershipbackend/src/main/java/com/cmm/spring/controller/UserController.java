@@ -3,7 +3,6 @@ package com.cmm.spring.controller;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -264,11 +263,17 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping(value = "/budget", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/budget", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody UserTreasurerBudget allocateBudget(
 			@RequestBody TreasurerBudget budget)
 			throws JsonProcessingException {
 		UserTreasurerBudget result = budgetService.allocateBudget(new UserTreasurerBudget(budget.getIndoor(),budget.getOutdoor(),budget.getLeisure()));
+		return result;
+	}
+	
+	@RequestMapping(value = "/budget", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody UserTreasurerBudget getAllocateBudget()throws JsonProcessingException {
+		UserTreasurerBudget result = budgetService.getAllocateBudget();
 		return result;
 	}
 	

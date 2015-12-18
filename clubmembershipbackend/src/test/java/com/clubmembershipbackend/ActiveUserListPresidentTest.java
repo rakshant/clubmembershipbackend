@@ -19,7 +19,7 @@ public class ActiveUserListPresidentTest {
 	}
 		
 	@Test
-	public void test() {
+	public void testSuccess() {
 		ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
 	
 		assertNotEquals(200,response.getStatus());

@@ -1,9 +1,5 @@
 package com.cmm.spring.entity;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
-
-@Document(collection = "budget_allocation")
 public class TreasurerBudget {
 
 	

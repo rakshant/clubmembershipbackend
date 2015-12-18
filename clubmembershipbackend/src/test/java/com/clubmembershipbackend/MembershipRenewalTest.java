@@ -17,6 +17,7 @@ import com.sun.jersey.api.client.WebResource;
 public class MembershipRenewalTest {
 
 	static WebResource webResource1,webResource2;
+	
 	@BeforeClass
 	public static void setup(){
 		Client client = Client.create();

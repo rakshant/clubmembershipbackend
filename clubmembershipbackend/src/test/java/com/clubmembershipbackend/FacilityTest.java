@@ -26,14 +26,10 @@ public class FacilityTest {
 	}
 	
 	@Test
-	public void tesFacilitySuccess() {
-		
+	public void tesFacilitySuccess() {		
 		
 		ClientResponse response = webResource1.accept("application/json").put(ClientResponse.class);
-		System.out.println(response);
-		//int output = response.getStatus();
-		/*String output = response.getEntity(String.class);
-		System.out.println(output);*/
+		
 		assertEquals(415,response.getStatus());
 	}
 	
@@ -41,9 +37,7 @@ public class FacilityTest {
 	public void testfacilityFailure() throws JsonParseException, JsonMappingException, IOException {
 		
 		ClientResponse response = webResource2.accept("application/json").put(ClientResponse.class);
-		/*System.out.println(response);
-		int output = response.getStatus();
-		System.out.println(output);*/
+		
 		assertEquals(405,response.getStatus());
 	}
 }

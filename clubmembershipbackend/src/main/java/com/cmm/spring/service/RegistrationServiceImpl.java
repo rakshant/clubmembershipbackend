@@ -217,9 +217,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 	        	
 	        }       
 	    
-	        if(indoor_hostingCountList.size()<4)
+	        if(indoor_hostingCountList.size()<5)
 	        {
-	        	for(int i=indoor_hostingCountList.size();i<4;i++)
+	        	for(int i=indoor_hostingCountList.size();i<5;i++)
 	        		indoor_hostingCountList.add(new HostingCount());
 	        }
 	        
@@ -229,9 +229,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 	        		outdoor_hostingCountList.add(new HostingCount());
 	        }
 	        
-	        if(leisure_hostingCountList.size()<4)
+	        if(leisure_hostingCountList.size()<5)
 	        {
-	        	for(int i=leisure_hostingCountList.size();i<4;i++)
+	        	for(int i=leisure_hostingCountList.size();i<5;i++)
 	        		leisure_hostingCountList.add(new HostingCount());
 	        }
 	        

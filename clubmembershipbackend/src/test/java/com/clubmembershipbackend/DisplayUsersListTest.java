@@ -20,23 +20,13 @@ public class DisplayUsersListTest {
 	}
 	
 	@Test
-	public void test()  {
+	public void testSuccess()  {
 		
 		ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
-		System.out.println(response);
+		
 		String output = response.getEntity(String.class);
-		System.out.println(output);
-		//int output = response.getStatus();
+		
 		assertNotEquals(202,output);
-		}
-	
-	/*@Test
-	public void testNotNull() throws JsonParseException, JsonMappingException, IOException {
-		Client client = Client.create();		
-		WebResource webResource = client.resource("http://localhost:8080/users/userlist");
-		ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
-		int output = response.getStatus();
-		assertNotNull(output);
-	}*/
+	}
 	
 }
