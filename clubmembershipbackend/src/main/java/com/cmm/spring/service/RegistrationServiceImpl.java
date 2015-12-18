@@ -299,6 +299,13 @@ public class RegistrationServiceImpl implements RegistrationService {
 		String occupation=user.getOccupation();
 		Long mobile=user.getMobileNumber();
 		
+		
+		user.setStatus(1);
+		
+		registrationRepository.save(user);
+		
+		
+		
 		userEmail
 		.setBody("Please pay the Entrance fee amount of Rs. "
 				+ 1000
@@ -317,9 +324,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 			mailSender.send(simpleMailMessageObj);
 
 		
-			user.setStatus(1);
+		/*	user.setStatus(1);
 		
-			registrationRepository.save(user);
+			registrationRepository.save(user);*/
 
 		} catch (Exception e) {
 			e.printStackTrace();
