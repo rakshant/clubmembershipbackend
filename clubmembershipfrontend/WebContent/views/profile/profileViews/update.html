@@ -24,11 +24,19 @@
 				</tr>
 				<tr>
 					<td><label class="col-sm-5" >Mobile No. :</label></td>
-					<td><input type="number" class="form-control" id="mobNumber" ng-model="mobileNumber" placeholder="Mobile Number"></td>
+				<td ng-form name="myForm2">
+					<input type="text" class="form-control" id="mobNumber" name="mobNumber" ng-model="mobileNumber" ng-pattern="/^[0-9]*$/" ng-maxlength="10" ng-minlength="10"  placeholder="Mobile Number" required>
+					<span  class="error" style="color: red" ng-show="myForm2.mobNumber.$error.pattern">Enter only Number</span>
+					<span  class="error" style="color: red" ng-show="myForm2.mobNumber.$error.maxlength">Enter 10 digit Number</span>
+					<span  class="error" style="color: red" ng-show="myForm2.mobNumber.$error.minlength">Enter 10 digit Number</span>
+					</td>
 				</tr>
 				<tr>
 					<td> <label class="col-sm-6" >Occupation :</label></td>
-					<td><input type="text" class="form-control" id="occupation" ng-model="occupation" placeholder="Occupation"></td>
+					<td  ng-form name="myForm">
+					<input type="text" class="form-control" id="occupation" name="occupation" ng-model="occupation" ng-pattern="/^[a-zA-Z\s]*$/" placeholder="Occupation" required>
+					<span  class="error" style="color: red" ng-show="myForm.occupation.$error.pattern">Only Alphabets allowed</span>
+					</td>
 				</tr>
 				
 				<tr>
@@ -37,7 +45,10 @@
 				</tr>
 				<tr>
 					<td> <label class="col-sm-5" for="inputEmail1">Password :</label></td>
-					<td><input type="password" class="form-control" id="password" ng-model="password" placeholder="password"></td>
+					<td ng-form name="myForm3">
+					<input type="password" class="form-control" id="password" name="password" ng-model="password" placeholder="password"  ng-pattern="/^[0-9]{4,4}$/" required >
+					<span  class="error" style="color: red" ng-show="myForm3.password.$error.pattern">Enter 4 digit password</span>
+					</td>
 				</tr>
 				<tr>
 					<td>  <label class="col-md-5 control-label" for="filebutton">Upload photo</label></td>
