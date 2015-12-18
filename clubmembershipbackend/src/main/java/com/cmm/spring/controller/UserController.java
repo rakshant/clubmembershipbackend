@@ -159,7 +159,8 @@ public class UserController {
 	@RequestMapping(value = "/treasurer", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, List<HostingCount>> aggregateClubDetails() throws JsonProcessingException, UnknownHostException {
 		HashMap<String, List<HostingCount>> hosts=registrationService.aggregationOfClubDetails();
-		//System.out.println(hosts);
+
+		
 		return hosts;
 	}
 
@@ -168,7 +169,7 @@ public class UserController {
 			@PathVariable("type") String type,
 			@RequestBody Map<String,List<Facilities>> facilities) throws JsonProcessingException, InterruptedException {
 		List<Facilities> facility = facilities.get("item");
-		System.out.println(facility);
+	
 		registrationService.saveFacility(new UserRegistration(facility), id,type);
 		return new HashMap<String, String>().put("success","done");
 	}
