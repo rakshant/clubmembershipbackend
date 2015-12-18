@@ -18,7 +18,7 @@ app.controller('HandleRegistrationCtrl', function($scope, $state,$http,$rootScop
 				method : 'GET',
 				url : url+'users/request?email='+id+'&status=accept'		
 			}).success(function(data) {
-					
+				refresh();
 				
 				$uibModal.open({
 					templateUrl : 'views/modal.html',
@@ -31,7 +31,7 @@ app.controller('HandleRegistrationCtrl', function($scope, $state,$http,$rootScop
 					}
 				});				
 			});			
-			refresh();
+			
 		}
 		$scope.reject=function(id){
 			$http({

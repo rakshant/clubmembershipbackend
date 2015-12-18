@@ -60,7 +60,6 @@ public class RegistrationServiceImpl implements RegistrationService {
 			throws JsonProcessingException {
 
 		int flag = 0;
-	
 
 		Query query = new Query();
 
@@ -77,26 +76,26 @@ public class RegistrationServiceImpl implements RegistrationService {
 		}
 
 		if (flag == 0) {
-			
+
 			Date currentDate = new Date();
 			Date enteredDate = userRegistration.getDateOfBirth();
-			
-			Calendar calender=Calendar.getInstance();
-			
-			 int currentYear = calender.get(Calendar.YEAR);
-			 
 
-			 calender.setTime(enteredDate);
-			
-			 int enteredYear= calender.get(calender.YEAR);
-			 
+			Calendar calender = Calendar.getInstance();
+
+			int currentYear = calender.get(Calendar.YEAR);
+
+			calender.setTime(enteredDate);
+
+			int enteredYear = calender.get(calender.YEAR);
+
 			if (currentDate.compareTo(enteredDate) != -1) {
 
 				if (currentYear - enteredYear > 18) {
-					
-					userRegistration.setPreviousRenewalTime(userRegistration.getRegisteredDate().getTime());
+
+					userRegistration.setPreviousRenewalTime(userRegistration
+							.getRegisteredDate().getTime());
 					registrationRepository.insert(userRegistration);
-					
+
 					return "success";
 				}
 			}
@@ -104,8 +103,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 		return "failed";
 	}
-	
-	
+
 	public List<UserRegistration> pendingRequest(String id) {
 
 		if (isSecretary(id)) {
@@ -162,85 +160,88 @@ public class RegistrationServiceImpl implements RegistrationService {
 		}
 	}
 
-	public  HashMap<String,List<HostingCount>> aggregationOfClubDetails() throws UnknownHostException{
-		
-		  List<HostingCount> indoor_hostingCountList=new ArrayList<HostingCount>();
-		  List<HostingCount> outdoor_hostingCountList=new ArrayList<HostingCount>();
-		  List<HostingCount> leisure_hostingCountList=new ArrayList<HostingCount>();
-		  HashMap<String,List<HostingCount>> hashmap=new HashMap<String,List<HostingCount>>();
-		
-		
-		//  List<HostingCount> hostingCountList=new ArrayList<HostingCount>();
-	        HostingCount hostingCountObj=new HostingCount(); 					//this is a temp object of our pojo class
-	        List<DBObject> dbList=new ArrayList<DBObject>();
+	public HashMap<String, List<HostingCount>> aggregationOfClubDetails()
+			throws UnknownHostException {
 
-		
-			MongoClient mongoClient = new MongoClient();
-			DB db = mongoClient.getDB("test");
-			DBCollection ledger = db.getCollection("user_registrations");
-			DBObject unwind=new BasicDBObject("$unwind","$facilities");
-			dbList.add(unwind);
-			DBObject projectFields = new BasicDBObject("Total_Fee", "$facilities.price");
-			projectFields.put("Category", "$facilities.category");
-	        projectFields.put("Name", "$facilities.type");
-	        DBObject project = new BasicDBObject("$project", projectFields );
-	        dbList.add(project);
-	        DBObject groupFields = new BasicDBObject( "_id", "$Name");
-	        groupFields.put("TotalFee", new BasicDBObject( "$sum", "$Total_Fee"));
-	        DBObject group = new BasicDBObject("$group", groupFields);
-	        dbList.add(group);		//This is adding parameters in DbObjectList
-	      
-	        AggregationOutput output = ledger.aggregate(dbList);
-	      
-	        Iterable<DBObject> iterable = output.results();
-	        Iterator<DBObject> iterator=iterable.iterator();
-	        while(iterator.hasNext()) 
-	        {
-	        	DBObject dbobj=iterator.next();	        	
-	        
-	        	hostingCountObj=mongoOperation.getConverter().read(HostingCount.class, dbobj);
-	        	
-	        	if(hostingCountObj.getType().equals("tableTennis")||hostingCountObj.getType().equals("badminton")
-	        			||hostingCountObj.getType().equals("billiards")||hostingCountObj.getType().equals("healthClub")
-	        			||hostingCountObj.getType().equals("squash"))
-	        	indoor_hostingCountList.add(hostingCountObj);
-	        	
-	        	else if(hostingCountObj.getType().equals("lawnTennis")||hostingCountObj.getType().equals("swimming")
-	        			||hostingCountObj.getType().equals("cricket")||hostingCountObj.getType().equals("playground"))
-	        		outdoor_hostingCountList.add(hostingCountObj);
-	        	
-	        	else if(hostingCountObj.getType().equals("cardRoom")||hostingCountObj.getType().equals("library")
-	        			||hostingCountObj.getType().equals("restaurantBar")||hostingCountObj.getType().equals("banquetHall")
-	        			||hostingCountObj.getType().equals("conferenceHall"))
-	        	leisure_hostingCountList.add(hostingCountObj);        
-	        	
-	        	
-	        }       
-	    
-	        if(indoor_hostingCountList.size()<5)
-	        {
-	        	for(int i=indoor_hostingCountList.size();i<5;i++)
-	        		indoor_hostingCountList.add(new HostingCount());
-	        }
-	        
-	        if(outdoor_hostingCountList.size()<4)
-	        {
-	        	for(int i=outdoor_hostingCountList.size();i<4;i++)
-	        		outdoor_hostingCountList.add(new HostingCount());
-	        }
-	        
-	        if(leisure_hostingCountList.size()<5)
-	        {
-	        	for(int i=leisure_hostingCountList.size();i<5;i++)
-	        		leisure_hostingCountList.add(new HostingCount());
-	        }
-	        
-	    hashmap.put("indoor", indoor_hostingCountList);
-      	hashmap.put("outdoor", outdoor_hostingCountList);
-      	hashmap.put("leisure", leisure_hostingCountList);
-    
-	        
-      	return hashmap;
+		List<HostingCount> indoor_hostingCountList = new ArrayList<HostingCount>();
+		List<HostingCount> outdoor_hostingCountList = new ArrayList<HostingCount>();
+		List<HostingCount> leisure_hostingCountList = new ArrayList<HostingCount>();
+		HashMap<String, List<HostingCount>> hashmap = new HashMap<String, List<HostingCount>>();
+
+		// List<HostingCount> hostingCountList=new ArrayList<HostingCount>();
+		HostingCount hostingCountObj = new HostingCount(); // this is a temp
+															// object of our
+															// pojo class
+		List<DBObject> dbList = new ArrayList<DBObject>();
+
+		MongoClient mongoClient = new MongoClient();
+		DB db = mongoClient.getDB("test");
+		DBCollection ledger = db.getCollection("user_registrations");
+		DBObject unwind = new BasicDBObject("$unwind", "$facilities");
+		dbList.add(unwind);
+		DBObject projectFields = new BasicDBObject("Total_Fee",
+				"$facilities.price");
+		projectFields.put("Category", "$facilities.category");
+		projectFields.put("Name", "$facilities.type");
+		DBObject project = new BasicDBObject("$project", projectFields);
+		dbList.add(project);
+		DBObject groupFields = new BasicDBObject("_id", "$Name");
+		groupFields.put("TotalFee", new BasicDBObject("$sum", "$Total_Fee"));
+		DBObject group = new BasicDBObject("$group", groupFields);
+		dbList.add(group); // This is adding parameters in DbObjectList
+
+		AggregationOutput output = ledger.aggregate(dbList);
+
+		Iterable<DBObject> iterable = output.results();
+		Iterator<DBObject> iterator = iterable.iterator();
+		while (iterator.hasNext()) {
+			DBObject dbobj = iterator.next();
+
+			hostingCountObj = mongoOperation.getConverter().read(
+					HostingCount.class, dbobj);
+
+			if (hostingCountObj.getType().equals("tableTennis")
+					|| hostingCountObj.getType().equals("badminton")
+					|| hostingCountObj.getType().equals("billiards")
+					|| hostingCountObj.getType().equals("healthClub")
+					|| hostingCountObj.getType().equals("squash"))
+				indoor_hostingCountList.add(hostingCountObj);
+
+			else if (hostingCountObj.getType().equals("lawnTennis")
+					|| hostingCountObj.getType().equals("swimming")
+					|| hostingCountObj.getType().equals("cricket")
+					|| hostingCountObj.getType().equals("playground"))
+				outdoor_hostingCountList.add(hostingCountObj);
+
+			else if (hostingCountObj.getType().equals("cardRoom")
+					|| hostingCountObj.getType().equals("library")
+					|| hostingCountObj.getType().equals("restaurantBar")
+					|| hostingCountObj.getType().equals("banquetHall")
+					|| hostingCountObj.getType().equals("conferenceHall"))
+				leisure_hostingCountList.add(hostingCountObj);
+
+		}
+
+		if (indoor_hostingCountList.size() < 5) {
+			for (int i = indoor_hostingCountList.size(); i < 5; i++)
+				indoor_hostingCountList.add(new HostingCount());
+		}
+
+		if (outdoor_hostingCountList.size() < 4) {
+			for (int i = outdoor_hostingCountList.size(); i < 4; i++)
+				outdoor_hostingCountList.add(new HostingCount());
+		}
+
+		if (leisure_hostingCountList.size() < 5) {
+			for (int i = leisure_hostingCountList.size(); i < 5; i++)
+				leisure_hostingCountList.add(new HostingCount());
+		}
+
+		hashmap.put("indoor", indoor_hostingCountList);
+		hashmap.put("outdoor", outdoor_hostingCountList);
+		hashmap.put("leisure", leisure_hostingCountList);
+
+		return hashmap;
 	}
 
 	public UserRegistration addFile(String id, UserRegistration file)
@@ -249,7 +250,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 		user = registrationRepository.findOne(id);
 
 		if (user != null) {
-			user.setBytes(file.getBytes(),true);
+			user.setBytes(file.getBytes(), true);
 			registrationRepository.save(user);
 			return user;
 		} else
@@ -275,7 +276,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 
 	public void rejectRequest(String email) {
-		
+
 		UserRegistration user = registrationRepository.findByEmailId(email)
 				.get(0);
 		registrationRepository.delete(user);
@@ -287,32 +288,30 @@ public class RegistrationServiceImpl implements RegistrationService {
 				.get(0);
 		String id = user.getId();
 
-	
 		UserEmail userEmail = new UserEmail();
 		userEmail.setFromAddress("clubmembershipuser@gmail.com");
 		userEmail.setToAddress(email);
 		userEmail.setSubject("ClubMembership: Entrance fee amount payment");
-		
-		String firstName=user.getFirstName();
-		String lastName=user.getLastName();
-		String emailID=user.getEmailId();
-		String occupation=user.getOccupation();
-		Long mobile=user.getMobileNumber();
-		
-		
+
+		String firstName = user.getFirstName();
+		String lastName = user.getLastName();
+		String emailID = user.getEmailId();
+		String occupation = user.getOccupation();
+		Long mobile = user.getMobileNumber();
+
 		user.setStatus(1);
-		
+
 		registrationRepository.save(user);
-		
-		
-		
+
 		userEmail
-		.setBody("Please pay the Entrance fee amount of Rs. "
-				+ 1000
-				+ " by accessing the link below. \n You will be contacted soon.\n"
-				+ "Thank you.\n Payment link: http://localhost:8089/clubmembershipfrontend/paymentmodule/userdata.html?id="
-				+ id + "&fee=" + 1000 + "&type=" + "entry"+"&firstName="+firstName+"&lastName="+lastName
-				+"&email="+emailID+"&mobile="+mobile+"&Occupation="+occupation);
+				.setBody("Please pay the Entrance fee amount of Rs. "
+						+ 1000
+						+ " by accessing the link below. \n You will be contacted soon.\n"
+						+ "Thank you.\n Payment link: http://localhost:8089/clubmembershipfrontend/paymentmodule/userdata.html?id="
+						+ id + "&fee=" + 1000 + "&type=" + "entry"
+						+ "&firstName=" + firstName + "&lastName=" + lastName
+						+ "&email=" + emailID + "&mobile=" + mobile
+						+ "&Occupation=" + occupation);
 
 		SimpleMailMessage simpleMailMessageObj = new SimpleMailMessage();
 		simpleMailMessageObj.setFrom(userEmail.getFromAddress());
@@ -323,10 +322,11 @@ public class RegistrationServiceImpl implements RegistrationService {
 		try {
 			mailSender.send(simpleMailMessageObj);
 
-		
-		/*	user.setStatus(1);
-		
-			registrationRepository.save(user);*/
+			/*
+			 * user.setStatus(1);
+			 * 
+			 * registrationRepository.save(user);
+			 */
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -337,11 +337,11 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	}
 
-	public UserRegistration payBill(String id,String type) {
-		
+	public UserRegistration payBill(String id, String type) {
+
 		UserRegistration user = registrationRepository.findOne(id);
-		
-		if(type.equals("entry")){
+
+		if (type.equals("entry")) {
 			if (user.getStatus() == 1) {
 				user.setPaymentDone(1);
 
@@ -350,7 +350,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 				email.setFromAddress("clubmembershipuser@gmail.com");
 				email.setToAddress(user.getEmailId());
 				email.setSubject("Club Membership: Login credentials.");
-				email.setBody("Dear" + user.getFirstName()
+				email.setBody("Dear"
+						+ user.getFirstName()
 						+ "\n You have been successfully registered with our club."
 						+ "\nYour login credentials are: \n Username: "
 						+ user.getEmailId() + "Password: " + user.getPassword()
@@ -367,32 +368,26 @@ public class RegistrationServiceImpl implements RegistrationService {
 				mailSender.send(simpleMailMessageObj);
 
 				return user;
-			}
-			else{
+			} else {
 				user.setPaymentDone(1);
 				return user;
 			}
-			
-		}
-		else{			
+
+		} else {
 			user.setUserType("permanent");
-			registrationRepository.save(user);			
+			registrationRepository.save(user);
 			return user;
 		}
 	}
 
-/*	public String saveFacility(UserRegistration userRegistration, String id,String type)
-			throws JsonProcessingException , InterruptedException{
-		
-		UserRegistration user = new UserRegistration();
 
+	public String saveFacility(UserRegistration userRegistration, String id,
+			String type) throws JsonProcessingException, InterruptedException {
+		UserRegistration user = null;
 		user = registrationRepository.findOne(id);
 		ObjectMapper objectMapper = new ObjectMapper();
-
-		
-		if(type.equals("temporary")){
+		if (type.equals("temporary")) {
 			if (user != null) {
-
 				user.setFacilities(userRegistration.getFacilities());
 				registrationRepository.save(user);
 				String registerJson = objectMapper.writeValueAsString(user);
@@ -400,85 +395,38 @@ public class RegistrationServiceImpl implements RegistrationService {
 			} else {
 				return null;
 			}
-		}
-		else{
-			if (user != null) {
+		} else {
+			user = registrationRepository.findOne(id);
+		
+			List<Facilities> list = user.getFacilities();
+			
+			if (list == null) {
+			
+				user.setFacilities(userRegistration.getFacilities());
+				registrationRepository.save(user);
+			} else {
 				
-				//if(user.getFacilities()!=null){
-					List<Facilities> list=user.getFacilities();
-					if(list==null){
-						System.out.println("in null------");
-						user.setFacilities(userRegistration.getFacilities());
-					}
-					else{					
-						System.out.println("not null");
-						list.addAll(userRegistration.getFacilities());
-						user.setFacilities(list);
-						System.out.println("Yooooooo---"+registrationRepository.save(user));	
-					}
-
-				//}
-				else{
-					System.out.println("in null------"+userRegistration.getFacilities());
-					user.setFacilities(userRegistration.getFacilities());
-					System.out.println("Yooooooo---"+registrationRepository.save(user));				
-				}
-
-				user.setFacilities(user.getFacilities());
+				list.addAll(userRegistration.getFacilities());
+				user.setFacilities(list);
 				registrationRepository.save(user);
-				String registerJson = objectMapper.writeValueAsString(user);
-				return registerJson;
-			} else {
-				return null;
 			}
+			String registerJson = objectMapper.writeValueAsString(user);
+			return registerJson;
 		}
-	}*/
-	public String saveFacility(UserRegistration userRegistration, String id,String type)
-			throws JsonProcessingException , InterruptedException{
-		UserRegistration user =null;
-		user = registrationRepository.findOne(id);
-		ObjectMapper objectMapper = new ObjectMapper();
-		if(type.equals("temporary")){
-			if (user != null) {
-				user.setFacilities(userRegistration.getFacilities());
-				registrationRepository.save(user);
-				String registerJson = objectMapper.writeValueAsString(user);
-				return registerJson;
-			} else {
-				return null;
-			}
-		}
-		else{
-					user = registrationRepository.findOne(id);
-					System.out.println("Inside Permanent");
-					List<Facilities> list=user.getFacilities();
-					System.out.println("Case is "+list);
-					if(list==null){
-						System.out.println("match me as per case i am null"+list);
-						user.setFacilities(userRegistration.getFacilities());
-						registrationRepository.save(user);
-					}else{					
-						System.out.println("match me as per case i am not null"+list);
-						list.addAll(userRegistration.getFacilities());
-						user.setFacilities(list);
-						registrationRepository.save(user);
-					}
-				String registerJson = objectMapper.writeValueAsString(user);
-				return registerJson;
-			} 
-		}
+	}
 
 	public List<Facilities> getBillsByUser(String id) {
 
 		UserRegistration user = registrationRepository.findOne(id);
 		List<Facilities> facilityList = user.getFacilities();
-		
-		if(user.getUserType().equals("permanent")){
-			
-			Facilities f=new Facilities("Sports Club","Membership Renewal",20000);
-			
+
+		if (user.getUserType().equals("permanent")) {
+
+			Facilities f = new Facilities("Sports Club", "Membership Renewal",
+					20000);
+
 			facilityList.add(f);
-			
+
 		}
 
 		return facilityList;
@@ -487,8 +435,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	public HashMap<String, String> renewal(String id) {
 
 		HashMap<String, String> response = new HashMap<String, String>();
-		
-		
+
 		if (isPermanent(id)) {
 			response.put("status", "success");
 			return response;
@@ -503,13 +450,13 @@ public class RegistrationServiceImpl implements RegistrationService {
 		UserRegistration user = registrationRepository.findOne(id);
 		Date currentDate = new Date();
 		Date registeredDate = user.getRegisteredDate();
-		long currentMinutes = currentDate.getTime();		
-		
+		long currentMinutes = currentDate.getTime();
+
 		user.setPreviousRenewalTime(currentMinutes);
-		
+
 		long registeredMinutes = registeredDate.getTime();
 		if (currentMinutes - registeredMinutes > 180000) {
-			
+
 			user.setRenewal(1);
 			registrationRepository.save(user);
 			return true;
@@ -517,135 +464,107 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 		return false;
 	}
-	
-	
-	//view list of all active users
-public List<UserRegistration> viewActiveUserList(){
-				
-     Query query = new Query();
-     query.addCriteria(Criteria.where("status").regex("1"));
-       
-     return registrationRepository.findByStatus(1);
-			
+
+	// view list of all active users
+	public List<UserRegistration> viewActiveUserList() {
+
+		Query query = new Query();
+		query.addCriteria(Criteria.where("status").regex("1"));
+
+		return registrationRepository.findByStatus(1);
+
 	}
 
+	public boolean checkUsersList(String emailId) {
 
-			public boolean checkUsersList(String emailId) {
-				
-				emailId=emailId+".com";		
-				List<UserRegistration> user = registrationRepository.findByEmailId(emailId);
-				
-				if(user.size()==0){
-					
-					return false;
-				}
-				
-				else return true;
+		emailId = emailId + ".com";
+		List<UserRegistration> user = registrationRepository
+				.findByEmailId(emailId);
 
+		if (user.size() == 0) {
 
-				
-			}
+			return false;
+		}
 
+		else
+			return true;
 
-			public String updateAddOns(UserRegistration userRegistration,
-					String id) throws JsonProcessingException {
-				
-				
-				UserRegistration user = new UserRegistration();
+	}
 
-				user = registrationRepository.findOne(id);
-				ObjectMapper objectMapper = new ObjectMapper();
-				
-				
+	public String updateAddOns(UserRegistration userRegistration, String id)
+			throws JsonProcessingException {
 
-				
-				if(user.getUserType().equals("permanent")){
-					
+		UserRegistration user = new UserRegistration();
 
-						user.setAddOns(userRegistration.getAddOns());
-						registrationRepository.save(user);
-				
-						String registerJson = objectMapper.writeValueAsString(user);
-						return registerJson;
-					
-				}
-				return null;
-				
-			
-				
-			}
+		user = registrationRepository.findOne(id);
+		ObjectMapper objectMapper = new ObjectMapper();
 
+		if (user.getUserType().equals("permanent")) {
 
-			public Set<AddOns> viewAddOnsDetails(String id) {
-				
-				UserRegistration user=registrationRepository.findOne(id);
-				
-				Set<AddOns> addOnsList=user.getAddOns();
-			
-				return addOnsList;
-			}
+			user.setAddOns(userRegistration.getAddOns());
+			registrationRepository.save(user);
 
+			String registerJson = objectMapper.writeValueAsString(user);
+			return registerJson;
 
-			public HashMap<String, String> checkRenewal(String id) {
-				
+		}
+		return null;
 
-				HashMap<String, String> response = new HashMap<String, String>();
-				
-				
-				
-				UserRegistration user=registrationRepository.findOne(id);
-				
-				long previousRenewalTime=user.getPreviousRenewalTime();
-				
-				Date currentDate = new Date();
-				long currentMinutes = currentDate.getTime();
-				
-				
-				System.out.println("currentMinutes: "+currentMinutes);
-				
-				System.out.println("previoius: "+previousRenewalTime);
-				
-				System.out.println(currentMinutes-previousRenewalTime);
-				
-				
-				if((currentMinutes-previousRenewalTime)>180000 ){
-					
-					user.setRenewal(2);
-					
-					user.setPreviousRenewalTime(currentMinutes);
-					
-					registrationRepository.save(user);
-					
-					
-					response.put("status", "success");
-					return response;
-				
-				}
-				
-				
-				
-				
-				response.put("status", "failure");
-				return response;
-			}
+	}
 
+	public Set<AddOns> viewAddOnsDetails(String id) {
 
-			public HashMap<String, String> request(String email,String status) {
-				HashMap<String, String> response = new HashMap<String, String>();
-				String result = "";
-				if (status.equals("accept")) {
+		UserRegistration user = registrationRepository.findOne(id);
 
-					result = acceptRequest(email);
-					response.put("status", result);
-					response.put("message", "Request Accepted Successfully");
-				} else {
-					rejectRequest(email);
-					response.put("status", result);
-					response.put("message", "Request Rejected Successfully");
-				}
-				return response;
-			}
+		Set<AddOns> addOnsList = user.getAddOns();
+
+		return addOnsList;
+	}
+
+	public HashMap<String, String> checkRenewal(String id) {
+
+		HashMap<String, String> response = new HashMap<String, String>();
+
+		UserRegistration user = registrationRepository.findOne(id);
+
+		long previousRenewalTime = user.getPreviousRenewalTime();
+
+		Date currentDate = new Date();
+		long currentMinutes = currentDate.getTime();
+
 	
-	
-	
+
+		if ((currentMinutes - previousRenewalTime) > 180000) {
+
+			user.setRenewal(2);
+
+			user.setPreviousRenewalTime(currentMinutes);
+
+			registrationRepository.save(user);
+
+			response.put("status", "success");
+			return response;
+
+		}
+
+		response.put("status", "failure");
+		return response;
+	}
+
+	public HashMap<String, String> request(String email, String status) {
+		HashMap<String, String> response = new HashMap<String, String>();
+		String result = "";
+		if (status.equals("accept")) {
+
+			result = acceptRequest(email);
+			response.put("status", result);
+			response.put("message", "Request Accepted Successfully");
+		} else {
+			rejectRequest(email);
+			response.put("status", result);
+			response.put("message", "Request Rejected Successfully");
+		}
+		return response;
+	}
+
 }

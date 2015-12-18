@@ -8,9 +8,9 @@ app.controller('dataCtrl', function($scope,$http) {
 	
 	$scope.firstName=str[3].substring(10);
 	$scope.lastName=str[4].substring(9);
-	$scope.mobile=str[5].substring(6);
+	$scope.mobile=str[6].substring(7);
 	$scope.occupation=str[7].substring(11);
-	$scope.email=str[6].substring(7);
+	$scope.email=str[5].substring(6);
 	
 	
 	
