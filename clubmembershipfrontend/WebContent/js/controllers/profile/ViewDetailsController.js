@@ -15,12 +15,6 @@ app.controller('viewCtrl', function($scope, $http, $state, url) {
 		$scope.password = data.password;
 		
 		$scope.facilityDetails=data.facilities;
-		
-		console.log($scope.facilityDetails);
-		
-		
-		
-
 	});
 	
 
