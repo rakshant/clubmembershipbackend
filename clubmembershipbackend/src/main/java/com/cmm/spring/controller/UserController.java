@@ -163,26 +163,6 @@ public class UserController {
 		return hosts;
 	}
 
-/*	@RequestMapping(value = "/facilities/{id}/{type}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String reserveFacilities(@PathVariable("id") String id,
-			@PathVariable("type") String type,
-			@RequestBody Facilities facilities) throws JsonProcessingException, InterruptedException {
-		
-		System.out.println("----------"+facilities.getCategory()+"  "+ facilities
-				.getType()+"  "+ facilities.getPrice());
-
-		
-		List<Facilities> facility = new ArrayList<Facilities>();
-		facility.add(new Facilities(facilities.getCategory(), facilities
-				.getType(), facilities.getPrice()));
-
-		registrationService.saveFacility(new UserRegistration(facility), id,
-				type);
-		return new HashMap<String, String>().put("success",
-				facilities.getCategory());
-
-	}
-*/
 	@RequestMapping(value = "/facilities/{id}/{type}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String reserveFacilities(@PathVariable("id") String id,
 			@PathVariable("type") String type,
