@@ -63,23 +63,21 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 		Query query = new Query();
 
-		query.addCriteria(Criteria.where("emailId").regex(
+		query.addCriteria(Criteria.where("emailId").is(
 				userRegistration.getEmailId()));
 
 		registrationCheckList = mongoOperation.find(query,
 				UserRegistration.class);
-
 		if (registrationCheckList.size() != 0) {
 			flag = 1;
 
-			return "failed";
+			return "{ \"error\":\"Email already registered\" }";
 		}
 
 		if (flag == 0) {
 
 			Date currentDate = new Date();
 			Date enteredDate = userRegistration.getDateOfBirth();
-
 			Calendar calender = Calendar.getInstance();
 
 			int currentYear = calender.get(Calendar.YEAR);
@@ -95,13 +93,18 @@ public class RegistrationServiceImpl implements RegistrationService {
 					userRegistration.setPreviousRenewalTime(userRegistration
 							.getRegisteredDate().getTime());
 					registrationRepository.insert(userRegistration);
-
-					return "success";
+					return "{ \"result\":\"success\" }";
 				}
+				else {
+					return "{ \"result\":\"Error- Age should be minimum 18 years\" }";
+				}
+			}
+			else {
+				return "{ \"result\":\"Error- Date of birth can not be current or future date\" }";
 			}
 		}
 
-		return "failed";
+		return "{ \"result\":\"failed\" }";
 	}
 
 	public List<UserRegistration> pendingRequest(String id) {
@@ -121,6 +124,17 @@ public class RegistrationServiceImpl implements RegistrationService {
 		return null;
 	}
 
+	public List<UserRegistration> getPendingRequestsBySecretaryForPermanentMembers(String secretaryId) {
+		if (isSecretary(secretaryId)) {
+			Query query = new Query();
+			query.addCriteria(Criteria.where("status").is(3)); //Pending requests made by permanent members only.
+			registrationRequestUsersList = mongoOperation.find(query,
+					UserRegistration.class);
+			return registrationRequestUsersList;
+		}
+		return null;
+	}
+	
 	private boolean isSecretary(String id) {
 
 		UserRegistration user = registrationRepository.findOne(id);
@@ -347,7 +361,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 				UserEmail email = new UserEmail();
 
-				email.setFromAddress("clubmembershipuser@gmail.com");
+				email.setFromAddress("anand.pune38@gmail.com");
 				email.setToAddress(user.getEmailId());
 				email.setSubject("Club Membership: Login credentials.");
 				email.setBody("Dear"
@@ -357,7 +371,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 						+ user.getEmailId() + "Password: " + user.getPassword()
 						+ "\n" + "Thank you. Looking forward to you visit.");
 
-				registrationRepository.save(user);
+				user.setStatus(2); //Active member & paid 1000 rupees
+				registrationRepository.save(user); 
 
 				SimpleMailMessage simpleMailMessageObj = new SimpleMailMessage();
 				simpleMailMessageObj.setFrom(email.getFromAddress());
@@ -373,14 +388,42 @@ public class RegistrationServiceImpl implements RegistrationService {
 				return user;
 			}
 
-		} else {
+		} 
+		else {
 			user.setUserType("permanent");
+			user.setStatus(5); //Staff has approved permanent membership request & he has made its payment. 
 			registrationRepository.save(user);
 			return user;
 		}
 	}
 
+	public String applyForPermanentMembership(String id) {
+		UserRegistration user = registrationRepository.findOne(id);
+		if(user == null) {
+			return "{ \"result\":\" Error: Invalid user id\" }";
+		}
+		if(user.getStatus() != 2) {
+			return "{ \"result\":\" Error: User is not active\" }"; 
+		}
+		else {
+			user.setStatus(3);
+			registrationRepository.save(user);
+			return "{ \"result\":\"User " + user.getId() + " successfully applied for permanent membership\" }";
+		}
+	}
 
+	public String approvePermanentMembershipRequest(String id) {
+		UserRegistration user = registrationRepository.findOne(id);
+		if(user.getStatus() != 3) {
+			return "{ \"result\":\" Error: User has not applied for permanent membership\" }"; 
+		}
+		else {
+			user.setStatus(4);
+			registrationRepository.save(user);
+			return "{ \"result\":\"Approved User " + user.getId() + " request for permanent membership\" }";
+		}
+	}
+	
 	public String saveFacility(UserRegistration userRegistration, String id,
 			String type) throws JsonProcessingException, InterruptedException {
 		UserRegistration user = null;
@@ -419,7 +462,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 		UserRegistration user = registrationRepository.findOne(id);
 		List<Facilities> facilityList = user.getFacilities();
-
+		if(facilityList == null || facilityList.size() == 0) {
+			facilityList = new ArrayList<Facilities>();
+		}
 		if (user.getUserType().equals("permanent")) {
 
 			Facilities f = new Facilities("Sports Club", "Membership Renewal",
@@ -469,7 +514,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	public List<UserRegistration> viewActiveUserList() {
 
 		Query query = new Query();
-		query.addCriteria(Criteria.where("status").regex("1"));
+		query.addCriteria(Criteria.where("status").is("1"));
 
 		return registrationRepository.findByStatus(1);
 
@@ -567,4 +612,22 @@ public class RegistrationServiceImpl implements RegistrationService {
 		return response;
 	}
 
+	public List<UserRegistration> getUsersByStatus(String strStatusCode) {
+		/* statusCode description:
+		 	0: Temporary user
+			1: Active user
+			2: Paid 1000 rupees
+			3: Applied for permanent user
+			4: Approved for permanent request
+			5: Made payment for permanent membership
+		 */
+		if(strStatusCode == null) {
+			return null;
+		}
+		int statusCode = Integer.parseInt(strStatusCode);
+		if (statusCode < 0 || statusCode > 5) {  //Invalid status code
+			return null;
+		}
+		return registrationRepository.findByStatus(statusCode);
+	}
 }

@@ -25,6 +25,7 @@ public interface RegistrationService {
 	String saveFacility(UserRegistration userRegistration, String id,String type) throws JsonProcessingException, InterruptedException;
 
 	List<UserRegistration> pendingRequest(String id);
+	List<UserRegistration> getPendingRequestsBySecretaryForPermanentMembers(String secretaryId);
 
 	String update(String id, UserRegistration userRegistration) throws JsonProcessingException;
 	
@@ -49,4 +50,9 @@ public interface RegistrationService {
 	Set<AddOns> viewAddOnsDetails(String id);
 	HashMap<String, String> checkRenewal(String id);
 	HashMap<String, String> request(String email,String status);
+	
+	String applyForPermanentMembership(String id);
+	String approvePermanentMembershipRequest(String id);
+	
+	List<UserRegistration> getUsersByStatus(String statusCode);
 }

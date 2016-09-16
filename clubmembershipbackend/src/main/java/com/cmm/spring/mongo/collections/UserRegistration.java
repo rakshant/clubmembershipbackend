@@ -119,7 +119,8 @@ public void setAddOns(Set<AddOns> addOns) {
 		this.occupation = occupation;
 
 		this.registeredDate = new Date();
-		this.password = "" + ((int) (Math.random() * 9000) + 1000);
+		//this.password = "" + ((int) (Math.random() * 9000) + 1000);
+		this.password = password;
 		this.status = status;
 		this.userType = userType;
 		

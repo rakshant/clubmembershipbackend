@@ -120,6 +120,14 @@ public class UserController {
 		return userList;
 	}
 
+	@RequestMapping(value = "/pendingrequests/permanent/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<UserRegistration> getPendingRequestsBySecretaryForPermanentMember(
+			@PathVariable("id") String secretaryId) {
+		List<UserRegistration> userList = registrationService
+				.getPendingRequestsBySecretaryForPermanentMembers(secretaryId);
+		return userList;
+	}
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody UserRegistration getUser(@PathVariable("id") String id) {
 		UserRegistration user = registrationService.viewDetails(id);
@@ -139,6 +147,27 @@ public class UserController {
 		return registrationService.payBill(id, type);
 	}
 
+	@RequestMapping(value = "/status/apply/permanent/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String applyForPermanentMembership(
+			@PathVariable("id") String id) {
+		
+		return registrationService.applyForPermanentMembership(id);
+	}
+	
+	@RequestMapping(value = "/status/approve/permanent/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String approvePermanentMembershipRequest(
+			@PathVariable("id") String id) {
+		
+		return registrationService.approvePermanentMembershipRequest(id);
+	}
+	
+	@RequestMapping(value = "/status/{statusCode}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<UserRegistration> getUsersByStatus(
+			@PathVariable("statusCode") String statusCode) {
+		
+		return registrationService.getUsersByStatus(statusCode);
+	}
+	
 	@RequestMapping(value = "/request", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody HashMap<String, String> sendEmail(
 			@RequestParam String email, @RequestParam String status) {

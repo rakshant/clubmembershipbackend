@@ -34,15 +34,14 @@ public class LoginServiceImpl implements LoginService {
 
 		if (userLogin.getEmailId() != null) {
 
-			query.addCriteria(Criteria.where("emailId").regex(
+			query.addCriteria(Criteria.where("emailId").is(
 					userLogin.getEmailId()));
-
 		} else
 			return "failed";
 
 		if (userLogin.getPassword() != null) {
 
-			query.addCriteria(Criteria.where("password").regex(
+			query.addCriteria(Criteria.where("password").is(
 					userLogin.getPassword()));
 
 		} else
