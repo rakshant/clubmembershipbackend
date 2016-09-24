@@ -361,7 +361,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 				UserEmail email = new UserEmail();
 
-				email.setFromAddress("anand.pune38@gmail.com");
+				email.setFromAddress("clubmembershipuser@gmail.com");
 				email.setToAddress(user.getEmailId());
 				email.setSubject("Club Membership: Login credentials.");
 				email.setBody("Dear"
